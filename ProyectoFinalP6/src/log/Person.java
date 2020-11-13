@@ -1,23 +1,43 @@
 package log;
 
+import java.util.Date;
+
 public abstract class Person {
 	
-	private String id;	
-	private String name;
-	private String last_name;
-	private String address;
-	private String marital_status;
-	private String phone_number;
+	protected String id;	
+	protected String name;
+	protected String lastName;
+	protected Date birthDate;
+	protected String address;
+	protected String email;
+	protected String province;
+	protected String city;
+	protected String gender;
+	protected String maritalStatus;
+	protected String phoneNumber;
+	protected boolean travelAv;
+	protected boolean moveAv;
+	protected boolean workingStatus;
 	
-	public Person(String id, String name, String last_name, String address, String marital_status,
-			String phone_number) {
+	public Person(String id, String name, String lastName, Date birthDate, String address, String email,
+			String province, String city, String gender, String maritalStatus, String phoneNumber, boolean travelAv,
+			boolean moveAv) {
+		
 		super();
 		this.id = id;
 		this.name = name;
-		this.last_name = last_name;
+		this.lastName = lastName;
+		this.birthDate = birthDate;
 		this.address = address;
-		this.marital_status = marital_status;
-		this.phone_number = phone_number;
+		this.email = email;
+		this.province = province;
+		this.city = city;
+		this.gender = gender;
+		this.maritalStatus = maritalStatus;
+		this.phoneNumber = phoneNumber;
+		this.travelAv = travelAv;
+		this.moveAv = moveAv;
+		this.workingStatus = false;
 	}
 
 	public String getId() {
@@ -36,13 +56,6 @@ public abstract class Person {
 		this.name = name;
 	}
 
-	public String getLast_name() {
-		return last_name;
-	}
-
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
-	}
 
 	public String getAddress() {
 		return address;
@@ -52,20 +65,92 @@ public abstract class Person {
 		this.address = address;
 	}
 
-	public String getMarital_status() {
-		return marital_status;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setMarital_status(String marital_status) {
-		this.marital_status = marital_status;
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
-	public String getPhone_number() {
-		return phone_number;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public String getProvince() {
+		return province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public String getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public boolean isTravelAv() {
+		return travelAv;
+	}
+
+	public boolean isMoveAv() {
+		return moveAv;
+	}
+
+	public boolean isWorkingStatus() {
+		return workingStatus;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setTravelAv(boolean travelAv) {
+		this.travelAv = travelAv;
+	}
+
+	public void setMoveAv(boolean moveAv) {
+		this.moveAv = moveAv;
+	}
+
+	public void setWorkingStatus(boolean workingStatus) {
+		this.workingStatus = workingStatus;
 	}
 
 }

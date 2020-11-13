@@ -1,46 +1,35 @@
 package log;
 
+import java.util.Date;
+import java.util.List;
+
 public abstract class Worker extends Person {
 
-	private String dep;
-	protected float salary;
-	private float plusCharge;
-
-	public Worker(String id, String name, String last_name, String address, String marital_status, String phone_number,
-			String dep, float salary, float plusCharge) {
-		super(id, name, last_name, address, marital_status, phone_number);
-		this.dep = dep;
-		this.salary = salary;
-		this.plusCharge = plusCharge;
-	}
+	private List<String> skills;
+	private int workExperience;
 	
-	public float pay() {
-		return salary + plusCharge;
-	}
-	
-	public String getDep() {
-		return dep;
-	}
-
-	public void setDep(String dep) {
-		this.dep = dep;
+	public Worker(String id, String name, String lastName, Date birthDate, String address, String email,
+			String province, String city, String gender, String maritalStatus, String phoneNumber, boolean travelAv,
+			boolean moveAv, List<String> skills, int workExperience) {
+		super(id, name, lastName, birthDate, address, email, province, city, gender, maritalStatus, phoneNumber,
+				travelAv, moveAv);
+		this.skills = skills;
+		this.workExperience = workExperience;
 	}
 
-	public float getSalary() {
-		return salary;
+	public List<String> getSkills() {
+		return skills;
 	}
 
-	public void setSalary(float salary) {
-		this.salary = salary;
-	}
-	
-	public float getPlusCharge() {
-		return plusCharge;
+	public int getWorkExperience() {
+		return workExperience;
 	}
 
-	public void setPlusCharge(float plusCharge) {
-		this.plusCharge = plusCharge;
+	public void setSkills(List<String> skills) {
+		this.skills = skills;
 	}
 
-
+	public void setWorkExperience(int workExperience) {
+		this.workExperience = workExperience;
+	}
 }
