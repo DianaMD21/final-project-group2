@@ -3,7 +3,7 @@ package log;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Worker extends Person {
+public class Worker extends Person {
 
 	private List<String> skills;
 	private int workExperience;
