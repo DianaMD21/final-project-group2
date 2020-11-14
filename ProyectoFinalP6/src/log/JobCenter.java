@@ -50,6 +50,7 @@ public class JobCenter {
 	}
 	
 	public void addCompany(Company company) {
+		company.setId(String.valueOf(myCompanies.size()));
 		this.myCompanies.add(company);
 	}
 	

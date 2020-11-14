@@ -10,6 +10,18 @@ public class Company {
 	private String phoneNumber;
 	private String email;
 	
+	public Company( String name, String area, String address, String province, String city,
+			String phoneNumber, String email) {
+		super();
+		this.name = name;
+		this.area = area;
+		this.address = address;
+		this.province = province;
+		this.city = city;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -74,16 +86,4 @@ public class Company {
 		this.email = email;
 	}
 	
-	public Company(String id, String name, String area, String address, String province, String city,
-			String phoneNumber, String email) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.area = area;
-		this.address = address;
-		this.province = province;
-		this.city = city;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-	}
 }
