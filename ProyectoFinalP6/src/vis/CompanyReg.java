@@ -19,6 +19,7 @@ import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.TextArea;
+import java.awt.Dialog.ModalityType;
 import java.awt.SystemColor;
 import javax.swing.border.TitledBorder;
 
@@ -41,9 +42,7 @@ public class CompanyReg extends JDialog {
 	private JTextArea txtAreaAddress;
 	private JComboBox<String> cbxProvince;
 
-	/**
-	 * Launch the application.
-	 */
+	/*
 	public static void main(String[] args) {
 		try {
 			Company company= new Company( "Diana", "Salud", "Gurabo", "Duarte", "Santiago", "5266", "hi");
@@ -56,12 +55,11 @@ public class CompanyReg extends JDialog {
 		}
 	}
 
-	/**
-	 * Create the dialog.
-	 * @param company 
+	 @param company 
 	 */
 	public CompanyReg(Company company) {
 		setTitle("Registrar Empresa");
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		setBounds(100, 100, 577, 550);
 		setResizable(false);
 		setLocationRelativeTo(null);
