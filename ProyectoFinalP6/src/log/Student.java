@@ -12,14 +12,13 @@ public class Student extends Person {
 
 	public Student(String id, String name, String lastName, Date birthDate, String address, String email,
 			String province, String city, String gender, String maritalStatus, String phoneNumber, boolean travelAv,
-			boolean moveAv, String university, String career, int semesterAmount) {
+			boolean moveAv, String university, String career, int semesterAmount, ArrayList<String>languages) {
 		super(id, name, lastName, birthDate, address, email, province, city, gender, maritalStatus, phoneNumber,
 				travelAv, moveAv);
 		this.university = university;
 		this.career = career;
 		this.semesterAmount = semesterAmount;
-		this.languages = new ArrayList<>();
-
+		this.languages = languages;
 	}
 
 	public List<String> getLanguages() {
