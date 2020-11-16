@@ -555,6 +555,16 @@ public class EmployeeReg extends JDialog {
 		pnlStudent.add(lblUniversidad);
 		
 		txtCareer = new JTextField();
+		txtCareer.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
+                        && (caracter != '\b') && (caracter!=32)) {
+                    e.consume();
+                }
+			}
+		});
 		txtCareer.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCareer.setColumns(10);
 		txtCareer.setBounds(23, 291, 285, 28);
