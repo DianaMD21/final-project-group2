@@ -11,10 +11,10 @@ public class Worker extends Person {
 	
 	public Worker(String id, String name, String lastName, Date birthDate, String address, String email,
 			String province, String city, String gender, String maritalStatus, String phoneNumber, boolean travelAv,
-			boolean moveAv, int workExperience) {
+			boolean moveAv, int workExperience, ArrayList<String>skills) {
 		super(id, name, lastName, birthDate, address, email, province, city, gender, maritalStatus, phoneNumber,
 				travelAv, moveAv);
-		this.skills = new ArrayList<>();
+		this.skills = skills;
 		this.workExperience = workExperience;
 	}
 

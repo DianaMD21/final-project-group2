@@ -10,11 +10,11 @@ public class Technician extends Person{
 
 	public Technician(String id, String name, String lastName, Date birthDate, String address, String email,
 			String province, String city, String gender, String maritalStatus, String phoneNumber, boolean travelAv,
-			boolean moveAv, int workExperienceYears) {
+			boolean moveAv, int workExperienceYears, ArrayList<String>areas) {
 		super(id, name, lastName, birthDate, address, email, province, city, gender, maritalStatus, phoneNumber, travelAv,
 				moveAv);
 		this.workExperienceYears=workExperienceYears;
-		this.areas=new ArrayList<>();
+		this.areas=areas;
 	}
 
 	public List<String> getAreas() {
