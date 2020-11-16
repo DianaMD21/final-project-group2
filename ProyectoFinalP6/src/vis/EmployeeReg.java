@@ -173,6 +173,15 @@ public class EmployeeReg extends JDialog {
 			public void keyReleased(KeyEvent arg0) {
 				updateNext();
 			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')  || (txtID.getText().length()==11)) {
+                    e.consume();
+                    
+                }
+			}
 		});
 		txtID.setColumns(10);
 		txtID.setBounds(88, 62, 145, 28);
@@ -183,6 +192,14 @@ public class EmployeeReg extends JDialog {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				updateNext();
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
+                        && (caracter != '\b') && (caracter!=32)) {
+                    e.consume();
+                }
 			}
 		});
 		txtName.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -200,6 +217,14 @@ public class EmployeeReg extends JDialog {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				updateNext();
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
+                        && (caracter != '\b') && (caracter!=32)) {
+                    e.consume();
+                }
 			}
 		});
 		txtLastName.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -258,6 +283,14 @@ public class EmployeeReg extends JDialog {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				updateNext();
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
+                        && (caracter != '\b') && (caracter!=32)) {
+                    e.consume();
+                }
 			}
 		});
 		txtCity.setColumns(10);
@@ -342,6 +375,15 @@ public class EmployeeReg extends JDialog {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				updateNext();
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')  ) {
+                    e.consume();
+                    
+                }
 			}
 		});
 		txtPhone.setColumns(10);
