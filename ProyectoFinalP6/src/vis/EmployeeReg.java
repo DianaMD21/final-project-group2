@@ -67,7 +67,6 @@ public class EmployeeReg extends JDialog {
 	private JButton btnNext;
 	private JButton btnBack;
 	private JTextField txtCollege;
-	private JTextField txtCareer;
 	private JRadioButton rdbStudent;
 	private JRadioButton rdbWorker;
 	private JRadioButton rdbTech;
@@ -82,10 +81,10 @@ public class EmployeeReg extends JDialog {
 	private JButton btnAddSkill;
 	private JSpinner spnYearExp;
 	private JSpinner spnExpYears;
-	private JTextField txtArea;
 	private JTextField txtInstitution;
 	private JComboBox<String> cbxSkillsA;
-	
+	private JComboBox<String> cbxCareer;
+	private JComboBox<String>  cbxArea;
 	
 	/**
 	 * Launch the application.
@@ -155,6 +154,10 @@ public class EmployeeReg extends JDialog {
                     
                 }
 			}
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				updateNext();
+			}
 		});
 		txtID.setColumns(10);
 		txtID.setBounds(88, 62, 145, 28);
@@ -169,6 +172,10 @@ public class EmployeeReg extends JDialog {
                         && (caracter != '\b') && (caracter!=32)) {
                     e.consume();
                 }
+			}
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				updateNext();
 			}
 		});
 		txtName.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -191,6 +198,10 @@ public class EmployeeReg extends JDialog {
                     e.consume();
                 }
 			}
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				updateNext();
+			}
 		});
 		txtLastName.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtLastName.setColumns(10);
@@ -205,7 +216,7 @@ public class EmployeeReg extends JDialog {
 		txtAddress = new JTextField();
 		txtAddress.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void keyReleased(KeyEvent arg0) {
 				updateNext();
 			}
 		});
@@ -338,6 +349,10 @@ public class EmployeeReg extends JDialog {
 		txtPhone = new JTextField();
 		txtPhone.addKeyListener(new KeyAdapter() {
 			@Override
+			public void keyReleased(KeyEvent arg0) {
+				updateNext();
+			}
+			@Override
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
                 if (((caracter < '0') || (caracter > '9'))
@@ -462,26 +477,16 @@ public class EmployeeReg extends JDialog {
 		lblUniversidad.setBounds(20, 11, 161, 27);
 		pnlStudent.add(lblUniversidad);
 		
-		txtCareer = new JTextField();
-		txtCareer.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char caracter = e.getKeyChar();
-                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
-                        && (caracter != '\b') && (caracter!=32)) {
-                    e.consume();
-                }
-			}
-		});
-		txtCareer.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtCareer.setColumns(10);
-		txtCareer.setBounds(20, 155, 285, 28);
-		pnlStudent.add(txtCareer);
-		
 		JLabel lblCarrera = new JLabel("Carrera:");
 		lblCarrera.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCarrera.setBounds(20, 115, 161, 27);
 		pnlStudent.add(lblCarrera);
+		
+		cbxCareer = new JComboBox<String>();
+		cbxCareer.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		cbxCareer.setModel(new DefaultComboBoxModel<String>(new String[] {"<Selecci\u00F3n>", "Direcci\u00F3n Empresarial", "Administraci\u00F3n Hotelera", "Arquitectura", "Comunicaci\u00F3n Social", "Derecho", "Dise\u00F1o e Interiorismo", "\u200B\u200B\u200BEcolog\u00EDa y Gesti\u00F3n Ambiental", "Econom\u00EDa", "Educaci\u00F3n", "Estomatolog\u00EDa", "Filosof\u00EDa", "Gesti\u00F3n Financiera y Auditor\u00EDa", "Ingenier\u00EDa Civil", "Ingenier\u00EDa Mec\u00E1nica", "Ingenier\u00EDa El\u00E9ctrica", "Ingenier\u00EDa Industrial y de Sistemas", "Ingenier\u00EDa en Mecatr\u00F3nica", "Ingenier\u00EDa de Sistemas y Computaci\u00F3n", "Ingenier\u00EDa Telem\u00E1tica", "Medicina", "Marketing", "Nutrici\u00F3n y Diet\u00E9tica\u200B", "Psicolog\u00EDa", "Terapia F\u00EDsica"}));
+		cbxCareer.setBounds(20, 153, 346, 28);
+		pnlStudent.add(cbxCareer);
 		
 		pnlTech = new JPanel();
 		pnlTech.setVisible(false);
@@ -503,12 +508,6 @@ public class EmployeeReg extends JDialog {
 		spnExpYears.setBounds(506, 113, 63, 28);
 		pnlTech.add(spnExpYears);
 		
-		txtArea = new JTextField();
-		txtArea.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtArea.setColumns(10);
-		txtArea.setBounds(27, 51, 304, 28);
-		pnlTech.add(txtArea);
-		
 		JLabel lblTcnico = new JLabel("\u00C1rea:");
 		lblTcnico.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTcnico.setBounds(27, 11, 81, 27);
@@ -524,6 +523,12 @@ public class EmployeeReg extends JDialog {
 		lblInstitucin.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblInstitucin.setBounds(27, 122, 104, 27);
 		pnlTech.add(lblInstitucin);
+		
+		cbxArea = new JComboBox<String>();
+		cbxArea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		cbxArea.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","Informática","Electricidad","Contabilidad","Diseño Gráfico","Enfermería","Mercadeo","Administración","Publicidad"}));
+		cbxArea.setBounds(27, 49, 287, 27);
+		pnlTech.add(cbxArea);
 		
 		pnlWorker = new JPanel();
 		pnlWorker.setVisible(false);
@@ -571,7 +576,7 @@ public class EmployeeReg extends JDialog {
 					String selection = cbxSkillsA.getSelectedItem().toString();
 					SkillsSelected.add(selection);
 					loadSkills();
-					cbxSkillsA.setSelectedIndex(-1);
+					cbxSkillsA.setSelectedIndex(0);
 					btnAddSkill.setEnabled(false);
 				}	
 			}
@@ -622,10 +627,7 @@ public class EmployeeReg extends JDialog {
 		cbxSkillsA.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","Plomería","Ebanistería","Mecánica","Construcción","Pintura","Soldadura","Jardinería"}));
 		cbxSkillsA.setBounds(26, 38, 210, 27);
 		pnlWorker.add(cbxSkillsA);
-		if(mod != null) {
-			loadData(mod);
-		}
-		
+
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
@@ -669,12 +671,12 @@ public class EmployeeReg extends JDialog {
 						if(rdbStudent.isSelected()) {
 							aux = new Student(txtID.getText(), txtName.getText(), txtLastName.getText(), (Date) spnBirth.getValue(), txtAddress.getText(),
 							txtEmail.getText(), cbxProvince.getSelectedItem().toString(),txtCity.getText(),cbxGenre.getSelectedItem().toString(),
-							cbxMaritalStatus.getSelectedItem().toString(), txtPhone.getText(),txtCollege.getText(),txtCareer.getText());
+							cbxMaritalStatus.getSelectedItem().toString(), txtPhone.getText(),txtCollege.getText(),cbxCareer.getSelectedItem().toString());
 						}
 						if(rdbTech.isSelected()) {
 							aux = new Technician(txtID.getText(), txtName.getText(), txtLastName.getText(), (Date) spnBirth.getValue(), txtAddress.getText(),
 							txtEmail.getText(), cbxProvince.getSelectedItem().toString(),txtCity.getText(),cbxGenre.getSelectedItem().toString(),
-							cbxMaritalStatus.getSelectedItem().toString(), txtPhone.getText(),Integer.valueOf(spnExpYears.getValue().toString()), txtArea.getText(), txtInstitution.getText());
+							cbxMaritalStatus.getSelectedItem().toString(), txtPhone.getText(),Integer.valueOf(spnExpYears.getValue().toString()), cbxArea.getSelectedItem().toString(), txtInstitution.getText());
 						}
 						if(rdbWorker.isSelected()) {
 							aux = new Worker(txtID.getText(), txtName.getText(), txtLastName.getText(), (Date) spnBirth.getValue(), txtAddress.getText(),
@@ -705,6 +707,9 @@ public class EmployeeReg extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
+		if(mod != null) {
+			loadData(mod);
+		}
 	}
 	
 	private void loadData(Person mod) {
@@ -721,7 +726,7 @@ public class EmployeeReg extends JDialog {
 		txtPhone.setText(mod.getPhoneNumber());
 		if(mod instanceof Student) {
 			txtCollege.setText(((Student) mod).getUniversity());
-			txtCareer.setText(((Student) mod).getCareer());
+			cbxCareer.setSelectedItem(((Student) mod).getCareer());
 			rdbStudent.setSelected(true);
 			rdbTech.setSelected(false);
 			rdbWorker.setSelected(false);
@@ -731,7 +736,7 @@ public class EmployeeReg extends JDialog {
 		}
 		if(mod instanceof Technician) {
 			txtInstitution.setText(((Technician) mod).getInstitution());
-			txtArea.setText(((Technician) mod).getArea());
+			cbxArea.setSelectedItem(((Technician) mod).getArea());
 			spnExpYears.setValue(Integer.valueOf(((Technician) mod).getWorkExperienceYears()));	
 			rdbStudent.setSelected(false);
 			rdbTech.setSelected(true);
@@ -751,6 +756,7 @@ public class EmployeeReg extends JDialog {
 			pnlTech.setVisible(false);
 			pnlWorker.setVisible(true);
 		}
+		btnNext.setEnabled(true);
 		
 	}
 
