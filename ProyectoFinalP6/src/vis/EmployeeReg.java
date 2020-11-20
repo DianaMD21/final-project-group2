@@ -155,6 +155,15 @@ public class EmployeeReg extends JDialog {
                     
                 }
 			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')  || (txtID.getText().length()==11)) {
+                    e.consume();
+                    
+                }
+			}
 		});
 		txtID.setColumns(10);
 		txtID.setBounds(88, 62, 145, 28);
@@ -162,6 +171,14 @@ public class EmployeeReg extends JDialog {
 		
 		txtName = new JTextField();
 		txtName.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
+                        && (caracter != '\b') && (caracter!=32)) {
+                    e.consume();
+                }
+			}
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
@@ -183,6 +200,14 @@ public class EmployeeReg extends JDialog {
 		
 		txtLastName = new JTextField();
 		txtLastName.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
+                        && (caracter != '\b') && (caracter!=32)) {
+                    e.consume();
+                }
+			}
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
@@ -337,6 +362,15 @@ public class EmployeeReg extends JDialog {
 		
 		txtPhone = new JTextField();
 		txtPhone.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')  ) {
+                    e.consume();
+                    
+                }
+			}
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
