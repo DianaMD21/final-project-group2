@@ -32,7 +32,6 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
-import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -75,34 +74,19 @@ public class EmployeeReg extends JDialog {
 	private JPanel pnlStudent;
 	private JPanel pnlTech;
 	private JPanel pnlWorker;
-	private JComboBox<String> cbxLanguage;
-	private ArrayList<String> languages;
-	private JList<String> listLanguages;
-	private DefaultListModel<String> modelLanguages;
-	private ArrayList<String> areasS;
-	private DefaultListModel<String> areasSel;
-	private ArrayList<String> areasAva;
-	private JList<String> listAvAreas;
-	private DefaultListModel<String> areasA;
-	private JList<String> listSelectedAreas;
 	private int choose;
-	private int choose2;
-	private JButton btnAddArea;
-	private JButton btnRemoveArea;
-	private DefaultListModel<String> SkillsA;
 	private DefaultListModel<String> SkillsS;
 	private JList<String> listSkillsSelected;
-	private JList<String> listSkillsAva;
-	private ArrayList<String> SkillsAva;
 	private ArrayList<String> SkillsSelected;
 	private JButton btnRemoveSkill;
 	private JButton btnAddSkill;
-	private int choose3;
-	private int choose4;
-	private JCheckBox checkTravel;
-	private JCheckBox checkMove;
 	private JSpinner spnYearExp;
 	private JSpinner spnExpYears;
+	private JTextField txtArea;
+	private JTextField txtInstitution;
+	private JComboBox<String> cbxSkillsA;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -121,16 +105,9 @@ public class EmployeeReg extends JDialog {
 	 */
 	public EmployeeReg(Person mod) {
 		choose = -1;
-		choose2 = -1;
-		choose3 = -1;
-		choose4 = -1;
-		areasS = new ArrayList<String>();
-		SkillsAva =new ArrayList<String>();
 		SkillsSelected = new ArrayList<String>();
-		modelLanguages = new DefaultListModel<String>();
-		languages = new ArrayList<String>();
 		setTitle("Registar Empleado");
-		setBounds(100, 100, 680, 749);
+		setBounds(100, 100, 678, 655);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -145,7 +122,7 @@ public class EmployeeReg extends JDialog {
 		pnlGeneral.setLayout(null);
 		pnlGeneral.setBorder(null);
 		pnlGeneral.setBackground(Color.WHITE);
-		pnlGeneral.setBounds(0,0,664,667);
+		pnlGeneral.setBounds(0,0,664,583);
 		contentPanel.add(pnlGeneral);
 		
 		JSeparator separator_2 = new JSeparator();
@@ -170,8 +147,13 @@ public class EmployeeReg extends JDialog {
 		txtID = new JTextField();
 		txtID.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent arg0) {
-				updateNext();
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')  || (txtID.getText().length()==11)) {
+                    e.consume();
+                    
+                }
 			}
 		});
 		txtID.setColumns(10);
@@ -181,8 +163,12 @@ public class EmployeeReg extends JDialog {
 		txtName = new JTextField();
 		txtName.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent arg0) {
-				updateNext();
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
+                        && (caracter != '\b') && (caracter!=32)) {
+                    e.consume();
+                }
 			}
 		});
 		txtName.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -198,8 +184,12 @@ public class EmployeeReg extends JDialog {
 		txtLastName = new JTextField();
 		txtLastName.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent e) {
-				updateNext();
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
+                        && (caracter != '\b') && (caracter!=32)) {
+                    e.consume();
+                }
 			}
 		});
 		txtLastName.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -258,6 +248,14 @@ public class EmployeeReg extends JDialog {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				updateNext();
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
+                        && (caracter != '\b') && (caracter!=32)) {
+                    e.consume();
+                }
 			}
 		});
 		txtCity.setColumns(10);
@@ -340,36 +338,20 @@ public class EmployeeReg extends JDialog {
 		txtPhone = new JTextField();
 		txtPhone.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent e) {
-				updateNext();
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')  ) {
+                    e.consume();
+                    
+                }
 			}
 		});
 		txtPhone.setColumns(10);
 		txtPhone.setBounds(176, 484, 145, 28);
 		pnlGeneral.add(txtPhone);
-		
-		checkTravel = new JCheckBox("Disponibilidad para viajar");
-		checkTravel.setBackground(Color.WHITE);
-		checkTravel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		checkTravel.setBounds(52, 596, 193, 23);
-		pnlGeneral.add(checkTravel);
-		
-		checkMove = new JCheckBox("Disponibilidad para mudarse");
-		checkMove.setBackground(Color.WHITE);
-		checkMove.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		checkMove.setBounds(398, 596, 212, 23);
-		pnlGeneral.add(checkMove);
-		
-		JSeparator separator_5 = new JSeparator();
-		separator_5.setBounds(10, 570, 644, 2);
-		pnlGeneral.add(separator_5);
-		
-		JLabel lblCondicionesLaborales = new JLabel("Condiciones laborales");
-		lblCondicionesLaborales.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblCondicionesLaborales.setBounds(21, 544, 202, 21);
-		pnlGeneral.add(lblCondicionesLaborales);
 		pnlJobInfo.setBackground(Color.WHITE);
-		pnlJobInfo.setBounds(0, 0, 664, 677);
+		pnlJobInfo.setBounds(0, 0, 664, 583);
 		contentPanel.add(pnlJobInfo);
 		pnlJobInfo.setLayout(null);
 		
@@ -379,7 +361,7 @@ public class EmployeeReg extends JDialog {
 		
 		JLabel lblProfesion = new JLabel("Informaci\u00F3n laboral");
 		lblProfesion.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblProfesion.setBounds(21, 11, 187, 21);
+		lblProfesion.setBounds(232, 11, 187, 21);
 		pnlJobInfo.add(lblProfesion);
 		
 		JLabel lblStudent = new JLabel("New label");
@@ -437,7 +419,7 @@ public class EmployeeReg extends JDialog {
 		lblProfesin_1.setBounds(20, 48, 224, 27);
 		pnlJobInfo.add(lblProfesin_1);
 		
-		rdbStudent = new JRadioButton("Estudiante");
+		rdbStudent = new JRadioButton("Egresado");
 		rdbStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				rdbTech.setSelected(false);
@@ -455,272 +437,122 @@ public class EmployeeReg extends JDialog {
 		pnlJobInfo.add(rdbStudent);
 		
 		JSeparator separator_4 = new JSeparator();
-		separator_4.setBounds(10, 294, 644, 2);
+		separator_4.setBounds(10, 315, 644, 2);
 		pnlJobInfo.add(separator_4);
 		
 		JLabel lblExperienciaLaboral = new JLabel("Experiencia laboral");
 		lblExperienciaLaboral.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblExperienciaLaboral.setBounds(21, 268, 187, 21);
+		lblExperienciaLaboral.setBounds(232, 287, 187, 21);
 		pnlJobInfo.add(lblExperienciaLaboral);
 		
-		pnlStudent = new JPanel();
+		pnlStudent =new JPanel();
 		pnlStudent.setBackground(Color.WHITE);
-		pnlStudent.setBounds(10, 304, 644, 359);
+		pnlStudent.setBounds(10, 328, 644, 242);
 		pnlJobInfo.add(pnlStudent);
 		pnlStudent.setLayout(null);
-		
-		JLabel label_5 = new JLabel("Idiomas dominados:");
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		label_5.setBounds(23, 11, 161, 27);
-		pnlStudent.add(label_5);
-		
-		cbxLanguage = new JComboBox<String>();
-		cbxLanguage.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		cbxLanguage.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>", "\u00C1rabe", "Alem\u00E1n", "Creole", "Espa\u00F1ol", "Franc\u00E9s", "Ingl\u00E9s", "Japon\u00E9s", "Mandar\u00EDn", "Portugu\u00E9s", "Ruso", "", ""}));
-		cbxLanguage.setBounds(23, 49, 161, 27);
-		pnlStudent.add(cbxLanguage);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(384, 11, 238, 205);
-		pnlStudent.add(scrollPane);
-		
-		listLanguages = new JList<String>();
-		scrollPane.setViewportView(listLanguages);
-		
-		JButton btnAddLanguage = new JButton("A\u00F1adir >");
-		btnAddLanguage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(cbxLanguage.getSelectedIndex()!= 0) {
-					languages.add(cbxLanguage.getSelectedItem().toString());
-					loadLanguages();
-					listLanguages.setModel(modelLanguages);	
-					cbxLanguage.setSelectedIndex(0);
-				}
-			}
-		});
-		btnAddLanguage.setBounds(57, 89, 89, 23);
-		pnlStudent.add(btnAddLanguage);
 		
 		txtCollege = new JTextField();
 		txtCollege.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCollege.setColumns(10);
-		txtCollege.setBounds(23, 188, 330, 28);
+		txtCollege.setBounds(20, 51, 403, 28);
 		pnlStudent.add(txtCollege);
 		
 		JLabel lblUniversidad = new JLabel("Universidad:");
 		lblUniversidad.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblUniversidad.setBounds(23, 148, 161, 27);
+		lblUniversidad.setBounds(20, 11, 161, 27);
 		pnlStudent.add(lblUniversidad);
 		
 		txtCareer = new JTextField();
+		txtCareer.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < 'a') || (caracter > 'z')) && ((caracter < 'A') || (caracter > 'Z'))
+                        && (caracter != '\b') && (caracter!=32)) {
+                    e.consume();
+                }
+			}
+		});
 		txtCareer.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCareer.setColumns(10);
-		txtCareer.setBounds(23, 291, 285, 28);
+		txtCareer.setBounds(20, 155, 285, 28);
 		pnlStudent.add(txtCareer);
 		
 		JLabel lblCarrera = new JLabel("Carrera:");
 		lblCarrera.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCarrera.setBounds(23, 251, 161, 27);
+		lblCarrera.setBounds(20, 115, 161, 27);
 		pnlStudent.add(lblCarrera);
-		
-		JLabel lblCuatrimestresCursados = new JLabel("Cuatrimestres cursados");
-		lblCuatrimestresCursados.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCuatrimestresCursados.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCuatrimestresCursados.setBounds(405, 251, 198, 27);
-		pnlStudent.add(lblCuatrimestresCursados);
-		
-		JSpinner spnPeriods = new JSpinner();
-		spnPeriods.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spnPeriods.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		spnPeriods.setBounds(481, 292, 63, 28);
-		pnlStudent.add(spnPeriods);
-		
-		JButton btnClear = new JButton("Limpiar");
-		btnClear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				modelLanguages.clear();
-				listLanguages.setModel(modelLanguages);
-				languages.removeAll(languages);
-			}
-		});
-		btnClear.setBounds(461, 217, 89, 23);
-		pnlStudent.add(btnClear);
 		
 		pnlTech = new JPanel();
 		pnlTech.setVisible(false);
 		pnlTech.setIgnoreRepaint(true);
 		pnlTech.setLayout(null);
 		pnlTech.setBackground(Color.WHITE);
-		pnlTech.setBounds(10, 304, 644, 359);
+		pnlTech.setBounds(10, 328, 644, 242);
 		pnlJobInfo.add(pnlTech);
 		
 		JLabel lblAosDeExperiencia = new JLabel("A\u00F1os de experiencia");
 		lblAosDeExperiencia.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAosDeExperiencia.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAosDeExperiencia.setBounds(196, 281, 177, 27);
+		lblAosDeExperiencia.setBounds(443, 73, 177, 27);
 		pnlTech.add(lblAosDeExperiencia);
 		
 		spnExpYears = new JSpinner();
 		spnExpYears.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		spnExpYears.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		spnExpYears.setBounds(375, 281, 63, 28);
+		spnExpYears.setBounds(506, 113, 63, 28);
 		pnlTech.add(spnExpYears);
 		
-		JLabel lblAreasDeDesempeo = new JLabel("Areas de desempe\u00F1o");
-		lblAreasDeDesempeo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAreasDeDesempeo.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAreasDeDesempeo.setBounds(52, 11, 161, 27);
-		pnlTech.add(lblAreasDeDesempeo);
+		txtArea = new JTextField();
+		txtArea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtArea.setColumns(10);
+		txtArea.setBounds(27, 51, 304, 28);
+		pnlTech.add(txtArea);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(23, 49, 224, 193);
-		pnlTech.add(scrollPane_1);
+		JLabel lblTcnico = new JLabel("\u00C1rea:");
+		lblTcnico.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTcnico.setBounds(27, 11, 81, 27);
+		pnlTech.add(lblTcnico);
 		
-		listAvAreas = new JList<String>();
-		listAvAreas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				choose = listAvAreas.getSelectedIndex();
-				if(choose != -1) {
-					btnAddArea.setEnabled(true);
-				}else {
-					btnAddArea.setEnabled(false);
-				}
-			}
-		});
-		String[] areasAv = {"Informática","Electricidad","Contabilidad","Diseño Gráfico","Enfermería","Mercadeo","Administración","Publicidad"};
-		areasA = new DefaultListModel<>();
-		areasAva = new ArrayList<String>();
-		for (String string : areasAv) {
-			areasAva.add(string);
-		}
-		loadAreas(true);
-		listAvAreas.setModel(areasA);
-		scrollPane_1.setViewportView(listAvAreas);
+		txtInstitution = new JTextField();
+		txtInstitution.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtInstitution.setColumns(10);
+		txtInstitution.setBounds(27, 162, 396, 28);
+		pnlTech.add(txtInstitution);
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(395, 49, 224, 193);
-		pnlTech.add(scrollPane_2);
-		
-		areasSel = new DefaultListModel<String>();
-		listSelectedAreas = new JList<String>();
-		listSelectedAreas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				choose2 = listSelectedAreas.getSelectedIndex();
-				if(choose2 != -1) {
-					btnRemoveArea.setEnabled(true);
-				}else {
-					btnRemoveArea.setEnabled(false);
-				}
-			}
-		});
-		listSelectedAreas.setModel(areasSel);
-		scrollPane_2.setViewportView(listSelectedAreas);
-		
-		btnAddArea = new JButton("A\u00F1adir >");
-		btnAddArea.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(choose != -1) {
-					String selection = areasA.get(choose);
-					areasAva.remove(selection);
-					areasS.add(selection);
-					loadAreas(true);
-					loadAreas(false);
-					listAvAreas.setModel(areasA);
-					listSelectedAreas.setModel(areasSel);
-					btnAddArea.setEnabled(false);
-				}
-			}
-		});
-		btnAddArea.setEnabled(false);
-		btnAddArea.setBounds(271, 99, 102, 23);
-		pnlTech.add(btnAddArea);
-		
-		btnRemoveArea = new JButton("< Sustraer");
-		btnRemoveArea.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(choose2 != -1) {
-					String selection = areasSel.get(choose2);
-					areasS.remove(selection);
-					areasAva.add(selection);
-					loadAreas(true);
-					loadAreas(false);
-					listAvAreas.setModel(areasA);
-					listSelectedAreas.setModel(areasSel);
-					btnRemoveArea.setEnabled(false);
-				}
-			}
-		});
-		btnRemoveArea.setEnabled(false);
-		btnRemoveArea.setBounds(271, 158, 102, 23);
-		pnlTech.add(btnRemoveArea);
-		
-		JLabel lblAreasDominadas = new JLabel("Areas dominadas");
-		lblAreasDominadas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAreasDominadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAreasDominadas.setBounds(426, 11, 161, 27);
-		pnlTech.add(lblAreasDominadas);
+		JLabel lblInstitucin = new JLabel("Instituci\u00F3n:");
+		lblInstitucin.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblInstitucin.setBounds(27, 122, 104, 27);
+		pnlTech.add(lblInstitucin);
 		
 		pnlWorker = new JPanel();
 		pnlWorker.setVisible(false);
 		pnlWorker.setBackground(Color.WHITE);
-		pnlWorker.setBounds(10, 304, 644, 362);
+		pnlWorker.setBounds(10, 328, 644, 242);
 		pnlJobInfo.add(pnlWorker);
 		pnlWorker.setLayout(null);
 		
 		JLabel label = new JLabel("A\u00F1os de experiencia");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		label.setBounds(198, 295, 177, 27);
+		label.setBounds(42, 139, 177, 27);
 		pnlWorker.add(label);
 		
 		spnYearExp = new JSpinner();
 		spnYearExp.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		spnYearExp.setBounds(377, 295, 63, 28);
+		spnYearExp.setBounds(99, 177, 63, 28);
 		pnlWorker.add(spnYearExp);
 		
-		JLabel lblHabilidades = new JLabel("Habilidades");
-		lblHabilidades.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHabilidades.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblHabilidades.setBounds(55, 25, 161, 27);
-		pnlWorker.add(lblHabilidades);
-		
-		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(25, 63, 224, 193);
-		pnlWorker.add(scrollPane_3);
-		
-		listSkillsAva = new JList<String>();
-		listSkillsAva.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				choose3 = listSkillsAva.getSelectedIndex();
-				if(choose3 != -1) {
-					btnAddSkill.setEnabled(true);
-				}else {
-					btnAddSkill.setEnabled(false);
-				}
-			}
-		});
-		scrollPane_3.setViewportView(listSkillsAva);
-		
-		String[] skillsSTRINGS = {"Plomería","Ebanistería","Mecánica","Construcción","Pintura","Soldadura","Jardinería"};
-		for(String s: skillsSTRINGS) {
-			SkillsAva.add(s);
-		}
-		SkillsA = new DefaultListModel<String>();
-		loadSkills(true);
-		
 		JScrollPane scrollPane_4 = new JScrollPane();
-		scrollPane_4.setBounds(397, 63, 224, 193);
+		scrollPane_4.setBounds(394, 38, 225, 154);
 		pnlWorker.add(scrollPane_4);
 		
 		listSkillsSelected = new JList<String>();
 		listSkillsSelected.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				choose4 = listSkillsSelected.getSelectedIndex();
-				if(choose4 != -1) {
+				choose = listSkillsSelected.getSelectedIndex();
+				if(choose != -1) {
 					btnRemoveSkill.setEnabled(true);
 				}else {
 					btnRemoveSkill.setEnabled(false);
@@ -729,52 +561,67 @@ public class EmployeeReg extends JDialog {
 		});
 		listSkillsSelected.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		SkillsS = new DefaultListModel<String>();
-		loadSkills(false);
+		loadSkills();
 		scrollPane_4.setViewportView(listSkillsSelected);
 		
 		btnAddSkill = new JButton("A\u00F1adir >");
 		btnAddSkill.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(choose3 != -1) {
-					String selection = SkillsA.get(choose3);
-					SkillsAva.remove(selection);
+				if(!cbxSkillsA.getSelectedItem().toString().equalsIgnoreCase("<Seleccione>")) {
+					String selection = cbxSkillsA.getSelectedItem().toString();
 					SkillsSelected.add(selection);
-					loadSkills(true);
-					loadSkills(false);
-					listSkillsAva.setModel(SkillsA);
-					listSkillsSelected.setModel(SkillsS);
+					loadSkills();
+					cbxSkillsA.setSelectedIndex(-1);
 					btnAddSkill.setEnabled(false);
 				}	
 			}
 		});
 		btnAddSkill.setEnabled(false);
-		btnAddSkill.setBounds(273, 114, 102, 23);
+		btnAddSkill.setBounds(72, 76, 102, 23);
 		pnlWorker.add(btnAddSkill);
 		
-		btnRemoveSkill = new JButton("< Sustraer");
+		btnRemoveSkill = new JButton("^ Eliminar ^");
 		btnRemoveSkill.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(choose4 != -1) {
-					String selection = SkillsS.get(choose4);
+				if(choose != -1) {
+					String selection = SkillsS.get(choose);
 					SkillsSelected.remove(selection);
-					SkillsAva.add(selection);
-					loadSkills(true);
-					loadSkills(false);
-					listSkillsAva.setModel(SkillsA);
-					listSkillsSelected.setModel(SkillsS);
+					loadSkills();
+					listSkillsSelected.setSelectedIndex(-1);
 					btnRemoveSkill.setEnabled(false);
 				}	
 			}
 		});
 		btnRemoveSkill.setEnabled(false);
-		btnRemoveSkill.setBounds(273, 174, 102, 23);
+		btnRemoveSkill.setBounds(453, 208, 102, 23);
 		pnlWorker.add(btnRemoveSkill);
 		
 		JLabel lblTusHabilidades = new JLabel("Tus habilidades");
 		lblTusHabilidades.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTusHabilidades.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblTusHabilidades.setBounds(427, 25, 161, 27);
+		lblTusHabilidades.setBounds(424, 11, 161, 27);
 		pnlWorker.add(lblTusHabilidades);
+		
+		JLabel lblHabilidades = new JLabel("Habilidades");
+		lblHabilidades.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHabilidades.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblHabilidades.setBounds(42, 11, 177, 27);
+		pnlWorker.add(lblHabilidades);
+		
+		cbxSkillsA = new JComboBox<String>();
+		cbxSkillsA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(cbxSkillsA.getSelectedIndex() != 0) {
+					btnAddSkill.setEnabled(true);
+				}else {
+					btnAddSkill.setEnabled(false);
+				}
+			}
+		});
+		cbxSkillsA.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		cbxSkillsA.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","Plomería","Ebanistería","Mecánica","Construcción","Pintura","Soldadura","Jardinería"}));
+		cbxSkillsA.setBounds(26, 38, 210, 27);
+		pnlWorker.add(cbxSkillsA);
 		if(mod != null) {
 			loadData(mod);
 		}
@@ -822,18 +669,17 @@ public class EmployeeReg extends JDialog {
 						if(rdbStudent.isSelected()) {
 							aux = new Student(txtID.getText(), txtName.getText(), txtLastName.getText(), (Date) spnBirth.getValue(), txtAddress.getText(),
 							txtEmail.getText(), cbxProvince.getSelectedItem().toString(),txtCity.getText(),cbxGenre.getSelectedItem().toString(),
-							cbxMaritalStatus.getSelectedItem().toString(), txtPhone.getText(), checkTravel.isSelected(), checkMove.isSelected(),txtCollege.getText(),
-							txtCareer.getText(),Integer.valueOf(spnPeriods.getValue().toString()),languages);
+							cbxMaritalStatus.getSelectedItem().toString(), txtPhone.getText(),txtCollege.getText(),txtCareer.getText());
 						}
 						if(rdbTech.isSelected()) {
 							aux = new Technician(txtID.getText(), txtName.getText(), txtLastName.getText(), (Date) spnBirth.getValue(), txtAddress.getText(),
 							txtEmail.getText(), cbxProvince.getSelectedItem().toString(),txtCity.getText(),cbxGenre.getSelectedItem().toString(),
-							cbxMaritalStatus.getSelectedItem().toString(), txtPhone.getText(), checkTravel.isSelected(), checkMove.isSelected(),Integer.valueOf(spnExpYears.getValue().toString()),areasS);
+							cbxMaritalStatus.getSelectedItem().toString(), txtPhone.getText(),Integer.valueOf(spnExpYears.getValue().toString()), txtArea.getText(), txtInstitution.getText());
 						}
 						if(rdbWorker.isSelected()) {
 							aux = new Worker(txtID.getText(), txtName.getText(), txtLastName.getText(), (Date) spnBirth.getValue(), txtAddress.getText(),
 							txtEmail.getText(), cbxProvince.getSelectedItem().toString(),txtCity.getText(),cbxGenre.getSelectedItem().toString(),
-							cbxMaritalStatus.getSelectedItem().toString(), txtPhone.getText(), checkTravel.isSelected(), checkMove.isSelected(),Integer.valueOf(spnYearExp.getValue().toString()),SkillsSelected);
+							cbxMaritalStatus.getSelectedItem().toString(), txtPhone.getText(),Integer.valueOf(spnYearExp.getValue().toString()),SkillsSelected);
 						}
 						if(mod == null) {
 							JobCenter.getInstance().addPerson(aux);
@@ -873,10 +719,7 @@ public class EmployeeReg extends JDialog {
 		cbxGenre.setSelectedItem(mod.getGender());
 		cbxMaritalStatus.setSelectedItem(mod.getMaritalStatus());
 		txtPhone.setText(mod.getPhoneNumber());
-		checkTravel.setSelected(mod.isTravelAv());
-		checkMove.setSelected(mod.isMoveAv());
 		if(mod instanceof Student) {
-			languages = (ArrayList<String>) ((Student) mod).getLanguages();
 			txtCollege.setText(((Student) mod).getUniversity());
 			txtCareer.setText(((Student) mod).getCareer());
 			rdbStudent.setSelected(true);
@@ -887,12 +730,8 @@ public class EmployeeReg extends JDialog {
 			pnlWorker.setVisible(false);
 		}
 		if(mod instanceof Technician) {
-			areasS = ((ArrayList<String>)((Technician) mod).getAreas());
-			for (String s : areasS) {
-				areasAva.remove(s);
-			}
-			loadAreas(true);
-			loadAreas(false);
+			txtInstitution.setText(((Technician) mod).getInstitution());
+			txtArea.setText(((Technician) mod).getArea());
 			spnExpYears.setValue(Integer.valueOf(((Technician) mod).getWorkExperienceYears()));	
 			rdbStudent.setSelected(false);
 			rdbTech.setSelected(true);
@@ -902,13 +741,9 @@ public class EmployeeReg extends JDialog {
 			pnlWorker.setVisible(false);
 		}
 		if(mod instanceof Worker) {
-			SkillsSelected = ((ArrayList<String>)((Technician) mod).getAreas());
-			for (String s : SkillsSelected) {
-				SkillsAva.remove(s);
-			}
-			loadSkills(true);
-			loadSkills(false);
-			spnYearExp.setValue(Integer.valueOf(((Technician) mod).getWorkExperienceYears()));
+			SkillsSelected = ((ArrayList<String>)((Worker) mod).getSkills());
+			loadSkills();
+			spnYearExp.setValue(Integer.valueOf(((Worker) mod).getWorkExperience()));
 			rdbStudent.setSelected(false);
 			rdbTech.setSelected(false);
 			rdbWorker.setSelected(true);
@@ -930,41 +765,12 @@ public class EmployeeReg extends JDialog {
 		}
 	}
 	
-	private void loadLanguages() {
-		modelLanguages.clear();
-		for (String s : languages) {
-			modelLanguages.addElement(s);	
-		}	
-	}
-	
-	private void loadAreas(boolean condition) {
-		if(condition) {
-			areasA.clear();
-			for (String string : areasAva) {
-				areasA.addElement(string);
-			}	
-		}else {
-			areasSel.clear();
-			for (String string : areasS) {
-				areasSel.addElement(string);
-			}
+	private void loadSkills() {
+		SkillsS.clear();
+		for (String string : SkillsSelected) {
+			SkillsS.addElement(string);
 		}
+		listSkillsSelected.setModel(SkillsS);
+		
 	}
-	
-	private void loadSkills(boolean condition) {
-		if(condition) {
-			SkillsA.clear();
-			for (String string : SkillsAva) {
-				SkillsA.addElement(string);
-			}
-			listSkillsAva.setModel(SkillsA);	
-		}else {
-				SkillsS.clear();
-			for (String string : SkillsSelected) {
-				SkillsS.addElement(string);
-			}
-			listSkillsSelected.setModel(SkillsS);
-		}
-	}
-	
 }
