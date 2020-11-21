@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Dialog.ModalityType;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -86,27 +87,14 @@ public class EmployeeReg extends JDialog {
 	private JComboBox<String> cbxCareer;
 	private JComboBox<String>  cbxArea;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			EmployeeReg dialog = new EmployeeReg(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public EmployeeReg(Person mod) {
 		choose = -1;
 		SkillsSelected = new ArrayList<String>();
 		setTitle("Registar Empleado");
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		setBounds(100, 100, 678, 655);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
