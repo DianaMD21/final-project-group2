@@ -104,7 +104,6 @@ public class JobCenter {
 		}
 		return null;
 	}
- feature/controller-class-dianamonegro
 	
 	public List<Person> getAllStudents(){
 		List<Person> allStudents=new ArrayList<>();
@@ -131,12 +130,12 @@ public class JobCenter {
 				allWorkers.add((Worker) p);
 		} 
 		return allWorkers;
+	}
 
 	public void modPerson(Person mod, Person aux) {
 		int index = myPersons.indexOf(mod);
 		myPersons.add(index, aux);
 		myPersons.remove(mod);	
- feature/dev
 	}
 
 }
