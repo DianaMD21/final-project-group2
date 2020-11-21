@@ -233,7 +233,7 @@ public class CompanyReg extends JDialog {
 		btnCancelar.setBounds(300, 450, 106, 27);
 		panel.add(btnCancelar);
 		
-		if(company.getId().equals("")==false) {
+		if(company.getRnc().equals("")==false) {
 			setCompanyValuesToModify(company);
 		}
 	}

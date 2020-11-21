@@ -50,7 +50,7 @@ public class JobCenter {
 	}
 	
 	public void addCompany(Company company) {
-		company.setId(String.valueOf(myCompanies.size()));
+		company.setRnc(String.valueOf(myCompanies.size()));
 		this.myCompanies.add(company);
 	}
 	
@@ -68,7 +68,7 @@ public class JobCenter {
 	
 	public Company findCompanyById(String id) {
 		for(Company c : myCompanies) {
-			if(c.getId().equalsIgnoreCase(id))
+			if(c.getRnc().equalsIgnoreCase(id))
 				return c;
 		}
 		return null;
@@ -96,6 +96,33 @@ public class JobCenter {
 				return e;
 		}
 		return null;
+	}
+	
+	public List<Person> getAllStudents(){
+		List<Person> allStudents=new ArrayList<>();
+		for(Person p : myPersons) {
+			if(p instanceof Student)
+				allStudents.add((Student) p);
+		} 
+		return allStudents;
+	}
+	
+	public List<Person> getAllTechnicians(){
+		List<Person> allTechnicians=new ArrayList<>();
+		for(Person p : myPersons) {
+			if(p instanceof Technician)
+				allTechnicians.add((Technician) p);
+		} 
+		return allTechnicians;
+	}
+	
+	public List<Person> getAllWorkers(){
+		List<Person> allWorkers=new ArrayList<>();
+		for(Person p : myPersons) {
+			if(p instanceof Worker)
+				allWorkers.add((Worker) p);
+		} 
+		return allWorkers;
 	}
 
 }
