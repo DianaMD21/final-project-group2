@@ -8,13 +8,20 @@ public class JobCenter {
 	private List<Person> myPersons;
 	private List<EmployeeRequest> myEmployeeRequests;
 	private List<CompanyRequest> myCompanyRequests;
+	private static JobCenter jobcenter = null;
 	
-	public JobCenter() {
+	private JobCenter() {
 		super();
 		this.myCompanies=new ArrayList<>();
 		this.myPersons=new ArrayList<>();
 		this.myEmployeeRequests=new ArrayList<>();
 		this.myCompanyRequests=new ArrayList<>();
+	}
+	public static JobCenter getInstance() {
+		if(jobcenter == null) {
+			jobcenter = new JobCenter();
+		}
+		return jobcenter;
 	}
 
 	public List<Company> getMyCompanies() {
@@ -50,6 +57,7 @@ public class JobCenter {
 	}
 	
 	public void addCompany(Company company) {
+		company.setId(String.valueOf(myCompanies.size()));
 		this.myCompanies.add(company);
 	}
 	
@@ -95,6 +103,11 @@ public class JobCenter {
 				return e;
 		}
 		return null;
+	}
+	public void modPerson(Person mod, Person aux) {
+		int index = myPersons.indexOf(mod);
+		myPersons.add(index, aux);
+		myPersons.remove(mod);	
 	}
 
 }
