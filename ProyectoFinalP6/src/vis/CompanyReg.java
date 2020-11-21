@@ -209,7 +209,7 @@ public class CompanyReg extends JDialog {
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(checkAllTextBox()==false) {
-					JOptionPane.showMessageDialog(null, "No deje ningún campo vacío, por favor", "Problema de registo", JOptionPane.CLOSED_OPTION);
+					JOptionPane.showMessageDialog(null, "No deje ningÃºn campo vacÃ­o, por favor", "Problema de registo", JOptionPane.CLOSED_OPTION);
 				}
 				else {
 					company.setAddress(txtAreaAddress.getText());
@@ -267,3 +267,4 @@ public class CompanyReg extends JDialog {
 		return check;
 	}
 }
+

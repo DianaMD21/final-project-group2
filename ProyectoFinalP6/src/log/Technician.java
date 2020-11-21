@@ -1,28 +1,19 @@
 package log;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Technician extends Person{
-	private List<String> areas;
+	private String area;
+	private String institution;
 	private int workExperienceYears;
 
-	public Technician(String id, String name, String lastName, Date birthDate, String address, String email,
-			String province, String city, String gender, String maritalStatus, String phoneNumber, boolean travelAv,
-			boolean moveAv, int workExperienceYears) {
-		super(id, name, lastName, birthDate, address, email, province, city, gender, maritalStatus, phoneNumber, travelAv,
-				moveAv);
-		this.workExperienceYears=workExperienceYears;
-		this.areas=new ArrayList<>();
-	}
-
-	public List<String> getAreas() {
-		return areas;
-	}
-
-	public void setAreas(List<String> areas) {
-		this.areas = areas;
+	public Technician(String id, String name, String lastName, Date birthDate, String address, String email, String province, String city,
+			String gender, String maritalStatus, String phoneNumber, int workExperienceYears, String area, String institution) {
+		
+		super(id, name, lastName, birthDate, address, email, province, city, gender, maritalStatus, phoneNumber);
+		this.workExperienceYears = workExperienceYears;
+		this.area = area;
+		this.institution = institution;
 	}
 
 	public int getWorkExperienceYears() {
@@ -33,19 +24,20 @@ public class Technician extends Person{
 		this.workExperienceYears = workExperienceYears;
 	}
 	
-	public void addArea(String area) {
-		this.areas.add(area);
-	}
-	
-	public boolean existArea(String area) {
-		boolean found=false;
-		for(int i=0;i<areas.size();i++) {
-			if(areas.get(i).equalsIgnoreCase(area)) {
-				found=true;
-				break;
-			}
-		}
-		return found;
+	public String getInstitution() {
+		return institution;
 	}
 
+	public void setInstitution(String institution) {
+		this.institution = institution;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+	
 }

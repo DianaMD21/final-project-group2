@@ -9,12 +9,10 @@ public class Worker extends Person {
 	private List<String> skills;
 	private int workExperience;
 	
-	public Worker(String id, String name, String lastName, Date birthDate, String address, String email,
-			String province, String city, String gender, String maritalStatus, String phoneNumber, boolean travelAv,
-			boolean moveAv, int workExperience) {
-		super(id, name, lastName, birthDate, address, email, province, city, gender, maritalStatus, phoneNumber,
-				travelAv, moveAv);
-		this.skills = new ArrayList<>();
+	public Worker(String id, String name, String lastName, Date birthDate, String address, String email, String province, String city, String gender, String maritalStatus, String phoneNumber, int workExperience, ArrayList<String>skills) {
+		super(id, name, lastName, birthDate, address, email, province, city, gender, maritalStatus, phoneNumber);
+		
+		this.skills = skills;
 		this.workExperience = workExperience;
 	}
 

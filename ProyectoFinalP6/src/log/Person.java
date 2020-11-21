@@ -15,13 +15,10 @@ public abstract class Person {
 	protected String gender;
 	protected String maritalStatus;
 	protected String phoneNumber;
-	protected boolean travelAv;
-	protected boolean moveAv;
 	protected boolean workingStatus;
 	
 	public Person(String id, String name, String lastName, Date birthDate, String address, String email,
-			String province, String city, String gender, String maritalStatus, String phoneNumber, boolean travelAv,
-			boolean moveAv) {
+			String province, String city, String gender, String maritalStatus, String phoneNumber) {
 		
 		super();
 		this.id = id;
@@ -35,8 +32,6 @@ public abstract class Person {
 		this.gender = gender;
 		this.maritalStatus = maritalStatus;
 		this.phoneNumber = phoneNumber;
-		this.travelAv = travelAv;
-		this.moveAv = moveAv;
 		this.workingStatus = false;
 	}
 
@@ -97,13 +92,6 @@ public abstract class Person {
 		return phoneNumber;
 	}
 
-	public boolean isTravelAv() {
-		return travelAv;
-	}
-
-	public boolean isMoveAv() {
-		return moveAv;
-	}
 
 	public boolean isWorkingStatus() {
 		return workingStatus;
@@ -139,14 +127,6 @@ public abstract class Person {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
-	}
-
-	public void setTravelAv(boolean travelAv) {
-		this.travelAv = travelAv;
-	}
-
-	public void setMoveAv(boolean moveAv) {
-		this.moveAv = moveAv;
 	}
 
 	public void setWorkingStatus(boolean workingStatus) {
