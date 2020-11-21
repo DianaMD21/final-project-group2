@@ -41,26 +41,12 @@ public class CompanyReg extends JDialog {
 	private JComboBox cbxArea;
 	private JTextArea txtAreaAddress;
 	private JComboBox<String> cbxProvince;
+	private JTextField txtRnc;
 
-	/*
-	public static void main(String[] args) {
-		try {
-			Company company= new Company( "Diana", "Salud", "Gurabo", "Duarte", "Santiago", "5266", "hi");
-			company.setId("h");
-			CompanyReg dialog = new CompanyReg(company);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	 @param company 
-	 */
 	public CompanyReg(Company company) {
 		setTitle("Registrar Empresa");
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		setBounds(100, 100, 577, 550);
+		setBounds(100, 100, 580, 592);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -86,54 +72,54 @@ public class CompanyReg extends JDialog {
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNombre.setBounds(10, 50, 70, 27);
+		lblNombre.setBounds(10, 97, 70, 27);
 		panel.add(lblNombre);
 		
 		txtNombre = new JTextField();
 		txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(100, 51, 435, 28);
+		txtNombre.setBounds(100, 98, 435, 28);
 		panel.add(txtNombre);
 		
 		JLabel lblArea = new JLabel("\u00C1rea:");
 		lblArea.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblArea.setBounds(10, 97, 70, 27);
+		lblArea.setBounds(10, 144, 70, 27);
 		panel.add(lblArea);
 		
 		cbxArea = new JComboBox();
 		cbxArea.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		cbxArea.setModel(new DefaultComboBoxModel(new String[] {"<Sin especificar>", "Turismo", "Salud", "Educaci\u00F3n", "Tecnolog\u00EDa", "Construcci\u00F3n", "Venta de veh\u00EDculos"}));
-		cbxArea.setBounds(100, 96, 181, 27);
+		cbxArea.setBounds(100, 143, 181, 27);
 		panel.add(cbxArea);
 		
 		JLabel lblInformacionContacto = new JLabel("Informaci\u00F3n de contacto");
 		lblInformacionContacto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblInformacionContacto.setBounds(10, 141, 227, 21);
+		lblInformacionContacto.setBounds(10, 188, 227, 21);
 		panel.add(lblInformacionContacto);
 		
 		JSeparator separator_2_1 = new JSeparator();
-		separator_2_1.setBounds(10, 169, 523, 2);
+		separator_2_1.setBounds(10, 216, 523, 2);
 		panel.add(separator_2_1);
 		
 		JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
 		lblDireccin.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDireccin.setBounds(10, 229, 89, 27);
+		lblDireccin.setBounds(10, 276, 89, 27);
 		panel.add(lblDireccin);
 		
 		JLabel label_7 = new JLabel("Provincia:");
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		label_7.setBounds(10, 184, 89, 27);
+		label_7.setBounds(10, 231, 89, 27);
 		panel.add(label_7);
 		
 		cbxProvince = new JComboBox<String>();
 		cbxProvince.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Azua", "Bahoruco", "Barahona", "Dajab\u00F3n", "Distrito Nacional", "Duarte", "El\u00EDas Pi\u00F1a", "El Seibo", "Espaillat", "Hato Mayor", "Hermanas Mirabal", "Independencia", "La Altagracia", "La Romana", "La Vega", "Mar\u00EDa Trinidad S\u00E1nchez", "Monse\u00F1or Nouel", "Monte Cristi", "Monte Plata"}));
 		cbxProvince.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		cbxProvince.setBounds(100, 184, 179, 27);
+		cbxProvince.setBounds(100, 231, 179, 27);
 		panel.add(cbxProvince);
 		
 		JLabel lblCiudad = new JLabel("Ciudad:");
 		lblCiudad.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCiudad.setBounds(317, 184, 89, 27);
+		lblCiudad.setBounds(317, 231, 89, 27);
 		panel.add(lblCiudad);
 		
 		txtCity = new JTextField();
@@ -148,14 +134,30 @@ public class CompanyReg extends JDialog {
 			}
 		});
 		txtCity.setColumns(10);
-		txtCity.setBounds(390, 183, 145, 28);
+		txtCity.setBounds(390, 230, 145, 28);
 		panel.add(txtCity);
 		
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		
+		txtRnc = new JTextField();
+		txtRnc.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b') ) {
+                    e.consume();
+                }
+			}
+		});
+		txtRnc.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtRnc.setColumns(10);
+		txtRnc.setBounds(100, 54, 435, 28);
+		panel.add(txtRnc);
+		
 		txtAreaAddress = new JTextArea();
 		txtAreaAddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtAreaAddress.setBounds(100, 226, 435, 58);
+		txtAreaAddress.setBounds(100, 273, 435, 58);
 		panel.add(txtAreaAddress);
 		txtAreaAddress.setBorder(BorderFactory.createCompoundBorder(border,
 	            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
@@ -165,27 +167,27 @@ public class CompanyReg extends JDialog {
 		
 		JLabel lblInformacionContacto_1 = new JLabel("Informaci\u00F3n de contacto");
 		lblInformacionContacto_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblInformacionContacto_1.setBounds(10, 304, 227, 21);
+		lblInformacionContacto_1.setBounds(10, 351, 227, 21);
 		panel.add(lblInformacionContacto_1);
 		
 		JSeparator separator_2_1_1 = new JSeparator();
-		separator_2_1_1.setBounds(10, 332, 523, 2);
+		separator_2_1_1.setBounds(10, 379, 523, 2);
 		panel.add(separator_2_1_1);
 		
 		JLabel lblCorreoElectronico = new JLabel("Correo electr\u00F3nico ");
 		lblCorreoElectronico.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCorreoElectronico.setBounds(10, 347, 145, 27);
+		lblCorreoElectronico.setBounds(10, 394, 145, 27);
 		panel.add(lblCorreoElectronico);
 		
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(165, 344, 311, 28);
+		txtEmail.setBounds(165, 391, 311, 28);
 		panel.add(txtEmail);
 		
 		JLabel lblNmeroTelefnico = new JLabel("N\u00FAmero telef\u00F3nico:");
 		lblNmeroTelefnico.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNmeroTelefnico.setBounds(10, 393, 145, 27);
+		lblNmeroTelefnico.setBounds(10, 440, 145, 27);
 		panel.add(lblNmeroTelefnico);
 		
 		txtTelefono = new JTextField();
@@ -200,7 +202,7 @@ public class CompanyReg extends JDialog {
 			}
 		});
 		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(165, 394, 145, 28);
+		txtTelefono.setBounds(165, 441, 145, 28);
 		panel.add(txtTelefono);
 		
 		JButton btnRegistrar = new JButton("Registrar");
@@ -216,11 +218,12 @@ public class CompanyReg extends JDialog {
 					company.setName(txtNombre.getText());
 					company.setPhoneNumber(txtTelefono.getText());
 					company.setProvince((String) cbxProvince.getSelectedItem());
+					company.setRnc(txtRnc.getText());
 				}
 			}
 		});
 		btnRegistrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnRegistrar.setBounds(141, 450, 106, 27);
+		btnRegistrar.setBounds(141, 497, 106, 27);
 		panel.add(btnRegistrar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -230,8 +233,13 @@ public class CompanyReg extends JDialog {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCancelar.setBounds(300, 450, 106, 27);
+		btnCancelar.setBounds(300, 497, 106, 27);
 		panel.add(btnCancelar);
+		
+		JLabel lblRnc = new JLabel("RNC:");
+		lblRnc.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblRnc.setBounds(10, 53, 70, 27);
+		panel.add(lblRnc);
 		
 		if(company.getRnc().equals("")==false) {
 			setCompanyValuesToModify(company);
@@ -246,14 +254,14 @@ public class CompanyReg extends JDialog {
 		cbxProvince.setSelectedItem(company.getProvince());
 		cbxArea.setSelectedItem(company.getArea());
 		txtAreaAddress.setText(company.getAddress());
-		
+		txtRnc.setText(company.getRnc());
 	}
 
 	protected boolean checkAllTextBox() {
 		Boolean check=true;
 		if(txtNombre.getText().equals("")|| txtCity.getText().equals("") || txtEmail.getText().equals("")
 				|| txtTelefono.getText().equals("")|| cbxArea.getSelectedIndex()==-1 || txtAreaAddress.getText().equals("")
-				|| cbxProvince.getSelectedIndex()==-1) {
+				|| cbxProvince.getSelectedIndex()==-1 || txtRnc.getText().equals("")) {
 			check=false;
 		}
 		return check;

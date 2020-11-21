@@ -21,6 +21,8 @@ import log.Worker;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Dialog.ModalityType;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -40,43 +42,14 @@ public class Listar extends JDialog {
 	private JRadioButton rdbtnWorker;
 	private List<Person> listPerson=new ArrayList<>();
 
-	/**
-	 * Launch the application.
-	 * @param <T>
-	 * @param <E>
-	 */
-	public static <T, E> void main(String[] args) {
-		try {
-			Person persona1=new Student("555", "Diana", "Monegro", 
-				null, "", "", "Santiago", "Gurabo", "", "", "", false, false, "", "", 2);
-			persona1.setWorkingStatus(false);
-			Person persona2=new Technician("555", "Diana", "Monegro", 
-					null, "", "", "Santiago", "Gurabo", "", "", "", false, false,  2);
-			persona2.setWorkingStatus(false);
-			Person persona3=new Worker("555", "Diana", "Monegro", 
-					null, "", "", "Santiago", "Gurabo", "", "", "", false, false,  2);
-			persona2.setWorkingStatus(false);
-			JobCenter jobCenter= new JobCenter();
-			jobCenter.addPerson(persona1);
-			jobCenter.addPerson(persona2);
-			jobCenter.addPerson(persona3);
-			Boolean showCompany=false;
-			Listar dialog = new Listar(jobCenter,showCompany);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 * @param listar 
-	 * @param listar 
+	/*
+	  @param listar 
+	  @param listar 
 	 */
 	public Listar(JobCenter jobCenter, Boolean showCompany) {
 		setTitle("Listar");
 		this.listPerson=jobCenter.getMyPersons();
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		setBounds(100, 100, 746, 410);
 		setResizable(false);
 		setLocationRelativeTo(null);
