@@ -1,7 +1,7 @@
 package log;
 
 public class Company {
-	private String id;
+	private String rnc;
 	private String name;
 	private String area;
 	private String address;
@@ -11,7 +11,7 @@ public class Company {
 	private String email;
 	
 	public Company( String name, String area, String address, String province, String city,
-			String phoneNumber, String email) {
+			String phoneNumber, String email,String rnc) {
 		super();
 		this.name = name;
 		this.area = area;
@@ -20,14 +20,15 @@ public class Company {
 		this.city = city;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
+		this.rnc=rnc;
 	}
 	
-	public String getId() {
-		return id;
+	public String getRnc() {
+		return rnc;
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void setRnc(String rnc) {
+		this.rnc = rnc;
 	}
 	
 	public String getName() {
