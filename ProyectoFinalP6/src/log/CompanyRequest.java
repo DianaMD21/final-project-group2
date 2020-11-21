@@ -1,5 +1,7 @@
 package log;
 
+import java.util.List;
+
 public class CompanyRequest {
 	private String id;
 	private Company company;
@@ -8,6 +10,10 @@ public class CompanyRequest {
 	private int quantity;
 	private float minSalary;
 	private boolean status;
+	private List<String> languages;
+	private boolean travelAv;
+	private boolean moveAv;
+	private boolean drivingLicense;
 	
 	public String getId() {
 		return id;
@@ -65,8 +71,41 @@ public class CompanyRequest {
 		this.status = status;
 	}
 
+	public List<String> getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(List<String> languages) {
+		this.languages = languages;
+	}
+
+	public boolean isTravelAv() {
+		return travelAv;
+	}
+
+	public void setTravelAv(boolean travelAv) {
+		this.travelAv = travelAv;
+	}
+
+	public boolean isMoveAv() {
+		return moveAv;
+	}
+
+	public void setMoveAv(boolean moveAv) {
+		this.moveAv = moveAv;
+	}
+
+	public boolean isDrivingLicense() {
+		return drivingLicense;
+	}
+
+	public void setDrivingLicense(boolean drivingLicense) {
+		this.drivingLicense = drivingLicense;
+	}
+
 	public CompanyRequest(String id, Company company, String typeOfEmployee, String skillRequired, int quantity,
-			float minSalary, boolean status) {
+			float minSalary, boolean status, List<String> languages, boolean travelAv, boolean moveAv,
+			boolean drivingLicense) {
 		super();
 		this.id = id;
 		this.company = company;
@@ -75,5 +114,9 @@ public class CompanyRequest {
 		this.quantity = quantity;
 		this.minSalary = minSalary;
 		this.status = status;
+		this.languages = languages;
+		this.travelAv = travelAv;
+		this.moveAv = moveAv;
+		this.drivingLicense = drivingLicense;
 	}
 }
