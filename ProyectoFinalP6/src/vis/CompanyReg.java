@@ -137,7 +137,7 @@ public class CompanyReg extends JDialog {
 		txtCity.setBounds(390, 230, 145, 28);
 		panel.add(txtCity);
 		
-		Border border = BorderFactory.createLineBorder(Color.BLACK);
+		Border border = BorderFactory.createLineBorder(Color.GRAY);
 		
 		txtRnc = new JTextField();
 		txtRnc.addKeyListener(new KeyAdapter() {
@@ -243,6 +243,7 @@ public class CompanyReg extends JDialog {
 		
 		if(company.getRnc().equals("")==false) {
 			setCompanyValuesToModify(company);
+			btnRegistrar.setText("Modificar");
 		}
 	}
 
