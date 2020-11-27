@@ -8,12 +8,14 @@ public class CompanyRequest {
 	private String typeOfEmployee;
 	private String skillRequired;
 	private int quantity;
-	private float minSalary;
+	private float maxSalary;
 	private boolean status;
 	private List<String> languages;
 	private boolean travelAv;
 	private boolean moveAv;
 	private boolean drivingLicense;
+	private int workingHours;
+	public static int cod = 0;
 	
 	public String getId() {
 		return id;
@@ -55,12 +57,12 @@ public class CompanyRequest {
 		this.quantity = quantity;
 	}
 	
-	public float getMinSalary() {
-		return minSalary;
+	public float getMaxSalary() {
+		return maxSalary;
 	}
 	
-	public void setMinSalary(float minSalary) {
-		this.minSalary = minSalary;
+	public void setMaxSalary(float minSalary) {
+		this.maxSalary = minSalary;
 	}
 	
 	public boolean isStatus() {
@@ -103,20 +105,29 @@ public class CompanyRequest {
 		this.drivingLicense = drivingLicense;
 	}
 
+	public int getWorkingHours() {
+		return workingHours;
+	}
+
+	public void setWorkingHours(int workingHours) {
+		this.workingHours = workingHours;
+	}
+
 	public CompanyRequest(String id, Company company, String typeOfEmployee, String skillRequired, int quantity,
-			float minSalary, boolean status, List<String> languages, boolean travelAv, boolean moveAv,
-			boolean drivingLicense) {
+			float maxSalary, boolean status, List<String> languages, boolean travelAv, boolean moveAv,
+			boolean drivingLicense, int workingHours) {
 		super();
 		this.id = id;
 		this.company = company;
 		this.typeOfEmployee = typeOfEmployee;
 		this.skillRequired = skillRequired;
 		this.quantity = quantity;
-		this.minSalary = minSalary;
+		this.maxSalary = maxSalary;
 		this.status = status;
 		this.languages = languages;
 		this.travelAv = travelAv;
 		this.moveAv = moveAv;
 		this.drivingLicense = drivingLicense;
+		this.workingHours = workingHours;
 	}
 }
