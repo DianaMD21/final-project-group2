@@ -9,6 +9,7 @@ public class EmployeeRequest {
 	private float minSalary;
 	private List<String> languages;
 	private int workingHours;
+	private boolean travelAv;
 	private boolean moveAv;
 	private boolean drivingLicense;
 	
@@ -68,6 +69,14 @@ public class EmployeeRequest {
 		this.moveAv = moveAv;
 	}
 
+	public boolean isTravelAv() {
+		return travelAv;
+	}
+
+	public void setTravelAv(boolean travelAv) {
+		this.travelAv = travelAv;
+	}
+
 	public boolean isDrivingLicense() {
 		return drivingLicense;
 	}
@@ -77,8 +86,9 @@ public class EmployeeRequest {
 	}
 
 	public EmployeeRequest(String id, Person applicant, Boolean status, float minSalary, List<String> languages,
-			int workingHours, boolean moveAv, boolean drivingLicense) {
+			int workingHours, boolean moveAv, boolean drivingLicense,boolean travelAv) {
 		super();
+		this.travelAv=travelAv;
 		this.id = id;
 		this.applicant = applicant;
 		this.status = status;
@@ -88,4 +98,26 @@ public class EmployeeRequest {
 		this.moveAv = moveAv;
 		this.drivingLicense = drivingLicense;
 	}
+
+	public boolean skillExists(String skillRequired) {
+		if(applicant instanceof Student) {
+			Student student=(Student)applicant;
+			if(student.getCareer().equalsIgnoreCase(skillRequired))
+				return true;
+		}
+		else if(applicant instanceof Technician) {
+			Technician technician=(Technician)applicant;
+			if(technician.getArea().equalsIgnoreCase(skillRequired))
+				return true;
+		}
+		else {
+			Worker worker=(Worker)applicant;
+			for(String s: worker.getSkills()) {
+				if(s.equalsIgnoreCase(skillRequired))
+					return true;
+			}
+		}
+		return false;
+	}
+
 }
