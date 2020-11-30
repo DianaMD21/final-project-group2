@@ -189,6 +189,8 @@ public class JobCenter {
 		float constant=companyReq.getLanguages().size()/13;
 		if(employeeR.skillExists(companyReq.getSkillRequired())==true)
 			percentage+=20;
+		else
+			return 0;
 		if(employeeR.isMoveAv()==true && companyReq.isMoveAv()==true)
 			percentage+=14;
 		if(employeeR.getApplicant().getProvince().equalsIgnoreCase(companyReq.getCompany().getProvince()) 
