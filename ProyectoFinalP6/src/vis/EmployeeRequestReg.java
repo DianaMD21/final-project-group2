@@ -97,7 +97,7 @@ public class EmployeeRequestReg extends JDialog {
 		setResizable(false);
 		setTitle("Solicitar empleo");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 680, 770);
+		setBounds(100, 100, 680, 680);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -125,7 +125,7 @@ public class EmployeeRequestReg extends JDialog {
 			pnlGeneral.add(lblCed);
 			
 			txtCed = new JTextField();
-			txtCed.setBounds(175, 74, 160, 29);
+			txtCed.setBounds(175, 74, 400, 29);
 			pnlGeneral.add(txtCed);
 			txtCed.setColumns(10);
 			txtCed.addKeyListener(new KeyAdapter() {

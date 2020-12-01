@@ -104,7 +104,7 @@ public class CompanyRequestReg extends JDialog {
 		setResizable(false);
 		setTitle("Solicitar empleados");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 680, 820);
+		setBounds(100, 100, 680, 735);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -132,7 +132,7 @@ public class CompanyRequestReg extends JDialog {
 			pnlGeneral.add(lblId);
 			
 			txtId = new JTextField();
-			txtId.setBounds(185, 74, 160, 29);
+			txtId.setBounds(185, 74, 400, 29);
 			pnlGeneral.add(txtId);
 			txtId.setColumns(10);
 			txtId.addKeyListener(new KeyAdapter() {
@@ -176,24 +176,24 @@ public class CompanyRequestReg extends JDialog {
 			
 			lblMinSal = new JLabel("Salario m\u00E1ximo ofrecido:");
 			lblMinSal.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			lblMinSal.setBounds(20, 560, 180, 23);
+			lblMinSal.setBounds(20, 555, 180, 23);
 			pnlGeneral.add(lblMinSal);
 			
 			spnMaxSal = new JSpinner();
 			spnMaxSal.setModel(new SpinnerNumberModel(new Float(1), new Float(1), null, new Float(1)));
 			spnMaxSal.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			spnMaxSal.setBounds(215, 559, 100, 30);
+			spnMaxSal.setBounds(210, 554, 100, 30);
 			pnlGeneral.add(spnMaxSal);
 			
 			lblWorkHours = new JLabel("Horas de trabajo requeridas:");
 			lblWorkHours.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			lblWorkHours.setBounds(20, 615, 210, 23);
+			lblWorkHours.setBounds(340, 555, 210, 23);
 			pnlGeneral.add(lblWorkHours);
 			
 			spnWorkHours = new JSpinner();
 			spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 12, 1));
 			spnWorkHours.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			spnWorkHours.setBounds(245, 614, 70, 30);
+			spnWorkHours.setBounds(560, 554, 70, 30);
 			pnlGeneral.add(spnWorkHours);
 			
 			cbxLangs = new JComboBox();
@@ -303,7 +303,7 @@ public class CompanyRequestReg extends JDialog {
 			
 			lblSkill = new JLabel("Area de especialidad requerida:");
 			lblSkill.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			lblSkill.setBounds(20, 665, 225, 23);
+			lblSkill.setBounds(20, 605, 225, 23);
 			pnlGeneral.add(lblSkill);
 			
 			cbxSkill = new JComboBox();
@@ -314,7 +314,7 @@ public class CompanyRequestReg extends JDialog {
 			});
 			cbxSkill.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Direcci\u00F3n Empresarial", "Administraci\u00F3n Hotelera", "Arquitectura", "Comunicaci\u00F3n Social", "Derecho", "Dise\u00F1o e Interiorismo", "\u200B\u200B\u200BEcolog\u00EDa y Gesti\u00F3n Ambiental", "Econom\u00EDa", "Educaci\u00F3n", "Estomatolog\u00EDa", "Filosof\u00EDa", "Gesti\u00F3n Financiera y Auditor\u00EDa", "Ingenier\u00EDa Civil", "Ingenier\u00EDa Mec\u00E1nica", "Ingenier\u00EDa El\u00E9ctrica", "Ingenier\u00EDa Industrial y de Sistemas", "Ingenier\u00EDa en Mecatr\u00F3nica", "Ingenier\u00EDa de Sistemas y Computaci\u00F3n", "Ingenier\u00EDa Telem\u00E1tica", "Medicina", "Marketing", "Nutrici\u00F3n y Diet\u00E9tica\u200B", "Psicolog\u00EDa", "Terapia F\u00EDsica"}));
 			cbxSkill.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			cbxSkill.setBounds(265, 664, 290, 29);
+			cbxSkill.setBounds(265, 604, 290, 29);
 			pnlGeneral.add(cbxSkill);
 		}
 		{
