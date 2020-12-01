@@ -137,5 +137,84 @@ public class JobCenter {
 		myPersons.add(index, aux);
 		myPersons.remove(mod);	
 	}
+	
+	public List<EmployeeRequest> getAllStudentRequest(){
+		List<EmployeeRequest> studentRequests=new ArrayList<>();
+		for(EmployeeRequest e : myEmployeeRequests) {
+			if(e.getApplicant() instanceof Student & e.getStatus())
+				studentRequests.add(e);
+		} 
+		return studentRequests;
+	}
+	
+	public List<EmployeeRequest> getAllTechnicianRequest(){
+		List<EmployeeRequest> technicianRequests=new ArrayList<>();
+		for(EmployeeRequest e : myEmployeeRequests) {
+			if(e.getApplicant() instanceof Technician && e.getStatus())
+				technicianRequests.add(e);
+		} 
+		return technicianRequests;
+	}
+	
+	public List<EmployeeRequest> getAllWorkerRequest(){
+		List<EmployeeRequest> workerRequests=new ArrayList<>();
+		for(EmployeeRequest e : myEmployeeRequests) {
+			if(e.getApplicant() instanceof Worker && e.getStatus())
+				workerRequests.add(e);
+		} 
+		return workerRequests;
+	}
+	
+	public List<EmployeeRequest> match(CompanyRequest companyReq){
+		List<EmployeeRequest> myEmployees=new ArrayList<>();
+		List<EmployeeRequest> employeesThatApply=new ArrayList<>();
+		if(companyReq.getTypeOfEmployee().equalsIgnoreCase("Student")) 
+			myEmployees=this.getAllStudentRequest();
+		else if(companyReq.getTypeOfEmployee().equalsIgnoreCase("Technician"))
+			myEmployees=this.getAllTechnicianRequest();
+		else
+			myEmployees=this.getAllWorkerRequest();
+		
+		for(EmployeeRequest e: myEmployees) {
+			if(getMatchPercentage(e,companyReq)>60) {
+				employeesThatApply.add(e);
+			}
+		}
+		
+		return employeesThatApply;
+		
+	}
+	public float getMatchPercentage(EmployeeRequest employeeR, CompanyRequest companyReq) {
+		float percentage=0;
+		float constant=companyReq.getLanguages().size()/13;
+		if(employeeR.skillExists(companyReq.getSkillRequired())==true)
+			percentage+=20;
+		else
+			return 0;
+		if(employeeR.isMoveAv()==true && companyReq.isMoveAv()==true)
+			percentage+=14;
+		if(employeeR.getApplicant().getProvince().equalsIgnoreCase(companyReq.getCompany().getProvince()) 
+				|| (employeeR.isMoveAv() &&employeeR.getApplicant().getProvince().equalsIgnoreCase(companyReq.getCompany().getProvince())==false))
+			percentage+=14;
+		if(employeeR.isDrivingLicense() && companyReq.isDrivingLicense())
+			percentage+=13;
+		if(employeeR.isTravelAv()&& companyReq.isTravelAv())
+			percentage+=10;
+		if(employeeR.getMinSalary()>=companyReq.getMinSalary())
+			percentage+=16;
+		percentage+=constant*amountEqualLanguages(companyReq.getLanguages(),employeeR.getLanguages());
+		
+		return percentage;
+	}
+	public float amountEqualLanguages(List<String> languagesComp, List<String> languagesPerson) {
+		float amount=0;
+		for(String comp: languagesComp) {
+			for(String per: languagesPerson) {
+				if (per.equalsIgnoreCase(comp))
+					amount++;
+			}
+		}
+		return amount;
+	}
 
 }
