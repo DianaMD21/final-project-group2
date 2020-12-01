@@ -12,6 +12,7 @@ public class EmployeeRequest {
 	private boolean travelAv;
 	private boolean moveAv;
 	private boolean drivingLicense;
+	public static int cod = 0;
 	
 	public String getId() {
 		return id;
@@ -61,6 +62,14 @@ public class EmployeeRequest {
 		this.workingHours = workingHours;
 	}
 
+	public boolean isTravelAv() {
+		return travelAv;
+	}
+
+	public void setTravelAv(boolean travelAv) {
+		this.travelAv = travelAv;
+	}
+
 	public boolean isMoveAv() {
 		return moveAv;
 	}
@@ -86,15 +95,15 @@ public class EmployeeRequest {
 	}
 
 	public EmployeeRequest(String id, Person applicant, Boolean status, float minSalary, List<String> languages,
-			int workingHours, boolean moveAv, boolean drivingLicense,boolean travelAv) {
+			int workingHours, boolean travelAv, boolean moveAv, boolean drivingLicense) {
 		super();
-		this.travelAv=travelAv;
 		this.id = id;
 		this.applicant = applicant;
 		this.status = status;
 		this.minSalary = minSalary;
 		this.languages = languages;
 		this.workingHours = workingHours;
+		this.travelAv = travelAv;
 		this.moveAv = moveAv;
 		this.drivingLicense = drivingLicense;
 	}
