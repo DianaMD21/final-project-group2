@@ -62,14 +62,6 @@ public class EmployeeRequest {
 		this.workingHours = workingHours;
 	}
 
-	public boolean isTravelAv() {
-		return travelAv;
-	}
-
-	public void setTravelAv(boolean travelAv) {
-		this.travelAv = travelAv;
-	}
-
 	public boolean isMoveAv() {
 		return moveAv;
 	}
