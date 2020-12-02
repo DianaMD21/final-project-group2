@@ -82,28 +82,13 @@ public class CompanyRequestReg extends JDialog {
 	private JLabel lblSkill;
 	private JComboBox cbxSkill;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			CompanyRequestReg dialog = new CompanyRequestReg(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
+	/* Create the dialog.
 	 */
 	public CompanyRequestReg(CompanyRequest req) {
 		modelLangs = new DefaultListModel<String>();
-		
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		setResizable(false);
 		setTitle("Solicitar empleados");
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 680, 735);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());

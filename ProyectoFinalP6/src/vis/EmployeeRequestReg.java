@@ -76,27 +76,13 @@ public class EmployeeRequestReg extends JDialog {
 	private JCheckBox chckbxTravelAv;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			EmployeeRequestReg dialog = new EmployeeRequestReg(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
+	  Create the dialog.
 	 */
 	public EmployeeRequestReg(EmployeeRequest req) {
 		modelLangs = new DefaultListModel<String>();
-		
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		setResizable(false);
 		setTitle("Solicitar empleo");
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 680, 680);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
