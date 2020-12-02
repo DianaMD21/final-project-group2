@@ -1,9 +1,10 @@
 package log;
 
 import java.util.Date;
+import java.io.Serializable;
 
-public abstract class Person {
-	
+public abstract class Person implements Serializable{
+	private static final long serialVersionUID = -8994425594060105680L;
 	protected String id;	
 	protected String name;
 	protected String lastName;

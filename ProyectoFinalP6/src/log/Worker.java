@@ -3,9 +3,10 @@ package log;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.io.Serializable;
 
-public class Worker extends Person {
-
+public class Worker extends Person implements Serializable{
+	private static final long serialVersionUID = -6278621719200443443L;
 	private List<String> skills;
 	private int workExperience;
 	

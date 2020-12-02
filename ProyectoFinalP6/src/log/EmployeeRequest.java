@@ -1,8 +1,10 @@
 package log;
 
 import java.util.List;
+import java.io.Serializable;
 
-public class EmployeeRequest {
+public class EmployeeRequest implements Serializable{
+	private static final long serialVersionUID = 3990433894438808514L;
 	private String id;
 	private Person applicant;
 	private Boolean status;

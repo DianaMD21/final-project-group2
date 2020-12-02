@@ -276,7 +276,7 @@ public class EmployeeRequestReg extends JDialog {
 							}
 							else {
 								req.setApplicant(JobCenter.getInstance().findPersonById(txtCed.getText()));
-								req.setStatus(false);
+								req.setStatus(true);
 								req.setMinSalary((float) spnMinSal.getValue());
 								req.setLanguages(langs);
 								req.setWorkingHours((int) spnWorkHours.getValue());

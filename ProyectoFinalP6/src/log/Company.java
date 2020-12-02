@@ -1,6 +1,9 @@
 package log;
 
-public class Company {
+import java.io.Serializable;
+
+public class Company implements Serializable{
+	private static final long serialVersionUID = -8340941357227668739L;
 	private String rnc;
 	private String name;
 	private String area;
