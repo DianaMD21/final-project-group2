@@ -44,13 +44,11 @@ public class CompanyReg extends JDialog {
 	private JTextArea txtAreaAddress;
 	private JComboBox<String> cbxProvince;
 	private JTextField txtRnc;
-	private JButton btnRegistrar;
+  private int statusModify;
 
-	public CompanyReg(Company mod) {
-		if(mod != null) {
-			setCompanyValuesToModify(mod);
-			btnRegistrar.setText("Modificar");
-		}
+	public CompanyReg(Company company) {
+		if(company.getRnc().equalsIgnoreCase(""))
+			this.statusModify=0;
 		setTitle("Registrar Empresa");
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setBounds(100, 100, 581, 570);
@@ -231,16 +229,16 @@ public class CompanyReg extends JDialog {
 					JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Aviso", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
-					Company aux = new Company(txtName.getText(), cbxArea.getSelectedItem().toString(), txtAreaAddress.getText(), cbxProvince.getSelectedItem().toString(),txtCity.getText(), txtPhone.getText(), txtEmail.getText(), txtRnc.getText());
-					if(mod == null) {
-						JobCenter.getInstance().addCompany(aux);
-						JOptionPane.showMessageDialog(null, "El registro fue completado con exito", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-						dispose();
-					}else {
-						JobCenter.getInstance().modCompany(mod,aux);
-						JOptionPane.showMessageDialog(null, "Se modificó con exito", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-						dispose();		
-					}
+          company.setAddress(txtAreaAddress.getText());
+					company.setCity(txtCity.getText());
+					company.setEmail(txtEmail.getText());
+					company.setName(txtNombre.getText());
+					company.setPhoneNumber(txtTelefono.getText());
+					company.setProvince((String) cbxProvince.getSelectedItem());
+					company.setRnc(txtRnc.getText());
+					if(statusModify==0)
+						JobCenter.getInstance().addCompany(company);
+					dispose();
 				}
 			}
 		});
@@ -253,8 +251,20 @@ public class CompanyReg extends JDialog {
 				dispose();
 			}
 		});
-		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		elar.setBounds(300, 497, 106, 27);
+		panel.add(btnCancelar);
+		
+		JLabel lblRnc = new JLabel("RNC:");
+		lblRnc.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblRnc.setBounds(10, 53, 70, 27);
+		panel.add(lblRnc);
+		
+  if(company.getRnc().equals("")==false ) {
+			setCompanyValuesToModify(company);
+			btnRegistrar.setText("Modificar");
+		}
 	}
+
 
 	private void setCompanyValuesToModify(Company company) {
 		txtName.setText(company.getName());

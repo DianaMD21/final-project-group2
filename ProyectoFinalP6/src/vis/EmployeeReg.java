@@ -148,6 +148,8 @@ public class EmployeeReg extends JDialog {
 		txtID.setColumns(10);
 		txtID.setBounds(88, 62, 145, 28);
 		pnlGeneral.add(txtID);
+		if(mod!=null)
+			txtID.setEnabled(false);;
 		
 		txtName = new JTextField();
 		txtName.addKeyListener(new KeyAdapter() {

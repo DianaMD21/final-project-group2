@@ -1,9 +1,10 @@
 package log;
 
 import java.util.Date;
+import java.io.Serializable;
 
-public class Student extends Person {
-	
+public class Student extends Person implements Serializable{
+	private static final long serialVersionUID = -6017673707205368571L;
 	private String university;
 	private String career;
 

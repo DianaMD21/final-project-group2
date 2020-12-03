@@ -1,8 +1,10 @@
 package log;
 
 import java.util.List;
+import java.io.Serializable;
 
-public class EmployeeRequest {
+public class EmployeeRequest implements Serializable{
+	private static final long serialVersionUID = 3990433894438808514L;
 	private String id;
 	private Person applicant;
 	private Boolean status;
@@ -12,6 +14,7 @@ public class EmployeeRequest {
 	private boolean travelAv;
 	private boolean moveAv;
 	private boolean drivingLicense;
+	public static int cod = 0;
 	
 	public String getId() {
 		return id;
@@ -85,16 +88,16 @@ public class EmployeeRequest {
 		this.drivingLicense = drivingLicense;
 	}
 
-	public EmployeeRequest(String id, Person applicant, Boolean status, float minSalary, List<String> languages,
-			int workingHours, boolean moveAv, boolean drivingLicense,boolean travelAv) {
+	public EmployeeRequest(String id, Person applicant, float minSalary, List<String> languages,
+			int workingHours, boolean travelAv, boolean moveAv, boolean drivingLicense) {
 		super();
-		this.travelAv=travelAv;
 		this.id = id;
 		this.applicant = applicant;
-		this.status = status;
+		this.status = true;
 		this.minSalary = minSalary;
 		this.languages = languages;
 		this.workingHours = workingHours;
+		this.travelAv = travelAv;
 		this.moveAv = moveAv;
 		this.drivingLicense = drivingLicense;
 	}

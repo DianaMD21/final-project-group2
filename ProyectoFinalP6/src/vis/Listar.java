@@ -22,6 +22,7 @@ import log.Worker;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
@@ -78,7 +79,11 @@ public class Listar extends JDialog {
 		scrollPaneEmpresa.setBounds(20, 75, 668, 171);
 		panelEmpresa.add(scrollPaneEmpresa);
 		
-		tableEmpresa = new JTable();
+		tableEmpresa = new JTable(){
+			   public boolean isCellEditable(int row, int column){
+			        return false;
+			   }
+			};
 		tableEmpresa.setBackground(Color.WHITE);
 		tableEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		scrollPaneEmpresa.setViewportView(tableEmpresa);
@@ -134,7 +139,11 @@ public class Listar extends JDialog {
 		scrollPanelPersona.setBounds(20, 100, 668, 171);
 		panelPersona.add(scrollPanelPersona);
 		
-		tablePersona = new JTable();
+		tablePersona= new JTable(){
+			   public boolean isCellEditable(int row, int column){
+			        return false;
+			   }
+			};
 		tablePersona.setBackground(Color.WHITE);
 		tablePersona.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		scrollPanelPersona.setViewportView(tablePersona);
@@ -246,7 +255,7 @@ public class Listar extends JDialog {
 				rdbtnWorker.setSelected(false);
 				listPerson=jobCenter.getMyPersons();
 				setTablePersona(listPerson,modelPersona);
-				lblCantPersonas.setText("Cantidad de Personas registrados: "+String.valueOf(listPerson.size()));
+				lblCantPersonas.setText("Cantidad de Personas registradas: "+String.valueOf(listPerson.size()));
 			}
 		});
 		rdbtnTodos.setEnabled(false);
@@ -260,6 +269,34 @@ public class Listar extends JDialog {
 		lblTablaDePersonas.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblTablaDePersonas.setBounds(210, 21, 262, 28);
 		panelPersona.add(lblTablaDePersonas);
+		
+		JButton btnMasInfo = new JButton("M\u00E1s Informaci\u00F3n ");
+		btnMasInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(tablePersona.getSelectedRow()<0)
+					JOptionPane.showMessageDialog(null, "Seleccione una persona", "Problema de selección", JOptionPane.CLOSED_OPTION);
+				else {
+					String cedula=(String) tablePersona.getValueAt(tablePersona.getSelectedRow(), 0);
+					Person person= JobCenter.getInstance().findPersonById(cedula);
+					InformacionPersonVisual info=new InformacionPersonVisual(person);
+					info.setVisible(true);
+				}
+			}
+		});
+		btnMasInfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnMasInfo.setBounds(508, 291, 180, 28);
+		panelPersona.add(btnMasInfo);
+		
+		JButton btnSalirPersona = new JButton("Salir");
+		btnSalirPersona.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnSalirPersona.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnSalirPersona.setBounds(311, 291, 99, 28);
+		panelPersona.add(btnSalirPersona);
 		
 		if(showCompany==true) {
 			panelPersona.setVisible(false);

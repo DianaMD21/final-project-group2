@@ -1,8 +1,10 @@
 package log;
 
 import java.util.List;
+import java.io.Serializable;
 
-public class CompanyRequest {
+public class CompanyRequest implements Serializable{
+	private static final long serialVersionUID = 5106151716386106200L;
 	private String id;
 	private Company company;
 	private String typeOfEmployee;
@@ -14,6 +16,8 @@ public class CompanyRequest {
 	private boolean travelAv;
 	private boolean moveAv;
 	private boolean drivingLicense;
+	private int workingHours;
+	public static int cod = 0;
 	
 	public String getId() {
 		return id;
@@ -59,7 +63,7 @@ public class CompanyRequest {
 		return minSalary;
 	}
 	
-	public void setMinSalary(float minSalary) {
+	public void setMaxSalary(float minSalary) {
 		this.minSalary = minSalary;
 	}
 	
@@ -103,9 +107,17 @@ public class CompanyRequest {
 		this.drivingLicense = drivingLicense;
 	}
 
+	public int getWorkingHours() {
+		return workingHours;
+	}
+
+	public void setWorkingHours(int workingHours) {
+		this.workingHours = workingHours;
+	}
+
 	public CompanyRequest(String id, Company company, String typeOfEmployee, String skillRequired, int quantity,
-			float minSalary, boolean status, List<String> languages, boolean travelAv, boolean moveAv,
-			boolean drivingLicense) {
+			float minSalary, List<String> languages, boolean travelAv, boolean moveAv,
+			boolean drivingLicense, int workingHours) {
 		super();
 		this.id = id;
 		this.company = company;
@@ -113,10 +125,11 @@ public class CompanyRequest {
 		this.skillRequired = skillRequired;
 		this.quantity = quantity;
 		this.minSalary = minSalary;
-		this.status = status;
+		this.status = true;
 		this.languages = languages;
 		this.travelAv = travelAv;
 		this.moveAv = moveAv;
 		this.drivingLicense = drivingLicense;
+		this.workingHours = workingHours;
 	}
 }

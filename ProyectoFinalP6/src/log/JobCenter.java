@@ -1,9 +1,11 @@
 package log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JobCenter {
+public class JobCenter implements Serializable{
+	private static final long serialVersionUID = 9046622424053111608L;
 	private List<Company> myCompanies;
 	private List<Person> myPersons;
 	private List<EmployeeRequest> myEmployeeRequests;
@@ -24,6 +26,10 @@ public class JobCenter {
 		return jobcenter;
 	}
 
+	public static void setInstance(JobCenter jobcenter) {
+		JobCenter.jobcenter = jobcenter;
+	}
+	
 	public List<Company> getMyCompanies() {
 		return myCompanies;
 	}
@@ -229,6 +235,64 @@ public class JobCenter {
 			}
 		}
 		return amount;
+	}
+	public void eliminateAllActivePersonRequests(Person personToEliminate) {
+		Boolean ok=true;
+		int ind=0;
+		EmployeeRequest aux = null;
+		while(ok==true) {
+			for(EmployeeRequest er: JobCenter.getInstance().getMyEmployeeRequests()) {
+				if(er.getApplicant().getId().equalsIgnoreCase(personToEliminate.getId()) && er.getStatus()==true) {
+					aux=er;
+					ind++;
+					break;
+				}
+			}
+			if(ind==0)
+				ok=false;
+			else {
+				JobCenter.getInstance().getMyEmployeeRequests().remove(aux);
+				ind=0;
+			}
+		}
+	}
+	public void eliminateAllActiveCompanyRequests(Company companyToEliminate) {
+		Boolean ok=true;
+		int ind=0;
+		CompanyRequest aux = null;
+		while(ok==true) {
+			for(CompanyRequest er: JobCenter.getInstance().getMyCompanyRequests()) {
+				if(er.getCompany().getRnc().equalsIgnoreCase(companyToEliminate.getRnc()) && er.isStatus()==true) {
+					aux=er;
+					ind++;
+					break;
+				}
+			}
+			if(ind==0)
+				ok=false;
+			else {
+				JobCenter.getInstance().getMyCompanyRequests().remove(aux);
+				ind=0;
+			}
+		}
+	}
+	public List<CompanyRequest> getAllCompRequestByID(Company comp) {
+		List<CompanyRequest> allCR=new ArrayList<>();
+		for(CompanyRequest compR : myCompanyRequests) {
+			if(compR.getCompany().getRnc().equalsIgnoreCase(comp.getRnc()) && compR.isStatus()==true) {
+				allCR.add(compR);
+			}
+		}
+		return allCR;
+	}
+	public List<EmployeeRequest> getAllEmployeeRequestByID(Person person) {
+		List<EmployeeRequest> allER=new ArrayList<>();
+		for(EmployeeRequest employR : myEmployeeRequests) {
+			if(employR.getApplicant().getId().equalsIgnoreCase(person.getId()) && employR.getStatus()==true) {
+				allER.add(employR);
+			}
+		}
+		return allER;
 	}
 
 
