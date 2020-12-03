@@ -21,17 +21,18 @@ import log.Worker;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Dialog.ModalityType;
-
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Listar extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTable tableEmpresa;
 	private JTable tablePersona;

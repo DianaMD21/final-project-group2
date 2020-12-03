@@ -7,6 +7,9 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import log.JobCenter;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.Font;
@@ -16,6 +19,10 @@ import java.awt.event.ActionEvent;
 
 public class JobCenterVisual extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Dimension dim;
 
@@ -64,6 +71,9 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmPersona = new JMenuItem("Persona");
 			mntmPersona.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					EmployeeReg reg = new EmployeeReg(null);
+					reg.setLocationRelativeTo(null);
+					reg.setVisible(true);
 				}
 			});
 			mntmPersona.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -72,6 +82,9 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmEmpresa = new JMenuItem("Empresa");
 			mntmEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					CompanyReg reg = new CompanyReg(null);
+					reg.setLocationRelativeTo(null);
+					reg.setVisible(true);
 				}
 			});
 			mntmEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -97,15 +110,43 @@ public class JobCenterVisual extends JDialog {
 			mntmSolVacante.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			mnnmSolicitud.add(mntmSolVacante);
 			
+			JMenu mnNewMenu = new JMenu("Match");
+			mnNewMenu.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			menuBar.add(mnNewMenu);
+			
+			JMenuItem mntmNewMenuItem = new JMenuItem("Enlazar");
+			mntmNewMenuItem.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					EmployeeMatch match = new EmployeeMatch();
+					match.setLocationRelativeTo(null);
+					match.setVisible(true);
+				}
+			});
+			mnNewMenu.add(mntmNewMenuItem);
+			
 			JMenu mnnmListar = new JMenu("Listar");
 			mnnmListar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			menuBar.add(mnnmListar);
 			
 			JMenuItem mntmListPersona = new JMenuItem("Persona");
+			mntmListPersona.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Listar list = new Listar(JobCenter.getInstance(), false);
+					list.setLocationRelativeTo(null);
+					list.setVisible(true);
+				}
+			});
 			mntmListPersona.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			mnnmListar.add(mntmListPersona);
 			
 			JMenuItem mntmListEmpresa = new JMenuItem("Empresa");
+			mntmListEmpresa.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Listar list = new Listar(JobCenter.getInstance(), true);
+					list.setLocationRelativeTo(null);
+					list.setVisible(true);
+				}
+			});
 			mntmListEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			mnnmListar.add(mntmListEmpresa);
 		}

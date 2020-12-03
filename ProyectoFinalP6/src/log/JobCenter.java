@@ -57,8 +57,12 @@ public class JobCenter {
 	}
 	
 	public void addCompany(Company company) {
-		company.setRnc(String.valueOf(myCompanies.size()));
 		this.myCompanies.add(company);
+	}
+	public void modCompany(Company mod, Company aux) {
+		int index = myCompanies.indexOf(mod);
+		myCompanies.add(index, aux);
+		myCompanies.remove(mod);	
 	}
 	
 	public void addPerson(Person person) {
@@ -103,6 +107,16 @@ public class JobCenter {
 				return e;
 		}
 		return null;
+	}
+	
+	public List<CompanyRequest>getCompanyRequest(Company c){
+		List<CompanyRequest> requests = new ArrayList<CompanyRequest>();
+		for (CompanyRequest cr : myCompanyRequests) {
+			if(cr.getCompany() == c && cr.isStatus()) {
+				requests.add(cr);
+			}	
+		}
+		return requests;
 	}
 	
 	public List<Person> getAllStudents(){
@@ -216,5 +230,6 @@ public class JobCenter {
 		}
 		return amount;
 	}
+
 
 }

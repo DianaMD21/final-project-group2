@@ -1,17 +1,13 @@
 package vis;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Dialog.ModalityType;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
@@ -25,11 +21,14 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
 
 public class InformacionPersonVisual extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextArea textAreaSkills;
 	private JTextArea txtAreaAddress;
@@ -261,7 +260,6 @@ public class InformacionPersonVisual extends JDialog {
 		int month = cal.get(Calendar.MONTH);
 		int day = cal.get(Calendar.DAY_OF_MONTH);
 		txtBirthdate.setText(String.valueOf(day)+ " / "+ String.valueOf(month+1)+ " / "+ String.valueOf(year));
-		
 	}
 
 	private void setData(Person person) {
