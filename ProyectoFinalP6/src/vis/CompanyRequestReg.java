@@ -320,7 +320,7 @@ public class CompanyRequestReg extends JDialog {
 							if(req == null) {
 								String id = ""+CompanyRequest.cod++;	
 								CompanyRequest request = new CompanyRequest(id, JobCenter.getInstance().findCompanyById(txtId.getText()), cbxType.getSelectedItem().toString(), 
-										cbxSkill.getSelectedItem().toString(), (int) spnCant.getValue(), (float) spnMaxSal.getValue(), false, langs, chckbxTravelAv.isSelected(),
+										cbxSkill.getSelectedItem().toString(), (int) spnCant.getValue(), (float) spnMaxSal.getValue(), langs, chckbxTravelAv.isSelected(),
 										chckbxMoveAv.isSelected(), chckbxDriveLc.isSelected(), (int) spnWorkHours.getValue());
 								JobCenter.getInstance().addCompanyRequest(request);
 							}
@@ -339,6 +339,7 @@ public class CompanyRequestReg extends JDialog {
 							}
 							
 							JOptionPane.showMessageDialog(null, "El registro fue completado con exito.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+							dispose();
 						}
 						else {
 							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. Cédula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);

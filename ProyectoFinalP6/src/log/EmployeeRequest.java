@@ -88,12 +88,12 @@ public class EmployeeRequest implements Serializable{
 		this.drivingLicense = drivingLicense;
 	}
 
-	public EmployeeRequest(String id, Person applicant, Boolean status, float minSalary, List<String> languages,
+	public EmployeeRequest(String id, Person applicant, float minSalary, List<String> languages,
 			int workingHours, boolean travelAv, boolean moveAv, boolean drivingLicense) {
 		super();
 		this.id = id;
 		this.applicant = applicant;
-		this.status = status;
+		this.status = true;
 		this.minSalary = minSalary;
 		this.languages = languages;
 		this.workingHours = workingHours;

@@ -164,15 +164,15 @@ public class EmployeeRequestReg extends JDialog {
 			spnMinSal.setBounds(245, 474, 100, 30);
 			pnlGeneral.add(spnMinSal);
 			
-			lblWorkHours = new JLabel("Horas de trabajo:");
+			lblWorkHours = new JLabel("Horas de trabajo semanales");
 			lblWorkHours.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			lblWorkHours.setBounds(20, 530, 140, 23);
+			lblWorkHours.setBounds(20, 530, 235, 23);
 			pnlGeneral.add(lblWorkHours);
 			
 			spnWorkHours = new JSpinner();
 			spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 12, 1));
 			spnWorkHours.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			spnWorkHours.setBounds(155, 529, 70, 30);
+			spnWorkHours.setBounds(245, 526, 100, 30);
 			pnlGeneral.add(spnWorkHours);
 			
 			cbxLangs = new JComboBox();
@@ -261,31 +261,43 @@ public class EmployeeRequestReg extends JDialog {
 				btnReg = new JButton("Solicitar");
 				btnReg.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						int reply = 0;
 						if(JobCenter.getInstance().findPersonById(txtCed.getText()) != null) {
-							List<String> langs = new ArrayList<String>();
-							for(int i = 0; i<modelLangs.getSize(); i++) {
-								langs.add(modelLangs.getElementAt(i));
+							Person person1=JobCenter.getInstance().findPersonById(txtCed.getText());
+							if(person1.isWorkingStatus()==true) {
+								 reply = JOptionPane.showConfirmDialog(null, "Su estado laboral es empleado. Debe de cambiarlo para realizar una solicitud. ¿Desea hacerlo?", "Conflicto con estado laboral", JOptionPane.YES_NO_OPTION);
+								if (reply == JOptionPane.NO_OPTION) {
+								    dispose();
+								} 
 							}
-							
-							if(req == null) {
-								String id = ""+EmployeeRequest.cod++;	
-								EmployeeRequest request = new EmployeeRequest(id, JobCenter.getInstance().findPersonById(txtCed.getText()), false, (float) spnMinSal.getValue(), 
-										langs, (int) spnWorkHours.getValue(), chckbxTravelAv.isSelected(), chckbxMoveAv.isSelected(), chckbxDriveLc.isSelected());
-								JobCenter.getInstance().addEmployeeRquest(request);
+							if(person1.isWorkingStatus()==false || reply == JOptionPane.YES_OPTION) {
+								person1.setWorkingStatus(false);
+								List<String> langs = new ArrayList<String>();
+								for(int i = 0; i<modelLangs.getSize(); i++) {
+									langs.add(modelLangs.getElementAt(i));
+								}
 								
+								if(req == null) {
+									String id = ""+EmployeeRequest.cod++;	
+									EmployeeRequest request = new EmployeeRequest(id, person1, (float) spnMinSal.getValue(), 
+											langs, (int) spnWorkHours.getValue(), chckbxTravelAv.isSelected(), chckbxMoveAv.isSelected(), chckbxDriveLc.isSelected());
+									JobCenter.getInstance().addEmployeeRquest(request);
+									
+								}
+								else {
+									req.setApplicant(JobCenter.getInstance().findPersonById(txtCed.getText()));
+									req.setStatus(true);
+									req.setMinSalary((float) spnMinSal.getValue());
+									req.setLanguages(langs);
+									req.setWorkingHours((int) spnWorkHours.getValue());
+									req.setTravelAv(chckbxTravelAv.isSelected());
+									req.setMoveAv(chckbxMoveAv.isSelected());
+									req.setDrivingLicense(chckbxDriveLc.isSelected());
+								}
+								
+								JOptionPane.showMessageDialog(null, "El registro fue completado con exito.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+								dispose();
 							}
-							else {
-								req.setApplicant(JobCenter.getInstance().findPersonById(txtCed.getText()));
-								req.setStatus(true);
-								req.setMinSalary((float) spnMinSal.getValue());
-								req.setLanguages(langs);
-								req.setWorkingHours((int) spnWorkHours.getValue());
-								req.setTravelAv(chckbxTravelAv.isSelected());
-								req.setMoveAv(chckbxMoveAv.isSelected());
-								req.setDrivingLicense(chckbxDriveLc.isSelected());
-							}
-							
-							JOptionPane.showMessageDialog(null, "El registro fue completado con exito.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 						}
 						else {
 							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. Cédula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
