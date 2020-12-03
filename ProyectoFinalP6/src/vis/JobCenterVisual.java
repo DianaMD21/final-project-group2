@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import log.Company;
+import log.CompanyRequest;
+import log.EmployeeRequest;
 import log.JobCenter;
 import log.Person;
 
