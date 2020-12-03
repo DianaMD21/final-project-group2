@@ -78,7 +78,11 @@ public class Listar extends JDialog {
 		scrollPaneEmpresa.setBounds(20, 75, 668, 171);
 		panelEmpresa.add(scrollPaneEmpresa);
 		
-		tableEmpresa = new JTable();
+		tableEmpresa = new JTable(){
+			   public boolean isCellEditable(int row, int column){
+			        return false;
+			   }
+			};
 		tableEmpresa.setBackground(Color.WHITE);
 		tableEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		scrollPaneEmpresa.setViewportView(tableEmpresa);
@@ -134,7 +138,11 @@ public class Listar extends JDialog {
 		scrollPanelPersona.setBounds(20, 100, 668, 171);
 		panelPersona.add(scrollPanelPersona);
 		
-		tablePersona = new JTable();
+		tablePersona= new JTable(){
+			   public boolean isCellEditable(int row, int column){
+			        return false;
+			   }
+			};
 		tablePersona.setBackground(Color.WHITE);
 		tablePersona.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		scrollPanelPersona.setViewportView(tablePersona);

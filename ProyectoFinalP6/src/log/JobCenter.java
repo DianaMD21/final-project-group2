@@ -222,23 +222,49 @@ public class JobCenter implements Serializable{
 		return amount;
 	}
 	public void eliminateAllActivePersonRequests(Person personToEliminate) {
-		for(EmployeeRequest er: myEmployeeRequests) {
-			if(er.getApplicant().equals(personToEliminate) && er.getStatus()==false) {
-				myEmployeeRequests.remove(er);
-			}		
+		Boolean ok=true;
+		int ind=0;
+		EmployeeRequest aux = null;
+		while(ok==true) {
+			for(EmployeeRequest er: JobCenter.getInstance().getMyEmployeeRequests()) {
+				if(er.getApplicant().getId().equalsIgnoreCase(personToEliminate.getId()) && er.getStatus()==true) {
+					aux=er;
+					ind++;
+					break;
+				}
+			}
+			if(ind==0)
+				ok=false;
+			else {
+				JobCenter.getInstance().getMyEmployeeRequests().remove(aux);
+				ind=0;
+			}
 		}
 	}
 	public void eliminateAllActiveCompanyRequests(Company companyToEliminate) {
-		for(CompanyRequest er: myCompanyRequests) {
-			if(er.getCompany().equals(companyToEliminate) && er.isStatus()==false) {
-				myCompanyRequests.remove(er);
-			}		
+		Boolean ok=true;
+		int ind=0;
+		CompanyRequest aux = null;
+		while(ok==true) {
+			for(CompanyRequest er: JobCenter.getInstance().getMyCompanyRequests()) {
+				if(er.getCompany().getRnc().equalsIgnoreCase(companyToEliminate.getRnc()) && er.isStatus()==true) {
+					aux=er;
+					ind++;
+					break;
+				}
+			}
+			if(ind==0)
+				ok=false;
+			else {
+				JobCenter.getInstance().getMyCompanyRequests().remove(aux);
+				ind=0;
+			}
 		}
 	}
 	public List<CompanyRequest> getAllCompRequestByID(Company comp) {
 		List<CompanyRequest> allCR=new ArrayList<>();
 		for(CompanyRequest compR : myCompanyRequests) {
-			if(compR.getCompany().getRnc().equalsIgnoreCase(comp.getRnc()) && compR.isStatus()==false) {
+			if(compR.getCompany().getRnc().equalsIgnoreCase(comp.getRnc()) && compR.isStatus()==true) {
 				allCR.add(compR);
 			}
 		}
@@ -247,7 +273,7 @@ public class JobCenter implements Serializable{
 	public List<EmployeeRequest> getAllEmployeeRequestByID(Person person) {
 		List<EmployeeRequest> allER=new ArrayList<>();
 		for(EmployeeRequest employR : myEmployeeRequests) {
-			if(employR.getApplicant().getId().equalsIgnoreCase(person.getId()) && employR.getStatus()==false) {
+			if(employR.getApplicant().getId().equalsIgnoreCase(person.getId()) && employR.getStatus()==true) {
 				allER.add(employR);
 			}
 		}

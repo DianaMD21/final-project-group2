@@ -40,36 +40,8 @@ public class ListarSolicitudes extends JDialog {
 	private List<EmployeeRequest> employRequest;
 	private List<CompanyRequest> compRequest;
 
-	/**
-	 
-	public static void main(String[] args) {
-		try {
-			Boolean status=false;
-			String id="5555";
-			Company company=new Company(id, id, id, id, id, id, id, id);
-			CompanyRequest compRe=new CompanyRequest(id, company, id, id, 1, 10000, false, null, status, status, status, 5);
-			List<String> skills=new ArrayList<>();
-			skills.add("vendedor");
-			skills.add("come mrda");
-			Person worker=new Worker(id, id, id, null, id, id, id, id, id, id, id, 2, (ArrayList<String>) skills);
-			EmployeeRequest empRE=new EmployeeRequest(id, worker, status, 10000, skills, 40, status, status, status);
-			JobCenter.getInstance().addPerson(worker);
-			JobCenter.getInstance().addEmployeeRquest(empRE);
-			JobCenter.getInstance().addCompanyRequest(compRe);
-			JobCenter.getInstance().addCompany(company);
-			ListarSolicitudes dialog = new ListarSolicitudes(true, id);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 * @param status 
-	 */
 	public ListarSolicitudes(Boolean status,String id) {
+		//False=companyReq, TRUE=employeeReq
 		setBounds(100, 100, 718, 343);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -87,7 +59,11 @@ public class ListarSolicitudes extends JDialog {
 			scrollPaneEmpresa.setBounds(10, 75, 671, 171);
 			panel.add(scrollPaneEmpresa);
 			
-			tableSolicitud = new JTable();
+			tableSolicitud = new JTable(){
+				   public boolean isCellEditable(int row, int column){
+				        return false;
+				   }
+				};
 			tableSolicitud.setBackground(Color.WHITE);
 			tableSolicitud.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			scrollPaneEmpresa.setViewportView(tableSolicitud);

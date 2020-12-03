@@ -116,7 +116,7 @@ public class CompanyRequest implements Serializable{
 	}
 
 	public CompanyRequest(String id, Company company, String typeOfEmployee, String skillRequired, int quantity,
-			float minSalary, boolean status, List<String> languages, boolean travelAv, boolean moveAv,
+			float minSalary, List<String> languages, boolean travelAv, boolean moveAv,
 			boolean drivingLicense, int workingHours) {
 		super();
 		this.id = id;
@@ -125,7 +125,7 @@ public class CompanyRequest implements Serializable{
 		this.skillRequired = skillRequired;
 		this.quantity = quantity;
 		this.minSalary = minSalary;
-		this.status = status;
+		this.status = true;
 		this.languages = languages;
 		this.travelAv = travelAv;
 		this.moveAv = moveAv;

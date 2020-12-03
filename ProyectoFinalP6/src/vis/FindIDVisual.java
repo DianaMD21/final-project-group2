@@ -31,6 +31,7 @@ public class FindIDVisual extends JDialog {
 	private JLabel lblTitle;
 	private JButton btnEliminar;
 	private String myID;
+	private int myStatus;
 
 	/**
 	 
@@ -52,6 +53,7 @@ public class FindIDVisual extends JDialog {
 	 */
 	public FindIDVisual(String id,JobCenter jobCenter,int status) {
 		this.myID=id;
+		this.myStatus=status;
 		setTitle("Eliminar");
 		setBounds(100, 100, 445, 198);
 		setModalityType(ModalityType.APPLICATION_MODAL);
@@ -75,17 +77,26 @@ public class FindIDVisual extends JDialog {
 				panel.add(lblTitle);
 			}
 			
-			setTitleAndLabel(status);
 			
 			txtID = new JTextField();
 			txtID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			txtID.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyTyped(KeyEvent e) {
+					if(myStatus==1 || myStatus==4 || myStatus ==3) {
+						char caracter = e.getKeyChar();
+		                if (((caracter < '0') || (caracter > '9'))
+		                        && (caracter != '\b')  || (txtID.getText().length()==11)) {
+		                    e.consume();
+		                    
+		                }
+					}
+					else {
 					char caracter = e.getKeyChar();
-	                if (((caracter < '0') || (caracter > '9'))
-	                        && (caracter != '\b') ) {
-	                    e.consume();
+	                	if (((caracter < '0') || (caracter > '9'))
+	                			&& (caracter != '\b') ) {
+	                		e.consume();
+	                	}
 	                }
 				}
 			});
@@ -99,9 +110,9 @@ public class FindIDVisual extends JDialog {
 					myID=txtID.getText();
 					if(txtID.getText().equalsIgnoreCase(""))
 						JOptionPane.showMessageDialog(null, "No deje el campo vacío", "Problema de búsqueda", JOptionPane.CLOSED_OPTION);	
-					else if(jobCenter.findCompanyById(myID)==null && (status==0 || status==2))
+					else if(jobCenter.findCompanyById(myID)==null && (status==0 || status==2 || status==5))
 						JOptionPane.showMessageDialog(null, "Esta empresa no existe", "Empresa no encontrada", JOptionPane.CLOSED_OPTION);
-					else if(jobCenter.findPersonById(myID)==null && (status==1||status==3))
+					else if(jobCenter.findPersonById(myID)==null && (status==1||status==3 || status==4))
 						JOptionPane.showMessageDialog(null, "Esta persona no existe", "Persona no encontrada", JOptionPane.CLOSED_OPTION);
 					else 
 						dispose();
@@ -112,6 +123,8 @@ public class FindIDVisual extends JDialog {
 			btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			btnEliminar.setBounds(78, 103, 101, 31);
 			panel.add(btnEliminar);
+			
+			setTitleAndLabel(status);
 			
 			JButton btnSalir = new JButton("Salir");
 			btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -144,9 +157,19 @@ public class FindIDVisual extends JDialog {
 			this.lblTitle.setText("Introduzca el RNC de la Empresa:");
 			this.btnEliminar.setText("Acceder");
 		}
-		else {
+		else if(status==3){
 			this.setTitle("Eliminar Solicitud de Persona");
-			this.lblTitle.setText("Introduzca la cédula de la persona:");
+			this.lblTitle.setText("Introduzca la cédula de la Persona:");
+			this.btnEliminar.setText("Acceder");
+		}
+		else if(status==4) {
+			this.setTitle("Modificar Persona");
+			this.lblTitle.setText("Introduzca la cédula de la Persona:");
+			this.btnEliminar.setText("Acceder");
+		}
+		else  {
+			this.setTitle("Modificar Empresa");
+			this.lblTitle.setText("Introduzca el RNC de la Empresa:");
 			this.btnEliminar.setText("Acceder");
 		}
 		
