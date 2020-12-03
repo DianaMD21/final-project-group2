@@ -258,22 +258,9 @@ public class JobCenterVisual extends JDialog {
 			
 			JMenuItem mntmListPersona = new JMenuItem("Persona");
 			mntmListPersona.addActionListener(new ActionListener() {
-public void actionPerformed(ActionEvent arg0) {
-					String cedula="";
-					FindIDVisual findPersona=new FindIDVisual(cedula,JobCenter.getInstance(),1);
-					findPersona.setVisible(true);
-					cedula=findPersona.getID();
-					if(cedula.equalsIgnoreCase("")==false) {
-						Person personToEliminate=JobCenter.getInstance().findPersonById(cedula);
-						int result = JOptionPane.showConfirmDialog((Component) null, "¿Seguro que desea eliminar la persona "+personToEliminate.getName()+
-								" "+personToEliminate.getLastName()+"?",
-						        "alert", JOptionPane.OK_CANCEL_OPTION);
-						if(result==JOptionPane.OK_OPTION) {
-							JobCenter.getInstance().getMyPersons().remove(personToEliminate);
-							JobCenter.getInstance().eliminateAllActivePersonRequests(personToEliminate);
-							JOptionPane.showMessageDialog(null, "La persona ha sido eliminada con éxito", "Persona Eliminada", JOptionPane.CLOSED_OPTION);
-						}
-					}
+				public void actionPerformed(ActionEvent arg0) {
+					Listar listPerson=new Listar(JobCenter.getInstance(),false);
+					listPerson.setVisible(true);
 				}
 			});
 			mntmListPersona.setFont(new Font("Tahoma", Font.PLAIN, 14));
