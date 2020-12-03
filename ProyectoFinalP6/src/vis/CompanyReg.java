@@ -241,9 +241,11 @@ public class CompanyReg extends JDialog {
 		lblRnc.setBounds(10, 53, 70, 27);
 		panel.add(lblRnc);
 		
-		if(company.getRnc().equals("")==false) {
-			setCompanyValuesToModify(company);
-			btnRegistrar.setText("Modificar");
+		if(company!=null) {
+			if(!company.getRnc().equals("")) {
+				setCompanyValuesToModify(company);
+				btnRegistrar.setText("Modificar");
+			}
 		}
 	}
 
