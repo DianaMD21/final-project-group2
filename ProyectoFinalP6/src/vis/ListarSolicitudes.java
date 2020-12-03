@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Dialog.ModalityType;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -40,8 +41,7 @@ public class ListarSolicitudes extends JDialog {
 	private List<CompanyRequest> compRequest;
 
 	/**
-	 * Launch the application.
-	 */
+	 
 	public static void main(String[] args) {
 		try {
 			Boolean status=false;
@@ -73,6 +73,7 @@ public class ListarSolicitudes extends JDialog {
 		setBounds(100, 100, 718, 343);
 		setResizable(false);
 		setLocationRelativeTo(null);
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

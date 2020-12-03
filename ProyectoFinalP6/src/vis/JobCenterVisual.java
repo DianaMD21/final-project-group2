@@ -146,10 +146,34 @@ public class JobCenterVisual extends JDialog {
 			mnnmEliminar.add(mnnmEliminarSol);
 			
 			JMenuItem mntmElimCompanyReq = new JMenuItem("Empresa");
+			mntmElimCompanyReq.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String RNC="";
+					FindIDVisual findCompany=new FindIDVisual(RNC,JobCenter.getInstance(),1);
+					findCompany.setVisible(true);
+					RNC=findCompany.getID();
+					if(RNC.equalsIgnoreCase("")==false) {
+						ListarSolicitudes deleteCompanyRequest=new ListarSolicitudes(false, RNC);
+						deleteCompanyRequest.setVisible(true);
+					}
+				}
+			});
 			mntmElimCompanyReq.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			mnnmEliminarSol.add(mntmElimCompanyReq);
 			
-			JMenuItem mntmElimPersonReq = new JMenuItem("Person");
+			JMenuItem mntmElimPersonReq = new JMenuItem("Persona");
+			mntmElimPersonReq.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String cedula="";
+					FindIDVisual findPersona=new FindIDVisual(cedula,JobCenter.getInstance(),1);
+					findPersona.setVisible(true);
+					cedula=findPersona.getID();
+					if(cedula.equalsIgnoreCase("")==false) {
+						ListarSolicitudes deletePersonRequest=new ListarSolicitudes(false, cedula);
+						deletePersonRequest.setVisible(true);
+					}
+				}
+			});
 			mntmElimPersonReq.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			mnnmEliminarSol.add(mntmElimPersonReq);
 			
