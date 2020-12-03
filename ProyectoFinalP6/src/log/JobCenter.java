@@ -63,7 +63,6 @@ public class JobCenter implements Serializable{
 	}
 	
 	public void addCompany(Company company) {
-		company.setRnc(String.valueOf(myCompanies.size()));
 		this.myCompanies.add(company);
 	}
 	
@@ -221,6 +220,38 @@ public class JobCenter implements Serializable{
 			}
 		}
 		return amount;
+	}
+	public void eliminateAllActivePersonRequests(Person personToEliminate) {
+		for(EmployeeRequest er: myEmployeeRequests) {
+			if(er.getApplicant().equals(personToEliminate) && er.getStatus()==false) {
+				myEmployeeRequests.remove(er);
+			}		
+		}
+	}
+	public void eliminateAllActiveCompanyRequests(Company companyToEliminate) {
+		for(CompanyRequest er: myCompanyRequests) {
+			if(er.getCompany().equals(companyToEliminate) && er.isStatus()==false) {
+				myCompanyRequests.remove(er);
+			}		
+		}
+	}
+	public List<CompanyRequest> getAllCompRequestByID(Company comp) {
+		List<CompanyRequest> allCR=new ArrayList<>();
+		for(CompanyRequest compR : myCompanyRequests) {
+			if(compR.getCompany().getRnc().equalsIgnoreCase(comp.getRnc()) && compR.isStatus()==false) {
+				allCR.add(compR);
+			}
+		}
+		return allCR;
+	}
+	public List<EmployeeRequest> getAllEmployeeRequestByID(Person person) {
+		List<EmployeeRequest> allER=new ArrayList<>();
+		for(EmployeeRequest employR : myEmployeeRequests) {
+			if(employR.getApplicant().getId().equalsIgnoreCase(person.getId()) && employR.getStatus()==false) {
+				allER.add(employR);
+			}
+		}
+		return allER;
 	}
 
 }

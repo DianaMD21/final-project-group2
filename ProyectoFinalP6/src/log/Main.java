@@ -18,11 +18,11 @@ public class Main {
 		List<String> employeeLanguages= new ArrayList<>();
 		employeeLanguages.add("Ingles");
 		employeeLanguages.add("Espanol");
-		EmployeeRequest employeeR=new EmployeeRequest("5555555", student, false, 20000, employeeLanguages, 0, true, false, true);
+		//EmployeeRequest employeeR=new EmployeeRequest("5555555", student, false, 20000, employeeLanguages, 0, true, false, true);
 		
 		jobcenter.addCompany(company1);
 		//jobcenter.addCompanyRequest(companyR);
-		jobcenter.addEmployeeRquest(employeeR);
+		//jobcenter.addEmployeeRquest(employeeR);
 		jobcenter.addPerson(student);
 		
 		//List<EmployeeRequest>list= jobcenter.match(companyR);
