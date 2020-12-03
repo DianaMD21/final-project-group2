@@ -18,8 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Dialog.ModalityType;
-
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;

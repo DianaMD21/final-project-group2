@@ -65,6 +65,11 @@ public class JobCenter implements Serializable{
 	public void addCompany(Company company) {
 		this.myCompanies.add(company);
 	}
+	public void modCompany(Company mod, Company aux) {
+		int index = myCompanies.indexOf(mod);
+		myCompanies.add(index, aux);
+		myCompanies.remove(mod);	
+	}
 	
 	public void addPerson(Person person) {
 		this.myPersons.add(person);
@@ -108,6 +113,16 @@ public class JobCenter implements Serializable{
 				return e;
 		}
 		return null;
+	}
+	
+	public List<CompanyRequest>getCompanyRequest(Company c){
+		List<CompanyRequest> requests = new ArrayList<CompanyRequest>();
+		for (CompanyRequest cr : myCompanyRequests) {
+			if(cr.getCompany() == c && cr.isStatus()) {
+				requests.add(cr);
+			}	
+		}
+		return requests;
 	}
 	
 	public List<Person> getAllStudents(){
@@ -279,5 +294,6 @@ public class JobCenter implements Serializable{
 		}
 		return allER;
 	}
+
 
 }

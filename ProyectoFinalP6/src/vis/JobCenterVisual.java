@@ -34,6 +34,10 @@ import java.awt.event.ActionEvent;
 
 public class JobCenterVisual extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Dimension dim;
 
@@ -115,7 +119,7 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmPersona = new JMenuItem("Persona");
 			mntmPersona.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-          Person employee = null;
+ Person employee = null;
 					EmployeeReg newEmployee=new EmployeeReg(employee);
 					newEmployee.setVisible(true);
 				}
@@ -126,7 +130,7 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmEmpresa = new JMenuItem("Empresa");
 			mntmEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Company company=new Company("", "", "", "", "", "", "", "");
+Company company=new Company("", "", "", "", "", "", "", "");
 					CompanyReg newCompany=new CompanyReg(company);
 					newCompany.setVisible(true);
 					System.out.println("cant empresas: "+JobCenter.getInstance().getMyCompanies().size());
@@ -148,14 +152,14 @@ public class JobCenterVisual extends JDialog {
 					cedula=findPersona.getID();
 					if(cedula.equalsIgnoreCase("")==false) {
 						Person personToEliminate=JobCenter.getInstance().findPersonById(cedula);
-						int result = JOptionPane.showConfirmDialog((Component) null, "¿Seguro que desea eliminar la persona "+personToEliminate.getName()+
-								" "+personToEliminate.getLastName()+", y todas las solicitudes que creó?",
+						int result = JOptionPane.showConfirmDialog((Component) null, "ï¿½Seguro que desea eliminar la persona "+personToEliminate.getName()+
+								" "+personToEliminate.getLastName()+", y todas las solicitudes que creï¿½?",
 						        "alert", JOptionPane.OK_CANCEL_OPTION);
 						
 						if(result==JOptionPane.OK_OPTION) {
 							JobCenter.getInstance().getMyPersons().remove(personToEliminate);
 							JobCenter.getInstance().eliminateAllActivePersonRequests(personToEliminate);
-							JOptionPane.showMessageDialog(null, "La persona ha sido eliminada con éxito", "Persona Eliminada", JOptionPane.CLOSED_OPTION);
+							JOptionPane.showMessageDialog(null, "La persona ha sido eliminada con ï¿½xito", "Persona Eliminada", JOptionPane.CLOSED_OPTION);
 						}
 					}
 				}
@@ -172,13 +176,13 @@ public class JobCenterVisual extends JDialog {
 					RNC=findCompany.getID();
 					if(RNC.equalsIgnoreCase("")==false) {
 						Company companyToEliminate=JobCenter.getInstance().findCompanyById(RNC);
-						int result = JOptionPane.showConfirmDialog((Component) null, "¿Seguro que desea eliminar la empresa "+companyToEliminate.getName()+
-								", y todas las solicitudes que creó?",
+						int result = JOptionPane.showConfirmDialog((Component) null, "ï¿½Seguro que desea eliminar la empresa "+companyToEliminate.getName()+
+								", y todas las solicitudes que creï¿½?",
 						        "alert", JOptionPane.OK_CANCEL_OPTION);
 						if(result==JOptionPane.OK_OPTION) {
 							JobCenter.getInstance().getMyCompanies().remove(companyToEliminate);
 							JobCenter.getInstance().eliminateAllActiveCompanyRequests(companyToEliminate);
-							JOptionPane.showMessageDialog(null, "La empresa ha sido eliminada con éxito", "Empresa Eliminada", JOptionPane.CLOSED_OPTION);
+							JOptionPane.showMessageDialog(null, "La empresa ha sido eliminada con ï¿½xito", "Empresa Eliminada", JOptionPane.CLOSED_OPTION);
 						}	
 					}
 				}
@@ -292,6 +296,20 @@ public class JobCenterVisual extends JDialog {
 			mntmSolVacante.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			mnnmSolicitud.add(mntmSolVacante);
 			
+			JMenu mnNewMenu = new JMenu("Match");
+			mnNewMenu.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			menuBar.add(mnNewMenu);
+			
+			JMenuItem mntmNewMenuItem = new JMenuItem("Enlazar");
+			mntmNewMenuItem.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					EmployeeMatch match = new EmployeeMatch();
+					match.setLocationRelativeTo(null);
+					match.setVisible(true);
+				}
+			});
+			mnNewMenu.add(mntmNewMenuItem);
+			
 			JMenu mnnmListar = new JMenu("Listar");
 			mnnmListar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			menuBar.add(mnnmListar);
@@ -299,7 +317,7 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmListPersona = new JMenuItem("Persona");
 			mntmListPersona.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Listar listPerson=new Listar(JobCenter.getInstance(),false);
+Listar listPerson=new Listar(JobCenter.getInstance(),false);
 					listPerson.setVisible(true);
 				}
 			});
@@ -309,7 +327,7 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmListEmpresa = new JMenuItem("Empresa");
 			mntmListEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Listar listCompany=new Listar(JobCenter.getInstance(),true);
+Listar listCompany=new Listar(JobCenter.getInstance(),true);
 					listCompany.setVisible(true);
 				}
 			});
