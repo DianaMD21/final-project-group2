@@ -24,6 +24,7 @@ import java.awt.SystemColor;
 import javax.swing.border.TitledBorder;
 
 import log.Company;
+import log.JobCenter;
 
 import javax.swing.JTextArea;
 import java.awt.event.KeyAdapter;
@@ -42,8 +43,11 @@ public class CompanyReg extends JDialog {
 	private JTextArea txtAreaAddress;
 	private JComboBox<String> cbxProvince;
 	private JTextField txtRnc;
+	private int statusModify;
 
 	public CompanyReg(Company company) {
+		if(company.getRnc().equalsIgnoreCase(""))
+			this.statusModify=0;
 		setTitle("Registrar Empresa");
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setBounds(100, 100, 580, 592);
@@ -219,6 +223,9 @@ public class CompanyReg extends JDialog {
 					company.setPhoneNumber(txtTelefono.getText());
 					company.setProvince((String) cbxProvince.getSelectedItem());
 					company.setRnc(txtRnc.getText());
+					if(statusModify==0)
+						JobCenter.getInstance().addCompany(company);
+					dispose();
 				}
 			}
 		});
@@ -241,7 +248,7 @@ public class CompanyReg extends JDialog {
 		lblRnc.setBounds(10, 53, 70, 27);
 		panel.add(lblRnc);
 		
-		if(company.getRnc().equals("")==false) {
+		if(company.getRnc().equals("")==false ) {
 			setCompanyValuesToModify(company);
 			btnRegistrar.setText("Modificar");
 		}

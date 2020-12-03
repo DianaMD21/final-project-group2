@@ -32,7 +32,7 @@ public abstract class Person {
 		this.gender = gender;
 		this.maritalStatus = maritalStatus;
 		this.phoneNumber = phoneNumber;
-		this.workingStatus = false;
+		this.workingStatus = false; //UNEMPLOYED
 	}
 
 	public String getId() {
