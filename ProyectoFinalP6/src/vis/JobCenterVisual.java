@@ -20,6 +20,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 
 public class JobCenterVisual extends JDialog {
@@ -44,6 +52,39 @@ public class JobCenterVisual extends JDialog {
 	 * Create the dialog.
 	 */
 	public JobCenterVisual() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				
+				try {
+					FileInputStream fileJobCenterIn = new FileInputStream("JobCenter.dat");
+					ObjectInputStream streamJobCenterIn = new ObjectInputStream(fileJobCenterIn);
+					JobCenter.setInstance((JobCenter) streamJobCenterIn.readObject());
+					EmployeeRequest.cod = streamJobCenterIn.readInt();
+					CompanyRequest.cod = streamJobCenterIn.readInt();
+					fileJobCenterIn.close();
+				} catch (IOException | ClassNotFoundException e1) {
+					
+				}
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				
+				try {
+					FileOutputStream fileJobCenterOut = new FileOutputStream("JobCenter.dat");
+					ObjectOutputStream streamJobCenterOut = new ObjectOutputStream(fileJobCenterOut);
+					streamJobCenterOut.writeObject(JobCenter.getInstance());
+					streamJobCenterOut.flush();
+					streamJobCenterOut.writeInt(EmployeeRequest.cod);
+					streamJobCenterOut.flush();
+					streamJobCenterOut.writeInt(CompanyRequest.cod);
+					fileJobCenterOut.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} 
+			}
+		});
 		setTitle("Bolsa de Trabajo Dominicana");
 		setBounds(100, 100, 450, 300);
 		dim= getToolkit().getScreenSize();
@@ -72,7 +113,7 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmPersona = new JMenuItem("Persona");
 			mntmPersona.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Person employee = null;
+          Person employee = null;
 					EmployeeReg newEmployee=new EmployeeReg(employee);
 					newEmployee.setVisible(true);
 				}
@@ -105,13 +146,13 @@ public class JobCenterVisual extends JDialog {
 					cedula=findPersona.getID();
 					if(cedula.equalsIgnoreCase("")==false) {
 						Person personToEliminate=JobCenter.getInstance().findPersonById(cedula);
-						int result = JOptionPane.showConfirmDialog((Component) null, "¿Seguro que desea eliminar la persona "+personToEliminate.getName()+
+						int result = JOptionPane.showConfirmDialog((Component) null, "ï¿½Seguro que desea eliminar la persona "+personToEliminate.getName()+
 								" "+personToEliminate.getLastName()+"?",
 						        "alert", JOptionPane.OK_CANCEL_OPTION);
 						if(result==JOptionPane.OK_OPTION) {
 							JobCenter.getInstance().getMyPersons().remove(personToEliminate);
 							JobCenter.getInstance().eliminateAllActivePersonRequests(personToEliminate);
-							JOptionPane.showMessageDialog(null, "La persona ha sido eliminada con éxito", "Persona Eliminada", JOptionPane.CLOSED_OPTION);
+							JOptionPane.showMessageDialog(null, "La persona ha sido eliminada con ï¿½xito", "Persona Eliminada", JOptionPane.CLOSED_OPTION);
 						}
 					}
 				}
@@ -128,12 +169,12 @@ public class JobCenterVisual extends JDialog {
 					RNC=findCompany.getID();
 					if(RNC.equalsIgnoreCase("")==false) {
 						Company companyToEliminate=JobCenter.getInstance().findCompanyById(RNC);
-						int result = JOptionPane.showConfirmDialog((Component) null, "¿Seguro que desea eliminar la empresa "+companyToEliminate.getName()+"?",
+						int result = JOptionPane.showConfirmDialog((Component) null, "ï¿½Seguro que desea eliminar la empresa "+companyToEliminate.getName()+"?",
 						        "alert", JOptionPane.OK_CANCEL_OPTION);
 						if(result==JOptionPane.OK_OPTION) {
 							JobCenter.getInstance().getMyCompanies().remove(companyToEliminate);
 							JobCenter.getInstance().eliminateAllActiveCompanyRequests(companyToEliminate);
-							JOptionPane.showMessageDialog(null, "La empresa ha sido eliminada con éxito", "Empresa Eliminada", JOptionPane.CLOSED_OPTION);
+							JOptionPane.showMessageDialog(null, "La empresa ha sido eliminada con ï¿½xito", "Empresa Eliminada", JOptionPane.CLOSED_OPTION);
 						}	
 					}
 				}
@@ -184,6 +225,12 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmSolEmpleo = new JMenuItem("Solicitud de empleo");
 			mntmSolEmpleo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					try {
+						EmployeeRequestReg employeeRequestReg = new EmployeeRequestReg(null);
+						employeeRequestReg.setVisible(true);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
 				}
 			});
 			mntmSolEmpleo.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -192,6 +239,12 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmSolVacante = new JMenuItem("Solicitud de vacante");
 			mntmSolVacante.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					try {
+						CompanyRequestReg companyRequestReg = new CompanyRequestReg(null);
+						companyRequestReg.setVisible(true);
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
 				}
 			});
 			mntmSolVacante.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -203,9 +256,22 @@ public class JobCenterVisual extends JDialog {
 			
 			JMenuItem mntmListPersona = new JMenuItem("Persona");
 			mntmListPersona.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					Listar listPerson=new Listar(JobCenter.getInstance(),false);
-					listPerson.setVisible(true);
+public void actionPerformed(ActionEvent arg0) {
+					String cedula="";
+					FindIDVisual findPersona=new FindIDVisual(cedula,JobCenter.getInstance(),1);
+					findPersona.setVisible(true);
+					cedula=findPersona.getID();
+					if(cedula.equalsIgnoreCase("")==false) {
+						Person personToEliminate=JobCenter.getInstance().findPersonById(cedula);
+						int result = JOptionPane.showConfirmDialog((Component) null, "Â¿Seguro que desea eliminar la persona "+personToEliminate.getName()+
+								" "+personToEliminate.getLastName()+"?",
+						        "alert", JOptionPane.OK_CANCEL_OPTION);
+						if(result==JOptionPane.OK_OPTION) {
+							JobCenter.getInstance().getMyPersons().remove(personToEliminate);
+							JobCenter.getInstance().eliminateAllActivePersonRequests(personToEliminate);
+							JOptionPane.showMessageDialog(null, "La persona ha sido eliminada con Ã©xito", "Persona Eliminada", JOptionPane.CLOSED_OPTION);
+						}
+					}
 				}
 			});
 			mntmListPersona.setFont(new Font("Tahoma", Font.PLAIN, 14));

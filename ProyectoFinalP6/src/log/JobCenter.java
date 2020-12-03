@@ -1,9 +1,11 @@
 package log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JobCenter {
+public class JobCenter implements Serializable{
+	private static final long serialVersionUID = 9046622424053111608L;
 	private List<Company> myCompanies;
 	private List<Person> myPersons;
 	private List<EmployeeRequest> myEmployeeRequests;
@@ -24,6 +26,10 @@ public class JobCenter {
 		return jobcenter;
 	}
 
+	public static void setInstance(JobCenter jobcenter) {
+		JobCenter.jobcenter = jobcenter;
+	}
+	
 	public List<Company> getMyCompanies() {
 		return myCompanies;
 	}
