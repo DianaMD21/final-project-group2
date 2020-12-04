@@ -152,14 +152,14 @@ Company company=new Company("", "", "", "", "", "", "", "");
 					cedula=findPersona.getID();
 					if(cedula.equalsIgnoreCase("")==false) {
 						Person personToEliminate=JobCenter.getInstance().findPersonById(cedula);
-						int result = JOptionPane.showConfirmDialog((Component) null, "¿Seguro que desea eliminar la persona "+personToEliminate.getName()+
-								" "+personToEliminate.getLastName()+", y todas las solicitudes que creó?",
+						int result = JOptionPane.showConfirmDialog((Component) null, "ï¿½Seguro que desea eliminar la persona "+personToEliminate.getName()+
+								" "+personToEliminate.getLastName()+", y todas las solicitudes que creï¿½?",
 						        "alert", JOptionPane.OK_CANCEL_OPTION);
 						
 						if(result==JOptionPane.OK_OPTION) {
 							JobCenter.getInstance().getMyPersons().remove(personToEliminate);
 							JobCenter.getInstance().eliminateAllActivePersonRequests(personToEliminate);
-							JOptionPane.showMessageDialog(null, "La persona ha sido eliminada con éxito", "Persona Eliminada", JOptionPane.CLOSED_OPTION);
+							JOptionPane.showMessageDialog(null, "La persona ha sido eliminada con ï¿½xito", "Persona Eliminada", JOptionPane.CLOSED_OPTION);
 						}
 					}
 				}
@@ -176,13 +176,13 @@ Company company=new Company("", "", "", "", "", "", "", "");
 					RNC=findCompany.getID();
 					if(RNC.equalsIgnoreCase("")==false) {
 						Company companyToEliminate=JobCenter.getInstance().findCompanyById(RNC);
-						int result = JOptionPane.showConfirmDialog((Component) null, "¿Seguro que desea eliminar la empresa "+companyToEliminate.getName()+
-								", y todas las solicitudes que creó?",
+						int result = JOptionPane.showConfirmDialog((Component) null, "ï¿½Seguro que desea eliminar la empresa "+companyToEliminate.getName()+
+								", y todas las solicitudes que creï¿½?",
 						        "alert", JOptionPane.OK_CANCEL_OPTION);
 						if(result==JOptionPane.OK_OPTION) {
 							JobCenter.getInstance().getMyCompanies().remove(companyToEliminate);
 							JobCenter.getInstance().eliminateAllActiveCompanyRequests(companyToEliminate);
-							JOptionPane.showMessageDialog(null, "La empresa ha sido eliminada con éxito", "Empresa Eliminada", JOptionPane.CLOSED_OPTION);
+							JOptionPane.showMessageDialog(null, "La empresa ha sido eliminada con ï¿½xito", "Empresa Eliminada", JOptionPane.CLOSED_OPTION);
 						}	
 					}
 				}
@@ -317,7 +317,7 @@ Company company=new Company("", "", "", "", "", "", "", "");
 			JMenuItem mntmListPersona = new JMenuItem("Persona");
 			mntmListPersona.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Listar listPerson=new Listar(JobCenter.getInstance(),false);
+Listar listPerson=new Listar(JobCenter.getInstance(),false);
 					listPerson.setVisible(true);
 				}
 			});
@@ -327,7 +327,7 @@ Company company=new Company("", "", "", "", "", "", "", "");
 			JMenuItem mntmListEmpresa = new JMenuItem("Empresa");
 			mntmListEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Listar listCompany=new Listar(JobCenter.getInstance(),true);
+Listar listCompany=new Listar(JobCenter.getInstance(),true);
 					listCompany.setVisible(true);
 				}
 			});
