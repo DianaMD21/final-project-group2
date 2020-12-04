@@ -229,6 +229,9 @@ public class CompanyReg extends JDialog {
 				if(checkAllTextBox()==false) {
 					JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Aviso", JOptionPane.ERROR_MESSAGE);
 				}
+				else if(JobCenter.getInstance().findCompanyById(txtRnc.getText())!=null) {
+					JOptionPane.showMessageDialog(null, "Esta empresa ya existe.", "Aviso", JOptionPane.ERROR_MESSAGE);
+				}
 				else {
 					company.setAddress(txtAreaAddress.getText());
 					company.setCity(txtCity.getText());
@@ -263,6 +266,7 @@ public class CompanyReg extends JDialog {
 		cbxProvince.setSelectedItem(company.getProvince());
 		cbxArea.setSelectedItem(company.getArea());
 		txtAreaAddress.setText(company.getAddress());
+		txtRnc.setEnabled(false);
 		txtRnc.setText(company.getRnc());
 	}
 
