@@ -2,8 +2,6 @@ package vis;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -51,7 +49,7 @@ public class CompanyReg extends JDialog {
 			this.statusModify=0;
 		setTitle("Registrar Empresa");
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		setBounds(100, 100, 581, 570);
+		setBounds(100, 100, 581, 581);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -215,25 +213,28 @@ public class CompanyReg extends JDialog {
 		lblRnc.setBounds(10, 53, 70, 27);
 		panel.add(lblRnc);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(10, 495, 554, 33);
-		panel.add(panel_1);
-		panel_1.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setBounds(300, 495, 106, 27);
+		panel.add(btnCancelar);
 		
-		btnRegistrar = new JButton("Registrar");
-		panel_1.add(btnRegistrar);
+		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(checkAllTextBox()==false) {
 					JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Aviso", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
-          company.setAddress(txtAreaAddress.getText());
+					company.setAddress(txtAreaAddress.getText());
 					company.setCity(txtCity.getText());
 					company.setEmail(txtEmail.getText());
-					company.setName(txtNombre.getText());
-					company.setPhoneNumber(txtTelefono.getText());
+					company.setName(txtName.getText());
+					company.setPhoneNumber(txtPhone.getText());
 					company.setProvince((String) cbxProvince.getSelectedItem());
 					company.setRnc(txtRnc.getText());
 					if(statusModify==0)
@@ -243,21 +244,9 @@ public class CompanyReg extends JDialog {
 			}
 		});
 		btnRegistrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnRegistrar.setBounds(175, 495, 106, 26);
+		panel.add(btnRegistrar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		panel_1.add(btnCancelar);
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		elar.setBounds(300, 497, 106, 27);
-		panel.add(btnCancelar);
-		
-		JLabel lblRnc = new JLabel("RNC:");
-		lblRnc.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblRnc.setBounds(10, 53, 70, 27);
-		panel.add(lblRnc);
 		
   if(company.getRnc().equals("")==false ) {
 			setCompanyValuesToModify(company);
