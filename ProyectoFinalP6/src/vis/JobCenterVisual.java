@@ -317,7 +317,7 @@ Company company=new Company("", "", "", "", "", "", "", "");
 			JMenuItem mntmListPersona = new JMenuItem("Persona");
 			mntmListPersona.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-Listar listPerson=new Listar(JobCenter.getInstance(),false);
+					Listar listPerson=new Listar(JobCenter.getInstance(),false);
 					listPerson.setVisible(true);
 				}
 			});
@@ -327,7 +327,7 @@ Listar listPerson=new Listar(JobCenter.getInstance(),false);
 			JMenuItem mntmListEmpresa = new JMenuItem("Empresa");
 			mntmListEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-Listar listCompany=new Listar(JobCenter.getInstance(),true);
+					Listar listCompany=new Listar(JobCenter.getInstance(),true);
 					listCompany.setVisible(true);
 				}
 			});
