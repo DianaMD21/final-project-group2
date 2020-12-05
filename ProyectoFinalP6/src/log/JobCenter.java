@@ -188,9 +188,9 @@ public class JobCenter implements Serializable{
 	public List<EmployeeRequest> match(CompanyRequest companyReq){
 		List<EmployeeRequest> myEmployees=new ArrayList<>();
 		List<EmployeeRequest> employeesThatApply=new ArrayList<>();
-		if(companyReq.getTypeOfEmployee().equalsIgnoreCase("Student")) 
+		if(companyReq.getTypeOfEmployee().equalsIgnoreCase("Universitario")) 
 			myEmployees=this.getAllStudentRequest();
-		else if(companyReq.getTypeOfEmployee().equalsIgnoreCase("Technician"))
+		else if(companyReq.getTypeOfEmployee().equalsIgnoreCase("T\u00E9cnico"))
 			myEmployees=this.getAllTechnicianRequest();
 		else
 			myEmployees=this.getAllWorkerRequest();

@@ -248,7 +248,7 @@ public class EmployeeMatch extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						if(chooses.length > 0) {
 							int position = cbxRequest.getSelectedIndex();
-							CompanyRequest selected = requests.get(position);
+							CompanyRequest selected = requests.get(position-1);
 							List<EmployeeRequest> requestsSelected = new ArrayList<EmployeeRequest>();
 							for (int i : chooses) {
 								requestsSelected.add(JobCenter.getInstance().findEmployeeRequestById((String) model.getValueAt(chooses[i], 0)));			
@@ -301,7 +301,7 @@ public class EmployeeMatch extends JDialog {
 		model.setRowCount(0);
 		Object[] row = new Object[model.getColumnCount()];
 		int position = cbxRequest.getSelectedIndex();
-		CompanyRequest selected = requests.get(position);
+		CompanyRequest selected = requests.get(position-1);
 		List<EmployeeRequest> req_persons = JobCenter.getInstance().match(selected);
 		for (EmployeeRequest er : req_persons) {
 			row[0] = er.getId();
@@ -314,6 +314,7 @@ public class EmployeeMatch extends JDialog {
 			model.addRow(row);
 		}	
 	}
+	
 	private void clear() {
 		txtRNC.setText("");
 		txtName.setText(" Ingrese RNC");
