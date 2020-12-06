@@ -91,39 +91,8 @@ public class InfoJobRequest extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
-		
+
 		Person p = aux.getApplicant();
-		
-		if(p instanceof Worker) {
-			Image worker = new ImageIcon(this.getClass().getResource("/worker.png")).getImage();
-			lblImage.setIcon(new ImageIcon(worker));
-			lblPerson.setText("Obrero");
-			pnlWorker.setVisible(true);
-			pnlTech.setVisible(false);
-			pnlStudent.setVisible(false);
-			loadWorker(aux);
-		}
-		
-		if(p instanceof Student) {
-			Image student = new ImageIcon(this.getClass().getResource("/student.png")).getImage();
-			lblImage.setIcon(new ImageIcon(student));
-			lblPerson.setText("Egresado");
-			pnlStudent.setVisible(true);
-			pnlTech.setVisible(false);
-			pnlWorker.setVisible(false);
-			loadStudent(aux);
-		}
-		
-		if(p instanceof Technician) {
-			Image tech = new ImageIcon(this.getClass().getResource("/technician.png")).getImage();
-			lblImage.setIcon(new ImageIcon(tech));
-			lblPerson.setText("Técnico");
-			pnlTech.setVisible(true);
-			pnlStudent.setVisible(false);
-			pnlWorker.setVisible(false);
-			loadTechnician(aux);
-		}
 		
 		pnlGeneral = new JPanel();
 		pnlGeneral.setLayout(null);
@@ -175,18 +144,19 @@ public class InfoJobRequest extends JDialog {
 		
 		chboxTravel = new JCheckBox("Viajar");
 		chboxTravel.setBackground(Color.WHITE);
-		chboxTravel.setBounds(191, 131, 59, 23);
+		chboxTravel.setBounds(201, 131, 59, 23);
 		pnlGeneral.add(chboxTravel);
 		
 		chboxMove = new JCheckBox("Mudanza");
+		chboxMove.setHorizontalAlignment(SwingConstants.CENTER);
 		chboxMove.setBackground(Color.WHITE);
-		chboxMove.setBounds(312, 131, 69, 23);
+		chboxMove.setBounds(284, 131, 97, 23);
 		pnlGeneral.add(chboxMove);
 		
 		JLabel lblNewLabel = new JLabel("Licencia de conducir");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(223, 161, 111, 14);
+		lblNewLabel.setBounds(223, 161, 121, 14);
 		pnlGeneral.add(lblNewLabel);
 		
 		chboxLicense = new JCheckBox("");
@@ -339,6 +309,41 @@ public class InfoJobRequest extends JDialog {
 		txtArea.setBounds(203, 140, 170, 91);
 		pnlTech.add(txtArea);
 		
+		load(aux);
+		
+		
+		if(p instanceof Worker) {
+			Image worker = new ImageIcon(this.getClass().getResource("/worker.png")).getImage();
+			lblImage.setIcon(new ImageIcon(worker));
+			lblPerson.setText("Obrero");
+			pnlWorker.setVisible(true);
+			pnlTech.setVisible(false);
+			pnlStudent.setVisible(false);
+			loadWorker(aux);
+		}
+		
+		if(p instanceof Student) {
+			Image student = new ImageIcon(this.getClass().getResource("/student.png")).getImage();
+			lblImage.setIcon(new ImageIcon(student));
+			lblPerson.setText("Egresado");
+			pnlStudent.setVisible(true);
+			pnlTech.setVisible(false);
+			pnlWorker.setVisible(false);
+			loadStudent(aux);
+		}
+		
+		if(p instanceof Technician) {
+			Image tech = new ImageIcon(this.getClass().getResource("/technician.png")).getImage();
+			lblImage.setIcon(new ImageIcon(tech));
+			lblPerson.setText("Técnico");
+			pnlTech.setVisible(true);
+			pnlStudent.setVisible(false);
+			pnlWorker.setVisible(false);
+			loadTechnician(aux);
+		}
+		
+		
+		
 		btnNewButton = new JButton("Salir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -348,6 +353,27 @@ public class InfoJobRequest extends JDialog {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(161, 473, 89, 23);
 		pnlGeneral.add(btnNewButton);
+	}
+
+	private void load(EmployeeRequest aux) {
+		txtMinSalary.setText(""+aux.getMinSalary());
+		if(aux.isDrivingLicense()) {
+			chboxLicense.setSelected(true);
+		}else {
+			chboxLicense.setSelected(false);
+		}
+		if(aux.isMoveAv()) {
+			chboxMove.setSelected(true);
+		}else {
+			chboxMove.setSelected(false);
+		}
+		if(aux.isTravelAv()) {
+			chboxTravel.setSelected(true);
+		}else {
+			chboxTravel.setSelected(false);
+		}
+		txtHours.setText(""+aux.getWorkingHours());
+		
 	}
 
 	private void loadTechnician(EmployeeRequest aux) {
