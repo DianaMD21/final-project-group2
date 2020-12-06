@@ -158,6 +158,15 @@ public class JobCenter implements Serializable{
 		myPersons.remove(mod);	
 	}
 	
+	public int getSatisfiedEmployeeRequest() {
+		int cant=0;
+		for(EmployeeRequest er: myEmployeeRequests) {
+			if(er.getStatus()==false)
+				cant++;
+		}
+		return cant;
+	}
+	
 	public List<EmployeeRequest> getAllStudentRequest(){
 		List<EmployeeRequest> studentRequests=new ArrayList<>();
 		for(EmployeeRequest e : myEmployeeRequests) {
@@ -165,6 +174,33 @@ public class JobCenter implements Serializable{
 				studentRequests.add(e);
 		} 
 		return studentRequests;
+	}
+	
+	public int getAmountStudentRequestedByCompanies(){
+		int amount=0;
+		for(CompanyRequest e : myCompanyRequests) {
+			if(e.getTypeOfEmployee().equalsIgnoreCase("Universitario") )
+				amount++;
+		} 
+		return amount;
+	}
+	
+	public int getAmountWorkerRequestedByCompanies(){
+		int amount=0;
+		for(CompanyRequest e : myCompanyRequests) {
+			if(e.getTypeOfEmployee().equalsIgnoreCase("Técnico") )
+				amount++;
+		} 
+		return amount;
+	}
+	
+	public int getAmountTechnicianRequestedByCompanies(){
+		int amount=0;
+		for(CompanyRequest e : myCompanyRequests) {
+			if(e.getTypeOfEmployee().equalsIgnoreCase("Obrero") )
+				amount++;
+		} 
+		return amount;
 	}
 	
 	public List<EmployeeRequest> getAllTechnicianRequest(){
@@ -295,5 +331,13 @@ public class JobCenter implements Serializable{
 		return allER;
 	}
 
-
+	public int amountCompaniesPerArea(String area) {
+		int cant=0;
+		for(Company comp: myCompanies) {
+			if(comp.getArea().equalsIgnoreCase(area))
+				cant++;
+		}
+		return cant;
+	}
+	
 }

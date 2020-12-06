@@ -91,7 +91,7 @@ public class CompanyReg extends JDialog {
 		
 		cbxArea = new JComboBox<String>();
 		cbxArea.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		cbxArea.setModel(new DefaultComboBoxModel<String>(new String[] {"<Sin especificar>", "Turismo", "Salud", "Educaci\u00F3n", "Tecnolog\u00EDa", "Construcci\u00F3n", "Venta de veh\u00EDculos"}));
+		cbxArea.setModel(new DefaultComboBoxModel(new String[] {"<Sin especificar>", "Turismo", "Salud", "Educaci\u00F3n", "Tecnolog\u00EDa", "Construcci\u00F3n", "Venta de veh\u00EDculos"}));
 		cbxArea.setBounds(100, 143, 181, 27);
 		panel.add(cbxArea);
 		
@@ -240,6 +240,7 @@ public class CompanyReg extends JDialog {
 					company.setPhoneNumber(txtPhone.getText());
 					company.setProvince((String) cbxProvince.getSelectedItem());
 					company.setRnc(txtRnc.getText());
+					company.setArea((String) cbxArea.getSelectedItem());
 					if(statusModify==0)
 						JobCenter.getInstance().addCompany(company);
 					dispose();
