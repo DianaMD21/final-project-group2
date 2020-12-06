@@ -92,9 +92,9 @@ public class JobCenterVisual extends JDialog {
 			}
 		});
 		setTitle("Bolsa de Trabajo Dominicana");
-		setBounds(100, 100, 450, 300);
-		//dim= getToolkit().getScreenSize();
-		//super.setSize(dim.width, dim.height);
+		setBounds(100, 100, 638, 306);
+		dim= getToolkit().getScreenSize();
+		super.setSize(dim.width, dim.height);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -119,7 +119,7 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmPersona = new JMenuItem("Persona");
 			mntmPersona.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
- Person employee = null;
+					Person employee = null;
 					EmployeeReg newEmployee=new EmployeeReg(employee);
 					newEmployee.setVisible(true);
 				}
@@ -130,7 +130,7 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmEmpresa = new JMenuItem("Empresa");
 			mntmEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-Company company=new Company("", "", "", "", "", "", "", "");
+					Company company=new Company("", "", "", "", "", "", "", "");
 					CompanyReg newCompany=new CompanyReg(company);
 					newCompany.setVisible(true);
 					System.out.println("cant empresas: "+JobCenter.getInstance().getMyCompanies().size());
@@ -333,6 +333,40 @@ Company company=new Company("", "", "", "", "", "", "", "");
 			});
 			mntmListEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			mnnmListar.add(mntmListEmpresa);
+			
+			JMenu mnnmEstadisticas = new JMenu("Estad\u00EDsticas / Datos");
+			mnnmEstadisticas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			menuBar.add(mnnmEstadisticas);
+			
+			JMenuItem mntmnSolicitudPorPersona = new JMenuItem("Tipo de vacantes solicitadas por empresas");
+			mntmnSolicitudPorPersona.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					DataGraphs dataGraph = new DataGraphs(1);
+					dataGraph.setVisible(true);
+				}
+			});
+			mntmnSolicitudPorPersona.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			mnnmEstadisticas.add(mntmnSolicitudPorPersona);
+			
+			JMenuItem mntmnCantEmpresasArea = new JMenuItem("Cantidad de empresas por \u00E1rea");
+			mntmnCantEmpresasArea.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					DataGraphs dataGraph = new DataGraphs(0);
+					dataGraph.setVisible(true);
+				}
+			});
+			mntmnCantEmpresasArea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			mnnmEstadisticas.add(mntmnCantEmpresasArea);
+			
+			JMenuItem mntmnCantSolSatisfechas = new JMenuItem("Cantidad de solicitudes de empleo satisfechas");
+			mntmnCantSolSatisfechas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DataGraphs dataGraph = new DataGraphs(3);
+					dataGraph.setVisible(true);
+				}
+			});
+			mntmnCantSolSatisfechas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			mnnmEstadisticas.add(mntmnCantSolSatisfechas);
 		}
 	}
 }
