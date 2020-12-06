@@ -51,7 +51,7 @@ public class InformacionPersonVisual extends JDialog {
 	public InformacionPersonVisual(Person person) {
 		setTitle("Datos");
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		setBounds(100, 100, 394, 480);
+		setBounds(100, 100, 394, 497);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -103,27 +103,27 @@ public class InformacionPersonVisual extends JDialog {
 			
 			JLabel lblGender = new JLabel("G\u00E9nero:");
 			lblGender.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblGender.setBounds(26, 230, 64, 14);
+			lblGender.setBounds(26, 246, 64, 14);
 			panel.add(lblGender);
 			
 			JLabel lblPhone = new JLabel("Tel\u00E9fono:");
 			lblPhone.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblPhone.setBounds(26, 255, 93, 14);
+			lblPhone.setBounds(26, 271, 93, 14);
 			panel.add(lblPhone);
 			
 			JLabel lblEmail = new JLabel("Email:");
 			lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblEmail.setBounds(26, 280, 93, 14);
+			lblEmail.setBounds(26, 296, 93, 14);
 			panel.add(lblEmail);
 			
 			JLabel lblSkills = new JLabel("Habilidad/es:");
 			lblSkills.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblSkills.setBounds(26, 305, 93, 14);
+			lblSkills.setBounds(26, 321, 93, 14);
 			panel.add(lblSkills);
 			
 			JLabel lblWorkingStatus = new JLabel("Estado laboral:");
 			lblWorkingStatus.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblWorkingStatus.setBounds(26, 358, 93, 14);
+			lblWorkingStatus.setBounds(26, 391, 93, 14);
 			panel.add(lblWorkingStatus);
 			
 			JLabel lblAge = new JLabel("Edad:");
@@ -133,7 +133,7 @@ public class InformacionPersonVisual extends JDialog {
 			
 			JLabel lblMaritalStatus = new JLabel("Estado civil:");
 			lblMaritalStatus.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblMaritalStatus.setBounds(181, 230, 86, 14);
+			lblMaritalStatus.setBounds(181, 246, 86, 14);
 			panel.add(lblMaritalStatus);
 			
 			txtID = new JTextField();
@@ -182,7 +182,7 @@ public class InformacionPersonVisual extends JDialog {
 			txtAreaAddress = new JTextArea();
 			txtAreaAddress.setEnabled(false);
 			txtAreaAddress.setDisabledTextColor(Color.GRAY);
-			txtAreaAddress.setBounds(114, 182, 234, 40);
+			txtAreaAddress.setBounds(114, 182, 234, 55);
 			panel.add(txtAreaAddress);
 			txtAreaAddress.setBorder(BorderFactory.createCompoundBorder(border,
 		            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
@@ -192,28 +192,28 @@ public class InformacionPersonVisual extends JDialog {
 			txtGender = new JTextField();
 			txtGender.setEnabled(false);
 			txtGender.setDisabledTextColor(Color.GRAY);
-			txtGender.setBounds(114, 229, 54, 20);
+			txtGender.setBounds(114, 245, 54, 20);
 			panel.add(txtGender);
 			txtGender.setColumns(10);
 			
 			txtCivilStatus = new JTextField();
 			txtCivilStatus.setEnabled(false);
 			txtCivilStatus.setDisabledTextColor(Color.GRAY);
-			txtCivilStatus.setBounds(262, 229, 86, 20);
+			txtCivilStatus.setBounds(262, 245, 86, 20);
 			panel.add(txtCivilStatus);
 			txtCivilStatus.setColumns(10);
 			
 			txtPhone = new JTextField();
 			txtPhone.setEnabled(false);
 			txtPhone.setDisabledTextColor(Color.GRAY);
-			txtPhone.setBounds(114, 254, 234, 20);
+			txtPhone.setBounds(114, 270, 234, 20);
 			panel.add(txtPhone);
 			txtPhone.setColumns(10);
 			
 			txtEmail = new JTextField();
 			txtEmail.setEnabled(false);
 			txtEmail.setDisabledTextColor(Color.GRAY);
-			txtEmail.setBounds(114, 279, 234, 20);
+			txtEmail.setBounds(114, 295, 234, 20);
 			panel.add(txtEmail);
 			txtEmail.setColumns(10);
 			
@@ -222,7 +222,7 @@ public class InformacionPersonVisual extends JDialog {
 			textAreaSkills.setDisabledTextColor(Color.GRAY);
 			textAreaSkills.setWrapStyleWord(true);
 			textAreaSkills.setLineWrap(true);
-			textAreaSkills.setBounds(114, 307, 234, 40);
+			textAreaSkills.setBounds(114, 321, 234, 59);
 			panel.add(textAreaSkills);
 			textAreaSkills.setBorder(BorderFactory.createCompoundBorder(border,
 		            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
@@ -232,7 +232,7 @@ public class InformacionPersonVisual extends JDialog {
 			txtWorkingStatus = new JTextField();
 			txtWorkingStatus.setEnabled(false);
 			txtWorkingStatus.setDisabledTextColor(Color.GRAY);
-			txtWorkingStatus.setBounds(123, 357, 225, 20);
+			txtWorkingStatus.setBounds(123, 390, 225, 20);
 			panel.add(txtWorkingStatus);
 			txtWorkingStatus.setColumns(10);
 			
@@ -243,7 +243,7 @@ public class InformacionPersonVisual extends JDialog {
 				}
 			});
 			btnExit.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			btnExit.setBounds(151, 396, 89, 23);
+			btnExit.setBounds(151, 429, 89, 23);
 			panel.add(btnExit);
 			
 			setData(person);

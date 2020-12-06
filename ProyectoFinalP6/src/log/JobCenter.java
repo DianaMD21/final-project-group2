@@ -242,22 +242,24 @@ public class JobCenter implements Serializable{
 	}
 	public float getMatchPercentage(EmployeeRequest employeeR, CompanyRequest companyReq) {
 		float percentage=0;
-		float constant=companyReq.getLanguages().size()/13;
+		float constant=companyReq.getLanguages().size()/12;
 		if(employeeR.skillExists(companyReq.getSkillRequired())==true)
-			percentage+=20;
+			percentage+=19;
 		else
 			return 0;
 		if(employeeR.isMoveAv()==true && companyReq.isMoveAv()==true)
 			percentage+=14;
 		if(employeeR.getApplicant().getProvince().equalsIgnoreCase(companyReq.getCompany().getProvince()) 
 				|| (employeeR.isMoveAv() &&employeeR.getApplicant().getProvince().equalsIgnoreCase(companyReq.getCompany().getProvince())==false))
-			percentage+=14;
-		if(employeeR.isDrivingLicense() && companyReq.isDrivingLicense())
 			percentage+=13;
+		if(employeeR.isDrivingLicense() && companyReq.isDrivingLicense())
+			percentage+=12;
 		if(employeeR.isTravelAv()&& companyReq.isTravelAv())
-			percentage+=10;
+			percentage+=8;
 		if(employeeR.getMinSalary()>=companyReq.getMinSalary())
-			percentage+=16;
+			percentage+=14;
+		if(employeeR.getWorkingHours()>=companyReq.getWorkingHours())
+			percentage+=8;
 		percentage+=constant*amountEqualLanguages(companyReq.getLanguages(),employeeR.getLanguages());
 		
 		return percentage;

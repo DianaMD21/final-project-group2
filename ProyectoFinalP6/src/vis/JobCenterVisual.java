@@ -367,6 +367,7 @@ public class JobCenterVisual extends JDialog {
 			});
 			mntmnCantSolSatisfechas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			mnnmEstadisticas.add(mntmnCantSolSatisfechas);
+			
 		}
 	}
 }

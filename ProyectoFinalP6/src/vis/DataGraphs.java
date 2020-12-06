@@ -130,7 +130,7 @@ public class DataGraphs extends JDialog {
 	        dataset.setValue(JobCenter.getInstance().getSatisfiedEmployeeRequest(), "Solicitudes satisfechas", "Solicitudes satisfechas");
 	       
 	        JFreeChart chart = ChartFactory.createBarChart3D
-	        ("Cantidad de empresas por área","Área", "Cant. Empresas", 
+	        ("Solicitudes de empleo satisfechas","Área", "Cant. Empresas", 
 	        dataset, PlotOrientation.VERTICAL, true,true, false);
 	        chart.setBackgroundPaint(Color.LIGHT_GRAY);
 	        chart.getTitle().setPaint(Color.black); 

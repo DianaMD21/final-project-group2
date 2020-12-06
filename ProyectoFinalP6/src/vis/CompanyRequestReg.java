@@ -159,7 +159,7 @@ public class CompanyRequestReg extends JDialog {
 			separator_1.setBounds(10, 525, 640, 2);
 			pnlGeneral.add(separator_1);
 			
-			lblMinSal = new JLabel("Salario m\u00E1ximo ofrecido:");
+			lblMinSal = new JLabel("Salario m\u00EDnimo ofrecido:");
 			lblMinSal.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			lblMinSal.setBounds(20, 555, 180, 23);
 			pnlGeneral.add(lblMinSal);
@@ -178,7 +178,7 @@ public class CompanyRequestReg extends JDialog {
 			spnWorkHours = new JSpinner();
 			spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 12, 1));
 			spnWorkHours.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			spnWorkHours.setBounds(560, 554, 70, 30);
+			spnWorkHours.setBounds(553, 554, 84, 30);
 			pnlGeneral.add(spnWorkHours);
 			
 			cbxLangs = new JComboBox();
