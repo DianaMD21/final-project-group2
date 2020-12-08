@@ -35,7 +35,6 @@ public class InformacionPersonVisual extends JDialog {
 	private JTextField txtID;
 	private JTextField txtName;
 	private JTextField txtBirthdate;
-	private JTextField txtAge;
 	private JTextField txtProvince;
 	private JTextField txtCity;
 	private JTextField txtGender;
@@ -126,11 +125,6 @@ public class InformacionPersonVisual extends JDialog {
 			lblWorkingStatus.setBounds(26, 391, 93, 14);
 			panel.add(lblWorkingStatus);
 			
-			JLabel lblAge = new JLabel("Edad:");
-			lblAge.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblAge.setBounds(267, 108, 39, 14);
-			panel.add(lblAge);
-			
 			JLabel lblMaritalStatus = new JLabel("Estado civil:");
 			lblMaritalStatus.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			lblMaritalStatus.setBounds(181, 246, 86, 14);
@@ -153,16 +147,9 @@ public class InformacionPersonVisual extends JDialog {
 			txtBirthdate = new JTextField();
 			txtBirthdate.setEnabled(false);
 			txtBirthdate.setDisabledTextColor(Color.GRAY);
-			txtBirthdate.setBounds(171, 106, 86, 20);
+			txtBirthdate.setBounds(171, 106, 177, 20);
 			panel.add(txtBirthdate);
 			txtBirthdate.setColumns(10);
-			
-			txtAge = new JTextField();
-			txtAge.setEnabled(false);
-			txtAge.setDisabledTextColor(Color.GRAY);
-			txtAge.setBounds(309, 106, 39, 20);
-			panel.add(txtAge);
-			txtAge.setColumns(10);
 			
 			txtProvince = new JTextField();
 			txtProvince.setEnabled(false);
@@ -192,7 +179,7 @@ public class InformacionPersonVisual extends JDialog {
 			txtGender = new JTextField();
 			txtGender.setEnabled(false);
 			txtGender.setDisabledTextColor(Color.GRAY);
-			txtGender.setBounds(114, 245, 54, 20);
+			txtGender.setBounds(114, 245, 64, 20);
 			panel.add(txtGender);
 			txtGender.setColumns(10);
 			
@@ -256,10 +243,9 @@ public class InformacionPersonVisual extends JDialog {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(birthDate);
 		int year = cal.get(Calendar.YEAR);
-		System.out.println(year);
 		int month = cal.get(Calendar.MONTH);
 		int day = cal.get(Calendar.DAY_OF_MONTH);
-		txtBirthdate.setText(String.valueOf(day)+ " / "+ String.valueOf(month+1)+ " / "+ String.valueOf(year));
+		txtBirthdate.setText("            "+String.valueOf(day)+ "   /   "+ String.valueOf(month+1)+ "   /   "+ String.valueOf(year));
 	}
 
 	private void setData(Person person) {

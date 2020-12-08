@@ -170,7 +170,7 @@ public class EmployeeRequestReg extends JDialog {
 			pnlGeneral.add(lblWorkHours);
 			
 			spnWorkHours = new JSpinner();
-			spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 40, 1));
+			spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 60, 1));
 			spnWorkHours.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			spnWorkHours.setBounds(245, 526, 100, 30);
 			pnlGeneral.add(spnWorkHours);
@@ -261,21 +261,34 @@ public class EmployeeRequestReg extends JDialog {
 				btnReg = new JButton("Solicitar");
 				btnReg.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						int reply = 0;
+						int reply = 0, reply1=0;
+						
 						if(JobCenter.getInstance().findPersonById(txtCed.getText()) != null) {
 							Person person1=JobCenter.getInstance().findPersonById(txtCed.getText());
 							if(person1.isWorkingStatus()==true) {
-								 reply = JOptionPane.showConfirmDialog(null, "Su estado laboral es empleado. Debe de cambiarlo para realizar una solicitud. ¿Desea hacerlo?", "Conflicto con estado laboral", JOptionPane.YES_NO_OPTION);
+								 reply = JOptionPane.showConfirmDialog(null, "Su estado laboral es empleado. Debe de cambiarlo para realizar una solicitud. Â¿Desea hacerlo?", "Conflicto con estado laboral", JOptionPane.YES_NO_OPTION);
 								if (reply == JOptionPane.NO_OPTION) {
 								    dispose();
-								} 
+								}
+								
 							}
-							if(person1.isWorkingStatus()==false || reply == JOptionPane.YES_OPTION) {
+							EmployeeRequest aux=JobCenter.getInstance().findEmployeeReqByPerson(person1);
+							if(aux!=null) {
+								reply1 = JOptionPane.showConfirmDialog(null, "Usted ya tiene una solicitud activa. Â¿Desea desactivarla para poder realizar otra solicitud?", "Conflicto con solicitud", JOptionPane.YES_NO_OPTION);
+								if (reply1 == JOptionPane.NO_OPTION) {
+									dispose();
+								}
+								else {
+									aux.setStatus(false);
+								}
+							}
+							if((person1.isWorkingStatus()==false || reply == JOptionPane.YES_OPTION) && (aux==null ||reply1 == JOptionPane.YES_OPTION)) {
 								person1.setWorkingStatus(false);
 								List<String> langs = new ArrayList<String>();
 								for(int i = 0; i<modelLangs.getSize(); i++) {
 									langs.add(modelLangs.getElementAt(i));
 								}
+								
 								
 								if(req == null) {
 									String id = ""+EmployeeRequest.cod++;	
@@ -300,7 +313,7 @@ public class EmployeeRequestReg extends JDialog {
 							}
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. Cédula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. CÃ©dula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});

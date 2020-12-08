@@ -180,7 +180,7 @@ public class Listar extends JDialog {
 		
 		JLabel lblEmpresasReg = new JLabel("Tabla de Empresas Registradas");
 		lblEmpresasReg.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblEmpresasReg.setBounds(205, 21, 262, 28);
+		lblEmpresasReg.setBounds(205, 21, 312, 28);
 		panelEmpresa.add(lblEmpresasReg);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -375,6 +375,7 @@ public class Listar extends JDialog {
 		}
 		else if(show==2) {
 			panelPersona.setVisible(false);
+			lblEmpresasReg.setText("Tabla de Solicitudes de Empresas");
 			setTitle("Listar Solicitud de Empresas");
 			this.myCompRequest=jobCenter.getMyCompanyRequests();
 			setTableEmpresaSolicitud(model,myCompRequest);
@@ -382,7 +383,8 @@ public class Listar extends JDialog {
 		}
 		else {
 			panelPersona.setVisible(false);
-			setTitle("Listar Solicitud de Empresas");
+			lblEmpresasReg.setText("Tabla de Solicitudes de Personas");
+			setTitle("Listar Solicitud de Personas");
 			this.myEmployeeRequest=jobCenter.getMyEmployeeRequests();
 			setTablePersonaSolicitud(model,myEmployeeRequest);
 			lblCantEmpresas.setText("Cantidad de Solicitudes de Personas Registradas: "+ String.valueOf(myEmployeeRequest.size()));
@@ -430,7 +432,7 @@ public class Listar extends JDialog {
 		for(int b=0;b<list.size();b++) {
 			modelPersona.addRow(new Object[0]);	
 			modelPersona.setValueAt(list.get(b).getId(), b, 0);
-			modelPersona.setValueAt(list.get(b).getName()+list.get(b).getLastName(), b, 1);
+			modelPersona.setValueAt(list.get(b).getName()+" "+list.get(b).getLastName(), b, 1);
 			modelPersona.setValueAt(list.get(b).getProvince(), b, 2);
 			modelPersona.setValueAt(list.get(b).getCity(), b, 3);
 			if(list.get(b) instanceof Student)

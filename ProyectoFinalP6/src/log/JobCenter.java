@@ -160,9 +160,11 @@ public class JobCenter implements Serializable{
 	
 	public int getSatisfiedEmployeeRequest() {
 		int cant=0;
+		EmployeeRequest aux=null;
 		for(EmployeeRequest er: myEmployeeRequests) {
 			if(er.getStatus()==false)
 				cant++;
+				
 		}
 		return cant;
 	}
@@ -247,21 +249,20 @@ public class JobCenter implements Serializable{
 			percentage+=19;
 		else
 			return 0;
-		if(employeeR.isMoveAv()==true && companyReq.isMoveAv()==true)
+		if((employeeR.isMoveAv()==true && companyReq.isMoveAv()==true) || companyReq.isMoveAv()==false)
 			percentage+=14;
 		if(employeeR.getApplicant().getProvince().equalsIgnoreCase(companyReq.getCompany().getProvince()) 
 				|| (employeeR.isMoveAv() &&employeeR.getApplicant().getProvince().equalsIgnoreCase(companyReq.getCompany().getProvince())==false))
 			percentage+=13;
-		if(employeeR.isDrivingLicense() && companyReq.isDrivingLicense())
+		if((employeeR.isDrivingLicense() && companyReq.isDrivingLicense()) || companyReq.isDrivingLicense()==false)
 			percentage+=12;
-		if(employeeR.isTravelAv()&& companyReq.isTravelAv())
+		if((employeeR.isTravelAv()&& companyReq.isTravelAv())|| companyReq.isTravelAv()==false)
 			percentage+=8;
-		if(employeeR.getMinSalary()>=companyReq.getMinSalary())
+		if(employeeR.getMinSalary()<=companyReq.getMinSalary())
 			percentage+=14;
 		if(employeeR.getWorkingHours()>=companyReq.getWorkingHours())
 			percentage+=8;
 		percentage+=constant*amountEqualLanguages(companyReq.getLanguages(),employeeR.getLanguages());
-		
 		return percentage;
 	}
 	public float amountEqualLanguages(List<String> languagesComp, List<String> languagesPerson) {
@@ -340,6 +341,16 @@ public class JobCenter implements Serializable{
 				cant++;
 		}
 		return cant;
+	}
+	public EmployeeRequest findEmployeeReqByPerson(Person person1) {
+		EmployeeRequest ok=null;
+		for(EmployeeRequest er: myEmployeeRequests) {
+			if(er.getApplicant().getId().equalsIgnoreCase(person1.getId())) {
+				ok=er;
+				break;
+			}
+		}
+		return ok;
 	}
 	
 }
