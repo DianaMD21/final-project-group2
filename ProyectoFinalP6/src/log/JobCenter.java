@@ -160,9 +160,11 @@ public class JobCenter implements Serializable{
 	
 	public int getSatisfiedEmployeeRequest() {
 		int cant=0;
+		EmployeeRequest aux=null;
 		for(EmployeeRequest er: myEmployeeRequests) {
 			if(er.getStatus()==false)
 				cant++;
+				
 		}
 		return cant;
 	}
@@ -188,7 +190,7 @@ public class JobCenter implements Serializable{
 	public int getAmountWorkerRequestedByCompanies(){
 		int amount=0;
 		for(CompanyRequest e : myCompanyRequests) {
-			if(e.getTypeOfEmployee().equalsIgnoreCase("Técnico") )
+			if(e.getTypeOfEmployee().equalsIgnoreCase("Obrero") )
 				amount++;
 		} 
 		return amount;
@@ -197,7 +199,7 @@ public class JobCenter implements Serializable{
 	public int getAmountTechnicianRequestedByCompanies(){
 		int amount=0;
 		for(CompanyRequest e : myCompanyRequests) {
-			if(e.getTypeOfEmployee().equalsIgnoreCase("Obrero") )
+			if(e.getTypeOfEmployee().equalsIgnoreCase("Técnico") )
 				amount++;
 		} 
 		return amount;
