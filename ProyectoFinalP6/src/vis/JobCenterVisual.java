@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -18,6 +18,8 @@ import log.Person;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
@@ -32,7 +34,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 
-public class JobCenterVisual extends JDialog {
+public class JobCenterVisual extends JFrame {
 
 	/**
 	 * 
@@ -47,7 +49,7 @@ public class JobCenterVisual extends JDialog {
 	public static void main(String[] args) {
 		try {
 			JobCenterVisual dialog = new JobCenterVisual();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,6 +97,7 @@ public class JobCenterVisual extends JDialog {
 		setBounds(100, 100, 638, 306);
 		dim= getToolkit().getScreenSize();
 		super.setSize(dim.width, dim.height);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JobCenterVisual.class.getResource("/logo.png")));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
