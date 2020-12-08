@@ -19,6 +19,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -67,24 +68,9 @@ public class InfoJobRequest extends JDialog {
 	private JTextPane txtArea;
 	private JList<String> listLan3;
 	private JButton btnNewButton;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			InfoJobRequest dialog = new InfoJobRequest(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
+	
 	public InfoJobRequest(EmployeeRequest aux) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InfoJobRequest.class.getResource("/logo.png")));
 		setTitle("Datos Laborales");
 		setBounds(100, 100, 420, 546);
 		getContentPane().setLayout(new BorderLayout());

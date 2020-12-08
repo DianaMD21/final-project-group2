@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.Dialog.ModalityType;
 
 import javax.swing.JButton;
@@ -87,6 +88,7 @@ public class CompanyRequestReg extends JDialog {
 	public CompanyRequestReg(CompanyRequest req) {
 		modelLangs = new DefaultListModel<String>();
 		setModalityType(ModalityType.APPLICATION_MODAL);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CompanyRequestReg.class.getResource("/logo.png")));
 		setResizable(false);
 		setTitle("Solicitar empleados");
 		setBounds(100, 100, 680, 735);

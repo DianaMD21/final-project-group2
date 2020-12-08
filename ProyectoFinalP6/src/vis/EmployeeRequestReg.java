@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.Dialog.ModalityType;
 
 import javax.swing.JButton;
@@ -79,6 +80,7 @@ public class EmployeeRequestReg extends JDialog {
 	  Create the dialog.
 	 */
 	public EmployeeRequestReg(EmployeeRequest req) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(EmployeeRequestReg.class.getResource("/logo.png")));
 		modelLangs = new DefaultListModel<String>();
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setResizable(false);

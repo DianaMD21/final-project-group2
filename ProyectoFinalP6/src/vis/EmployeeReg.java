@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -86,6 +88,7 @@ public class EmployeeReg extends JDialog {
 	private JComboBox<String>  cbxArea;
 	
 	public EmployeeReg(Person mod) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(EmployeeReg.class.getResource("/logo.png")));
 		choose = -1;
 		SkillsSelected = new ArrayList<String>();
 		setTitle("Registar Empleado");

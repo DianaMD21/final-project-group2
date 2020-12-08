@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
@@ -24,10 +25,7 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class InformacionPersonVisual extends JDialog {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextArea textAreaSkills;
@@ -42,12 +40,9 @@ public class InformacionPersonVisual extends JDialog {
 	private JTextField txtPhone;
 	private JTextField txtEmail;
 	private JTextField txtWorkingStatus;
-
-	/**
 	
-	 * @param person 
-	 */
 	public InformacionPersonVisual(Person person) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InformacionPersonVisual.class.getResource("/logo.png")));
 		setTitle("Datos");
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setBounds(100, 100, 394, 497);

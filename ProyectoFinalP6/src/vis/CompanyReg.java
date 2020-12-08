@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -49,6 +51,7 @@ public class CompanyReg extends JDialog {
 			this.statusModify=0;
 		setTitle("Registrar Empresa");
 		setModalityType(ModalityType.APPLICATION_MODAL);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CompanyReg.class.getResource("/logo.png")));
 		setBounds(100, 100, 581, 581);
 		setResizable(false);
 		setLocationRelativeTo(null);
