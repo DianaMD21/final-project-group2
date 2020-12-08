@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.Dialog.ModalityType;
 
 import javax.swing.JButton;
@@ -79,6 +80,7 @@ public class EmployeeRequestReg extends JDialog {
 	  Create the dialog.
 	 */
 	public EmployeeRequestReg(EmployeeRequest req) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(EmployeeRequestReg.class.getResource("/logo.png")));
 		modelLangs = new DefaultListModel<String>();
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setResizable(false);
@@ -86,11 +88,13 @@ public class EmployeeRequestReg extends JDialog {
 		setBounds(100, 100, 680, 680);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel pnlGeneral = new JPanel();
+			pnlGeneral.setBackground(Color.WHITE);
 			pnlGeneral.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(pnlGeneral, BorderLayout.CENTER);
 			pnlGeneral.setLayout(null);
@@ -135,11 +139,13 @@ public class EmployeeRequestReg extends JDialog {
 			pnlGeneral.add(lblLangs);
 			
 			chckbxMoveAv = new JCheckBox(" Disponibilidad para mudarse");
+			chckbxMoveAv.setBackground(Color.WHITE);
 			chckbxMoveAv.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			chckbxMoveAv.setBounds(20, 120, 240, 31);
 			pnlGeneral.add(chckbxMoveAv);
 			
 			chckbxDriveLc = new JCheckBox(" Licencia de conducir");
+			chckbxDriveLc.setBackground(Color.WHITE);
 			chckbxDriveLc.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			chckbxDriveLc.setBounds(20, 210, 180, 31);
 			pnlGeneral.add(chckbxDriveLc);
@@ -249,12 +255,14 @@ public class EmployeeRequestReg extends JDialog {
 			pnlGeneral.add(btnRemoveLang);
 			
 			chckbxTravelAv = new JCheckBox(" Disponibilidad para viajar");
+			chckbxTravelAv.setBackground(Color.WHITE);
 			chckbxTravelAv.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			chckbxTravelAv.setBounds(20, 165, 220, 31);
 			pnlGeneral.add(chckbxTravelAv);
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

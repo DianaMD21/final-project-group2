@@ -20,6 +20,8 @@ import java.awt.Color;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -61,6 +63,7 @@ public class EmployeeMatch extends JDialog {
 		requests = new ArrayList<CompanyRequest>();
 		chooses = null;
 		c = null;
+		setIconImage(Toolkit.getDefaultToolkit().getImage(EmployeeMatch.class.getResource("/logo.png")));
 		setBounds(100, 100, 981, 650);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.Dialog.ModalityType;
 
 import javax.swing.JButton;
@@ -42,6 +43,7 @@ public class ListarSolicitudes extends JDialog {
 
 	public ListarSolicitudes(Boolean status,String id) {
 		//False=companyReq, TRUE=employeeReq
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarSolicitudes.class.getResource("/logo.png")));
 		setBounds(100, 100, 718, 343);
 		setResizable(false);
 		setLocationRelativeTo(null);

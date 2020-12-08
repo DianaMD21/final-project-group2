@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.Dialog.ModalityType;
 
 import javax.swing.JButton;
@@ -87,16 +88,19 @@ public class CompanyRequestReg extends JDialog {
 	public CompanyRequestReg(CompanyRequest req) {
 		modelLangs = new DefaultListModel<String>();
 		setModalityType(ModalityType.APPLICATION_MODAL);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CompanyRequestReg.class.getResource("/logo.png")));
 		setResizable(false);
 		setTitle("Solicitar empleados");
 		setBounds(100, 100, 680, 735);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel pnlGeneral = new JPanel();
+			pnlGeneral.setBackground(Color.WHITE);
 			pnlGeneral.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(pnlGeneral, BorderLayout.CENTER);
 			pnlGeneral.setLayout(null);
@@ -141,11 +145,13 @@ public class CompanyRequestReg extends JDialog {
 			pnlGeneral.add(lblLangs);
 			
 			chckbxMoveAv = new JCheckBox(" Disponibilidad para mudarse requerida");
+			chckbxMoveAv.setBackground(Color.WHITE);
 			chckbxMoveAv.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			chckbxMoveAv.setBounds(20, 120, 315, 31);
 			pnlGeneral.add(chckbxMoveAv);
 			
 			chckbxDriveLc = new JCheckBox(" Licencia de conducir requerida");
+			chckbxDriveLc.setBackground(Color.WHITE);
 			chckbxDriveLc.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			chckbxDriveLc.setBounds(20, 210, 260, 31);
 			pnlGeneral.add(chckbxDriveLc);
@@ -277,6 +283,7 @@ public class CompanyRequestReg extends JDialog {
 			pnlGeneral.add(lblCant);
 			
 			chckbxTravelAv = new JCheckBox(" Disponibilidad para viajar requerida");
+			chckbxTravelAv.setBackground(Color.WHITE);
 			chckbxTravelAv.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			chckbxTravelAv.setBounds(20, 165, 290, 31);
 			pnlGeneral.add(chckbxTravelAv);
@@ -305,6 +312,7 @@ public class CompanyRequestReg extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -377,10 +385,10 @@ public class CompanyRequestReg extends JDialog {
 			cbxSkill.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Direcci\u00F3n Empresarial", "Administraci\u00F3n Hotelera", "Arquitectura", "Comunicaci\u00F3n Social", "Derecho", "Dise\u00F1o e Interiorismo", "\u200B\u200B\u200BEcolog\u00EDa y Gesti\u00F3n Ambiental", "Econom\u00EDa", "Educaci\u00F3n", "Estomatolog\u00EDa", "Filosof\u00EDa", "Gesti\u00F3n Financiera y Auditor\u00EDa", "Ingenier\u00EDa Civil", "Ingenier\u00EDa Mec\u00E1nica", "Ingenier\u00EDa El\u00E9ctrica", "Ingenier\u00EDa Industrial y de Sistemas", "Ingenier\u00EDa en Mecatr\u00F3nica", "Ingenier\u00EDa de Sistemas y Computaci\u00F3n", "Ingenier\u00EDa Telem\u00E1tica", "Medicina", "Marketing", "Nutrici\u00F3n y Diet\u00E9tica\u200B", "Psicolog\u00EDa", "Terapia F\u00EDsica"}));
 		}
 		else if(cbxType.getSelectedIndex() == 2) {
-			cbxSkill.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","InformÃ¡tica","Electricidad","Contabilidad","DiseÃ±o GrÃ¡fico","EnfermerÃ­a","Mercadeo","AdministraciÃ³n","Publicidad"}));
+			cbxSkill.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","Informática","Electricidad","Contabilidad","Diseño Gráfico","Enfermería","Mercadeo","Administración","Publicidad"}));
 		}
 		else if(cbxType.getSelectedIndex() == 3){
-			cbxSkill.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","PlomerÃ­a","EbanisterÃ­a","MecÃ¡nica","ConstrucciÃ³n","Pintura","Soldadura","JardinerÃ­a"}));
+			cbxSkill.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","Plomería","Ebanistería","Mecánica","Construcción","Pintura","Soldadura","Jardinería"}));
 		}
 		else {
 			cbxSkill.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>"}));

@@ -333,7 +333,8 @@ public class JobCenterVisual extends JFrame {
 			mnNewMenu.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			menuBar.add(mnNewMenu);
 			
-			JMenuItem mntmNewMenuItem = new JMenuItem("Enlazar");
+			JMenuItem mntmNewMenuItem = new JMenuItem("Contratar");
+			mntmNewMenuItem.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			mntmNewMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {

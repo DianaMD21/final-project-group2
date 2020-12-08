@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.Dialog.ModalityType;
 
 import javax.swing.JTextField;
@@ -35,6 +36,7 @@ public class FindIDVisual extends JDialog {
 
 
 	public FindIDVisual(String id,JobCenter jobCenter,int status) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FindIDVisual.class.getResource("/logo.png")));
 		this.myID=id;
 		this.myStatus=status;
 		setTitle("Eliminar");
