@@ -251,7 +251,9 @@ public class EmployeeMatch extends JDialog {
 								selected.setStatus(false);
 							}
 							clear();
-						}		
+							
+						}	
+						dispose();
 					}
 				});
 				btnHire.setActionCommand("OK");

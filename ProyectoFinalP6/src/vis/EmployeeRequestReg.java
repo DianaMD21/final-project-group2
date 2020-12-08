@@ -273,8 +273,8 @@ public class EmployeeRequestReg extends JDialog {
 								
 							}
 							EmployeeRequest aux=JobCenter.getInstance().findEmployeeReqByPerson(person1);
-							if(aux!=null) {
-								reply1 = JOptionPane.showConfirmDialog(null, "Usted ya tiene una solicitud activa. Â¿Desea desactivarla para poder realizar otra solicitud?", "Conflicto con solicitud", JOptionPane.YES_NO_OPTION);
+							if(aux!=null && aux.getStatus()==true) {
+								reply1 = JOptionPane.showConfirmDialog(null, "Usted ya tiene una solicitud activa. ¿Desea desactivarla para poder realizar otra solicitud?", "Conflicto con solicitud", JOptionPane.YES_NO_OPTION);
 								if (reply1 == JOptionPane.NO_OPTION) {
 									dispose();
 								}
