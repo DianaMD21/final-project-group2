@@ -63,6 +63,7 @@ public class JobCenterVisual extends JFrame {
 	private DefaultPieDataset dataSetType;
 	private JFreeChart pieChart;
 	private CategoryPlot pSols;
+	private JButton btnUpdate;
 
 	/**
 	 * Launch the application.
@@ -398,6 +399,12 @@ public class JobCenterVisual extends JFrame {
 		panel_1.setBackground(Color.WHITE);
 		contentPanel.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
+		
+		btnUpdate = new JButton("Actualizar Información");
+		btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpdate.setBounds((int)(dim.width/1.4), dim.height/14, 200, 30);
+		panel_1.add(btnUpdate);
+		
 		setGraph();
 	}
 	
@@ -424,10 +431,10 @@ public class JobCenterVisual extends JFrame {
 	        datasetAreas = new DefaultCategoryDataset();
 	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Turismo"), "Turismo", "");
 	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Salud"), "Salud", "");
-	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("EducaciÃ³n"), "EducaciÃ³n", "");
-	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("TecnologÃ­a"), "TecnologÃ­a", "");
-	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("ConstrucciÃ³n"), "ConstrucciÃ³n", "");
-	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Venta de VehÃ­culos"), "Venta de VehÃ­culos", "");
+	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Educación"), "Educación", "");
+	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Tecnología"), "Tecnología", "");
+	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Construcción"), "Construcción", "");
+	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Venta de VehÃ­culos"), "Venta de Vehículos", "");
 	       
 	        chartAreas = ChartFactory.createBarChart3D
 	        ("Cantidad de empresas por Ã¡rea","Ã�rea", "Cant. Empresas", 
@@ -457,6 +464,8 @@ public class JobCenterVisual extends JFrame {
 			chartPanelType.setVisible(true);
 			panel_1.setLayout(null);
 			panel_1.add(chartPanelType);
+			
+			
 	}
 	
 	private void updateGraph() {
@@ -467,10 +476,10 @@ public class JobCenterVisual extends JFrame {
         datasetAreas.clear();
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Turismo"), "Turismo", "");
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Salud"), "Salud", "");
-        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("EducaciÃ³n"), "EducaciÃ³n", "");
-        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("TecnologÃ­a"), "TecnologÃ­a", "");
-        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("ConstrucciÃ³n"), "ConstrucciÃ³n", "");
-        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Venta de VehÃ­culos"), "Venta de VehÃ­culos", "");
+        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Educación"), "Educación", "");
+        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Tecnología"), "Tecnología", "");
+        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Construcción"), "Construcción", "");
+        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Venta de Vehículos"), "Venta de Vehículos", "");
         
         dataSetType.clear();
         dataSetType.setValue("Universitario", new Integer(JobCenter.getInstance().getAmountStudentRequestedByCompanies()));
