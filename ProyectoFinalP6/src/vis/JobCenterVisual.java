@@ -415,7 +415,7 @@ public class JobCenterVisual extends JFrame {
 	        datasetSols.setValue(JobCenter.getInstance().getSatisfiedEmployeeRequest(), "Solicitudes satisfechas", "Solicitudes satisfechas");
 	       
 	        chartSols = ChartFactory.createBarChart3D
-	        ("Solicitudes de Personas satisfechas","Área", "Cant. Empresas", 
+	        ("Solicitudes de Personas satisfechas","Área", "Cant. Solicitudes", 
 	        datasetSols, PlotOrientation.VERTICAL, true,true, false);
 	        chartSols.setBackgroundPaint(Color.LIGHT_GRAY);
 	        chartSols.getTitle().setPaint(Color.black); 
@@ -475,8 +475,7 @@ public class JobCenterVisual extends JFrame {
         
         datasetAreas.clear();
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Turismo"), "Turismo", "");
-        System.out.println("Turismo "+ JobCenter.getInstance().amountCompaniesPerArea("Turismo"));
-        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Salud"), "Salud", "");
+       datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Salud"), "Salud", "");
 
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Educación"), "Educación", "");
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Tecnología"), "Tecnología", "");
