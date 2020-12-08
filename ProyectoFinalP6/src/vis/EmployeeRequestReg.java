@@ -170,7 +170,7 @@ public class EmployeeRequestReg extends JDialog {
 			pnlGeneral.add(lblWorkHours);
 			
 			spnWorkHours = new JSpinner();
-			spnWorkHours.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+			spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 60, 1));
 			spnWorkHours.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			spnWorkHours.setBounds(245, 526, 100, 30);
 			pnlGeneral.add(spnWorkHours);
@@ -266,7 +266,7 @@ public class EmployeeRequestReg extends JDialog {
 						if(JobCenter.getInstance().findPersonById(txtCed.getText()) != null) {
 							Person person1=JobCenter.getInstance().findPersonById(txtCed.getText());
 							if(person1.isWorkingStatus()==true) {
-								 reply = JOptionPane.showConfirmDialog(null, "Su estado laboral es empleado. Debe de cambiarlo para realizar una solicitud. ¿Desea hacerlo?", "Conflicto con estado laboral", JOptionPane.YES_NO_OPTION);
+								 reply = JOptionPane.showConfirmDialog(null, "Su estado laboral es empleado. Debe de cambiarlo para realizar una solicitud. Â¿Desea hacerlo?", "Conflicto con estado laboral", JOptionPane.YES_NO_OPTION);
 								if (reply == JOptionPane.NO_OPTION) {
 								    dispose();
 								}
@@ -274,7 +274,7 @@ public class EmployeeRequestReg extends JDialog {
 							}
 							EmployeeRequest aux=JobCenter.getInstance().findEmployeeReqByPerson(person1);
 							if(aux!=null) {
-								reply1 = JOptionPane.showConfirmDialog(null, "Usted ya tiene una solicitud activa. ¿Desea desactivarla para poder realizar otra solicitud?", "Conflicto con solicitud", JOptionPane.YES_NO_OPTION);
+								reply1 = JOptionPane.showConfirmDialog(null, "Usted ya tiene una solicitud activa. Â¿Desea desactivarla para poder realizar otra solicitud?", "Conflicto con solicitud", JOptionPane.YES_NO_OPTION);
 								if (reply1 == JOptionPane.NO_OPTION) {
 									dispose();
 								}
@@ -313,7 +313,7 @@ public class EmployeeRequestReg extends JDialog {
 							}
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. Cédula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. CÃ©dula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});

@@ -176,7 +176,7 @@ public class CompanyRequestReg extends JDialog {
 			pnlGeneral.add(lblWorkHours);
 			
 			spnWorkHours = new JSpinner();
-			spnWorkHours.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+    	spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 60, 1));
 			spnWorkHours.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			spnWorkHours.setBounds(553, 554, 84, 30);
 			pnlGeneral.add(spnWorkHours);
@@ -342,7 +342,7 @@ public class CompanyRequestReg extends JDialog {
 							dispose();
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. Cédula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. CÃ©dula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
@@ -377,10 +377,10 @@ public class CompanyRequestReg extends JDialog {
 			cbxSkill.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Direcci\u00F3n Empresarial", "Administraci\u00F3n Hotelera", "Arquitectura", "Comunicaci\u00F3n Social", "Derecho", "Dise\u00F1o e Interiorismo", "\u200B\u200B\u200BEcolog\u00EDa y Gesti\u00F3n Ambiental", "Econom\u00EDa", "Educaci\u00F3n", "Estomatolog\u00EDa", "Filosof\u00EDa", "Gesti\u00F3n Financiera y Auditor\u00EDa", "Ingenier\u00EDa Civil", "Ingenier\u00EDa Mec\u00E1nica", "Ingenier\u00EDa El\u00E9ctrica", "Ingenier\u00EDa Industrial y de Sistemas", "Ingenier\u00EDa en Mecatr\u00F3nica", "Ingenier\u00EDa de Sistemas y Computaci\u00F3n", "Ingenier\u00EDa Telem\u00E1tica", "Medicina", "Marketing", "Nutrici\u00F3n y Diet\u00E9tica\u200B", "Psicolog\u00EDa", "Terapia F\u00EDsica"}));
 		}
 		else if(cbxType.getSelectedIndex() == 2) {
-			cbxSkill.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","Informática","Electricidad","Contabilidad","Diseño Gráfico","Enfermería","Mercadeo","Administración","Publicidad"}));
+			cbxSkill.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","InformÃ¡tica","Electricidad","Contabilidad","DiseÃ±o GrÃ¡fico","EnfermerÃ­a","Mercadeo","AdministraciÃ³n","Publicidad"}));
 		}
 		else if(cbxType.getSelectedIndex() == 3){
-			cbxSkill.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","Plomería","Ebanistería","Mecánica","Construcción","Pintura","Soldadura","Jardinería"}));
+			cbxSkill.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>","PlomerÃ­a","EbanisterÃ­a","MecÃ¡nica","ConstrucciÃ³n","Pintura","Soldadura","JardinerÃ­a"}));
 		}
 		else {
 			cbxSkill.setModel(new DefaultComboBoxModel<String>(new String[] {"<Seleccione>"}));
