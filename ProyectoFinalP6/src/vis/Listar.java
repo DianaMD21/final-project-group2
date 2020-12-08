@@ -13,6 +13,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import log.Company;
+import log.CompanyRequest;
+import log.EmployeeRequest;
 import log.JobCenter;
 import log.Person;
 import log.Student;
@@ -38,17 +40,20 @@ public class Listar extends JDialog {
 	private JTable tableEmpresa;
 	private JTable tablePersona;
 	private List<Company> myCompanies;
+	private List<EmployeeRequest> myEmployeeRequest;
+	private List<CompanyRequest> myCompRequest;
 	private JRadioButton rdbtnTodos;
 	private JRadioButton rdbtnStudent;
 	private JRadioButton rdbtnTechnician;
 	private JRadioButton rdbtnWorker;
 	private List<Person> listPerson=new ArrayList<>();
+	private DefaultTableModel model;
 
 	/*
 	  @param listar 
 	  @param listar 
 	 */
-	public Listar(JobCenter jobCenter, Boolean showCompany) {
+	public Listar(JobCenter jobCenter, int show) {
 		setTitle("Listar");
 		this.listPerson=jobCenter.getMyPersons();
 		setModalityType(ModalityType.APPLICATION_MODAL);
@@ -88,32 +93,90 @@ public class Listar extends JDialog {
 		tableEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		scrollPaneEmpresa.setViewportView(tableEmpresa);
 		
-		DefaultTableModel model = new DefaultTableModel() {
-			public Class<?> getColumnClass(int column){
-				switch (column) {
-				case 0:
-					return String.class;
-				case 1:
-					return String.class;
-				case 2:
-					return String.class;
-				case 3:
-					return String.class;
-				case 4:
-					return String.class;
-				default:
+		if(show==0) {
+			 model = new DefaultTableModel() {
+				public Class<?> getColumnClass(int column){
+					switch (column) {
+					case 0:
 						return String.class;
+					case 1:
+						return String.class;
+					case 2:
+						return String.class;
+					case 3:
+						return String.class;
+					case 4:
+						return String.class;
+					default:
+							return String.class;
+					}
 				}
-			}
-		};
-		
-		tableEmpresa.setModel(model);
-		tableEmpresa.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		model.addColumn("RNC");
-		model.addColumn("Nombre");
-		model.addColumn("Provincia");
-		model.addColumn("Ciudad");
-		model.addColumn("Teléfono");
+			};
+			
+			tableEmpresa.setModel(model);
+			tableEmpresa.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			model.addColumn("RNC");
+			model.addColumn("Nombre");
+			model.addColumn("Provincia");
+			model.addColumn("Ciudad");
+			model.addColumn("Teléfono");
+		}
+		else if(show==2) {
+			model = new DefaultTableModel() {
+				public Class<?> getColumnClass(int column){
+					switch (column) {
+					case 0:
+						return String.class;
+					case 1:
+						return String.class;
+					case 2:
+						return String.class;
+					case 3:
+						return String.class;
+					case 4:
+						return String.class;
+					default:
+							return String.class;
+					}
+				}
+			};
+			
+			tableEmpresa.setModel(model);
+			tableEmpresa.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			model.addColumn("ID Sol.");
+			model.addColumn("RNC Empresa");
+			model.addColumn("Habilidad");
+			model.addColumn("Cantidad de Vacantes");
+			model.addColumn("Estado");
+		}
+		else {
+			model = new DefaultTableModel() {
+				public Class<?> getColumnClass(int column){
+					switch (column) {
+					case 0:
+						return String.class;
+					case 1:
+						return String.class;
+					case 2:
+						return String.class;
+					case 3:
+						return String.class;
+					case 4:
+						return String.class;
+					default:
+							return String.class;
+					}
+				}
+			};
+			
+			tableEmpresa.setModel(model);
+			tableEmpresa.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			model.addColumn("ID Solicitud");
+			model.addColumn("Cédula de Persona");
+			model.addColumn("Tipo de Persona");
+			model.addColumn("Salario Mínimo");
+			model.addColumn("Estado");
+		}
 		
 		JLabel lblEmpresasReg = new JLabel("Tabla de Empresas Registradas");
 		lblEmpresasReg.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -132,7 +195,7 @@ public class Listar extends JDialog {
 		
 		JLabel lblCantEmpresas = new JLabel("Cantidad de Empresas Registradas");
 		lblCantEmpresas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCantEmpresas.setBounds(20, 256, 271, 28);
+		lblCantEmpresas.setBounds(20, 256, 390, 28);
 		panelEmpresa.add(lblCantEmpresas);
 		
 		JScrollPane scrollPanelPersona = new JScrollPane();
@@ -298,18 +361,68 @@ public class Listar extends JDialog {
 		btnSalirPersona.setBounds(311, 291, 99, 28);
 		panelPersona.add(btnSalirPersona);
 		
-		if(showCompany==true) {
+		if(show==0) { //LISTAR EMPRESA
 			panelPersona.setVisible(false);
 			setTitle("Listar Empresa");
 			this.myCompanies=jobCenter.getMyCompanies();
 			setTableEmpresa(model,myCompanies);
 			lblCantEmpresas.setText("Cantidad de Empresas Registradas: "+ String.valueOf(myCompanies.size()));
 		}
-		else {
+		else if (show==1){ //LISTAR PERSONA
 			panelEmpresa.setVisible(false);
 			setTitle("Listar Persona");
 			setTablePersona(listPerson,modelPersona);
 		}
+		else if(show==2) {
+			panelPersona.setVisible(false);
+			setTitle("Listar Solicitud de Empresas");
+			this.myCompRequest=jobCenter.getMyCompanyRequests();
+			setTableEmpresaSolicitud(model,myCompRequest);
+			lblCantEmpresas.setText("Cantidad de Solicitudes de Empresas Registradas: "+ String.valueOf(myCompRequest.size()));
+		}
+		else {
+			panelPersona.setVisible(false);
+			setTitle("Listar Solicitud de Empresas");
+			this.myEmployeeRequest=jobCenter.getMyEmployeeRequests();
+			setTablePersonaSolicitud(model,myEmployeeRequest);
+			lblCantEmpresas.setText("Cantidad de Solicitudes de Personas Registradas: "+ String.valueOf(myEmployeeRequest.size()));
+		}
+	}
+
+	private void setTablePersonaSolicitud(DefaultTableModel model, List<EmployeeRequest> list) {
+		model.setRowCount(0);
+		for(int b=0;b<list.size();b++) {
+			model.addRow(new Object[0]);	
+			model.setValueAt(list.get(b).getId(), b, 0);
+			model.setValueAt(list.get(b).getApplicant().getId(), b, 1);
+			if(list.get(b).getApplicant() instanceof Student)
+				model.setValueAt("Estudiante", b, 2);
+			else if(list.get(b).getApplicant() instanceof Technician)
+				model.setValueAt("Técnico", b, 2);
+			else
+				model.setValueAt("Obrero", b, 2);
+			model.setValueAt(String.valueOf(String.valueOf(list.get(b).getMinSalary())), b, 3);
+			if(list.get(b).getStatus()==true) 
+				model.setValueAt("Activa", b, 4);
+			else
+				model.setValueAt("Inactiva", b, 4);
+		}
+	}
+
+	private void setTableEmpresaSolicitud(DefaultTableModel model, List<CompanyRequest> list) {
+		model.setRowCount(0);
+		for(int b=0;b<list.size();b++) {
+			model.addRow(new Object[0]);	
+			model.setValueAt(list.get(b).getId(), b, 0);
+			model.setValueAt(list.get(b).getCompany().getRnc(), b, 1);
+			model.setValueAt(list.get(b).getSkillRequired(), b, 2);
+			model.setValueAt(String.valueOf(list.get(b).getQuantity()), b, 3);
+			if(list.get(b).isStatus()==true) 
+				model.setValueAt("Activa", b, 4);
+			else
+				model.setValueAt("Inactiva", b, 4);
+		}
+		
 	}
 
 	private void setTablePersona(List<Person> list, DefaultTableModel modelPersona) {

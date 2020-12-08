@@ -317,7 +317,7 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmListPersona = new JMenuItem("Persona");
 			mntmListPersona.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Listar listPerson=new Listar(JobCenter.getInstance(),false);
+					Listar listPerson=new Listar(JobCenter.getInstance(),1);
 					listPerson.setVisible(true);
 				}
 			});
@@ -327,12 +327,32 @@ public class JobCenterVisual extends JDialog {
 			JMenuItem mntmListEmpresa = new JMenuItem("Empresa");
 			mntmListEmpresa.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Listar listCompany=new Listar(JobCenter.getInstance(),true);
+					Listar listCompany=new Listar(JobCenter.getInstance(),0);
 					listCompany.setVisible(true);
 				}
 			});
 			mntmListEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			mnnmListar.add(mntmListEmpresa);
+			
+			JMenuItem mntmListarSolEmpresa = new JMenuItem("Solicitudes de Empresas");
+			mntmListarSolEmpresa.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Listar listCompanySol=new Listar(JobCenter.getInstance(),2);
+					listCompanySol.setVisible(true);
+				}
+			});
+			mntmListarSolEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			mnnmListar.add(mntmListarSolEmpresa);
+			
+			JMenuItem mntmListarSolPersona = new JMenuItem("Solicitudes de Personas");
+			mntmListarSolPersona.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Listar listEmployeeSol=new Listar(JobCenter.getInstance(),3);
+					listEmployeeSol.setVisible(true);
+				}
+			});
+			mntmListarSolPersona.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			mnnmListar.add(mntmListarSolPersona);
 			
 			JMenu mnnmEstadisticas = new JMenu("Estad\u00EDsticas / Datos");
 			mnnmEstadisticas.setFont(new Font("Tahoma", Font.PLAIN, 16));
