@@ -96,7 +96,7 @@ public class ListarSolicitudes extends JDialog {
 			
 			JLabel lblNewLabel = new JLabel("Solitictudes de vacantes habilitadas:");
 			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblNewLabel.setBounds(152, 27, 411, 24);
+			lblNewLabel.setBounds(139, 27, 513, 24);
 			panel.add(lblNewLabel);
 			
 			JButton btnEliminar = new JButton("Eliminar");
@@ -146,6 +146,7 @@ public class ListarSolicitudes extends JDialog {
 			btnSalir.setBounds(372, 257, 96, 24);
 			panel.add(btnSalir);
 			if(status==false) {
+				setTitle("Eliminar Solicitudes");
 				Company comp=JobCenter.getInstance().findCompanyById(id);
 				lblNewLabel.setText("Solicitudes de vacantes habilitadas de la empresa "+comp.getName());
 				model.addColumn("RNC");
@@ -158,6 +159,7 @@ public class ListarSolicitudes extends JDialog {
 				setTableCompany(model,compRequest);
 			}
 			else {
+				setTitle("Eliminar Solicitudes");
 				Person person=JobCenter.getInstance().findPersonById(id);
 				lblNewLabel.setText("Solicitudes de vacantes habilitadas de la persona ");
 				model.addColumn("Cédula");
@@ -169,6 +171,7 @@ public class ListarSolicitudes extends JDialog {
 				employRequest=JobCenter.getInstance().getAllEmployeeRequestByID(person);
 				setTablePerson(model,employRequest);
 			}
+			
 		}
 	}
 
