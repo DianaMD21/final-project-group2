@@ -430,7 +430,7 @@ public class Listar extends JDialog {
 		for(int b=0;b<list.size();b++) {
 			modelPersona.addRow(new Object[0]);	
 			modelPersona.setValueAt(list.get(b).getId(), b, 0);
-			modelPersona.setValueAt(list.get(b).getName()+list.get(b).getLastName(), b, 1);
+			modelPersona.setValueAt(list.get(b).getName()+" "+list.get(b).getLastName(), b, 1);
 			modelPersona.setValueAt(list.get(b).getProvince(), b, 2);
 			modelPersona.setValueAt(list.get(b).getCity(), b, 3);
 			if(list.get(b) instanceof Student)

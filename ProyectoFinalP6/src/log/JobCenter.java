@@ -341,5 +341,15 @@ public class JobCenter implements Serializable{
 		}
 		return cant;
 	}
+	public EmployeeRequest findEmployeeReqByPerson(Person person1) {
+		EmployeeRequest ok=null;
+		for(EmployeeRequest er: myEmployeeRequests) {
+			if(er.getApplicant().getId().equalsIgnoreCase(person1.getId())) {
+				ok=er;
+				break;
+			}
+		}
+		return ok;
+	}
 	
 }

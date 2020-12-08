@@ -65,7 +65,7 @@ public class JobCenterVisual extends JFrame {
 			public void windowOpened(WindowEvent e) {
 				
 				try {
-					FileInputStream fileJobCenterIn = new FileInputStream("JobCenter.dat");
+					FileInputStream fileJobCenterIn = new FileInputStream("JobCenterFile.dat");
 					ObjectInputStream streamJobCenterIn = new ObjectInputStream(fileJobCenterIn);
 					JobCenter.setInstance((JobCenter) streamJobCenterIn.readObject());
 					EmployeeRequest.cod = streamJobCenterIn.readInt();
@@ -80,7 +80,7 @@ public class JobCenterVisual extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				
 				try {
-					FileOutputStream fileJobCenterOut = new FileOutputStream("JobCenter.dat");
+					FileOutputStream fileJobCenterOut = new FileOutputStream("JobCenterFile.dat");
 					ObjectOutputStream streamJobCenterOut = new ObjectOutputStream(fileJobCenterOut);
 					streamJobCenterOut.writeObject(JobCenter.getInstance());
 					streamJobCenterOut.flush();
