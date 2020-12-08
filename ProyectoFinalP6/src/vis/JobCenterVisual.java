@@ -63,6 +63,7 @@ public class JobCenterVisual extends JFrame {
 	private DefaultPieDataset dataSetType;
 	private JFreeChart pieChart;
 	private CategoryPlot pSols;
+	private JButton btnUpdate;
 
 	/**
 	 * Launch the application.
@@ -398,6 +399,12 @@ public class JobCenterVisual extends JFrame {
 		panel_1.setBackground(Color.WHITE);
 		contentPanel.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
+		
+		btnUpdate = new JButton("Actualizar Información");
+		btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpdate.setBounds((int)(dim.width/1.4), dim.height/14, 200, 30);
+		panel_1.add(btnUpdate);
+		
 		setGraph();
 	}
 	
@@ -457,6 +464,8 @@ public class JobCenterVisual extends JFrame {
 			chartPanelType.setVisible(true);
 			panel_1.setLayout(null);
 			panel_1.add(chartPanelType);
+			
+			
 	}
 	
 	private void updateGraph() {
@@ -468,13 +477,12 @@ public class JobCenterVisual extends JFrame {
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Turismo"), "Turismo", "");
         System.out.println("Turismo "+ JobCenter.getInstance().amountCompaniesPerArea("Turismo"));
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Salud"), "Salud", "");
-        System.out.println("Turismo "+ JobCenter.getInstance().amountCompaniesPerArea("Salud"));
+
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Educación"), "Educación", "");
-        System.out.println("Turismo "+ JobCenter.getInstance().amountCompaniesPerArea("Educación"));
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Tecnología"), "Tecnología", "");
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Construcción"), "Construcción", "");
-        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Venta de vehículos"), "Venta de vehículos", "");
-       
+        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Venta de Vehículos"), "Venta de Vehículos", "");
+        
         dataSetType.clear();
         dataSetType.setValue("Universitario", new Integer(JobCenter.getInstance().getAmountStudentRequestedByCompanies()));
 		dataSetType.setValue("Técnico", new Integer(JobCenter.getInstance().getAmountTechnicianRequestedByCompanies()));
