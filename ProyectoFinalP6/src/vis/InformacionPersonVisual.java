@@ -243,7 +243,6 @@ public class InformacionPersonVisual extends JDialog {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(birthDate);
 		int year = cal.get(Calendar.YEAR);
-		System.out.println(year);
 		int month = cal.get(Calendar.MONTH);
 		int day = cal.get(Calendar.DAY_OF_MONTH);
 		txtBirthdate.setText("            "+String.valueOf(day)+ "   /   "+ String.valueOf(month+1)+ "   /   "+ String.valueOf(year));

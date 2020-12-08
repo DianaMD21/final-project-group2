@@ -136,7 +136,6 @@ public class JobCenterVisual extends JFrame {
 					Company company=new Company("", "", "", "", "", "", "", "");
 					CompanyReg newCompany=new CompanyReg(company);
 					newCompany.setVisible(true);
-					System.out.println("cant empresas: "+JobCenter.getInstance().getMyCompanies().size());
 				}
 			});
 			mntmEmpresa.setFont(new Font("Tahoma", Font.PLAIN, 14));

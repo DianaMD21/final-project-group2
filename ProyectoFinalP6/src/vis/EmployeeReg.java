@@ -130,6 +130,7 @@ public class EmployeeReg extends JDialog {
 		pnlGeneral.add(label_3);
 		
 		txtID = new JTextField();
+		txtID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtID.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -202,6 +203,7 @@ public class EmployeeReg extends JDialog {
 		pnlGeneral.add(lblDireccin);
 		
 		txtAddress = new JTextField();
+		txtAddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtAddress.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -243,6 +245,7 @@ public class EmployeeReg extends JDialog {
 		pnlGeneral.add(label_8);
 		
 		txtCity = new JTextField();
+		txtCity.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCity.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -335,6 +338,7 @@ public class EmployeeReg extends JDialog {
 		pnlGeneral.add(lblNmeroTelefnico);
 		
 		txtPhone = new JTextField();
+		txtPhone.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtPhone.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {

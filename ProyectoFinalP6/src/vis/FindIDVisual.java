@@ -33,24 +33,7 @@ public class FindIDVisual extends JDialog {
 	private String myID;
 	private int myStatus;
 
-	/**
-	 
-	public static void main(String[] args) {
-		try {
-			final String id="";
-			FindIDVisual dialog = new FindIDVisual();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setTitleAndLabel(1);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	/**
-	 * Create the dialog.
-	 * @param id 
-	 */
 	public FindIDVisual(String id,JobCenter jobCenter,int status) {
 		this.myID=id;
 		this.myStatus=status;
