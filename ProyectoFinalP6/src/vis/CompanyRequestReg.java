@@ -338,11 +338,11 @@ public class CompanyRequestReg extends JDialog {
 								req.setSkillRequired(cbxSkill.getSelectedItem().toString());
 							}
 							
-							JOptionPane.showMessageDialog(null, "El registro fue completado con exito.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "El registro fue completado con éxito.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 							dispose();
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. CÃ©dula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. Cédula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});

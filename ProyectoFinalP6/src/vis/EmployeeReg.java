@@ -677,11 +677,11 @@ public class EmployeeReg extends JDialog {
 						}
 						if(mod == null) {
 							JobCenter.getInstance().addPerson(aux);
-							JOptionPane.showMessageDialog(null, "El registro fue completado con exito", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "El registro fue completado con éxito", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 							dispose();
 						}else {
 							JobCenter.getInstance().modPerson(mod,aux);
-							JOptionPane.showMessageDialog(null, "Se modificó con exito", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Se modificó con éxito", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 							dispose();
 						}
 				}
