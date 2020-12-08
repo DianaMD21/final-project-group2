@@ -264,7 +264,7 @@ public class InformacionPersonVisual extends JDialog {
 
 	private void setData(Person person) {
 		txtID.setText(person.getId());
-		txtName.setText(person.getName()+person.getLastName());
+		txtName.setText(person.getName()+" "+person.getLastName());
 		txtProvince.setText(person.getProvince());
 		txtCity.setText(person.getCity());
 		txtAreaAddress.setText(person.getAddress());
