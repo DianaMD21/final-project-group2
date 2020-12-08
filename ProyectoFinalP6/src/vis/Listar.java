@@ -118,7 +118,7 @@ public class Listar extends JDialog {
 			model.addColumn("RNC");
 			model.addColumn("Nombre");
 			model.addColumn("Provincia");
-			model.addColumn("Ciudad");
+			model.addColumn("Área");
 			model.addColumn("Teléfono");
 		}
 		else if(show==2) {
@@ -455,7 +455,7 @@ public class Listar extends JDialog {
 			model.setValueAt(list.get(b).getRnc(), b, 0);
 			model.setValueAt(list.get(b).getName(), b, 1);
 			model.setValueAt(list.get(b).getProvince(), b, 2);
-			model.setValueAt(list.get(b).getCity(), b, 3);
+			model.setValueAt(list.get(b).getArea(), b, 3);
 			model.setValueAt(list.get(b).getPhoneNumber(), b, 4);
 		}
 		

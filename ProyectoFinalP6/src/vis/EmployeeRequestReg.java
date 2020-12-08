@@ -266,7 +266,7 @@ public class EmployeeRequestReg extends JDialog {
 						if(JobCenter.getInstance().findPersonById(txtCed.getText()) != null) {
 							Person person1=JobCenter.getInstance().findPersonById(txtCed.getText());
 							if(person1.isWorkingStatus()==true) {
-								 reply = JOptionPane.showConfirmDialog(null, "Su estado laboral es empleado. Debe de cambiarlo para realizar una solicitud. Â¿Desea hacerlo?", "Conflicto con estado laboral", JOptionPane.YES_NO_OPTION);
+								 reply = JOptionPane.showConfirmDialog(null, "Su estado laboral es empleado. Debe de cambiarlo para realizar una solicitud. ¿Desea hacerlo?", "Conflicto con estado laboral", JOptionPane.YES_NO_OPTION);
 								if (reply == JOptionPane.NO_OPTION) {
 								    dispose();
 								}
@@ -308,12 +308,12 @@ public class EmployeeRequestReg extends JDialog {
 									req.setDrivingLicense(chckbxDriveLc.isSelected());
 								}
 								
-								JOptionPane.showMessageDialog(null, "El registro fue completado con exito.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.showMessageDialog(null, "El registro fue completado con éxito.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 								dispose();
 							}
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. CÃ©dula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "No se pudo crear la solicitud. Cédula incorrecta o inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
