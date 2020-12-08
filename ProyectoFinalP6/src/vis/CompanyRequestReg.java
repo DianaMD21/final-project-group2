@@ -176,7 +176,7 @@ public class CompanyRequestReg extends JDialog {
 			pnlGeneral.add(lblWorkHours);
 			
 			spnWorkHours = new JSpinner();
-			spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+			spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 40, 1));
 			spnWorkHours.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			spnWorkHours.setBounds(553, 554, 84, 30);
 			pnlGeneral.add(spnWorkHours);

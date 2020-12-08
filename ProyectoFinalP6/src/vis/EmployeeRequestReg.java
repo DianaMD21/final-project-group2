@@ -170,7 +170,7 @@ public class EmployeeRequestReg extends JDialog {
 			pnlGeneral.add(lblWorkHours);
 			
 			spnWorkHours = new JSpinner();
-			spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+			spnWorkHours.setModel(new SpinnerNumberModel(1, 1, 40, 1));
 			spnWorkHours.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			spnWorkHours.setBounds(245, 526, 100, 30);
 			pnlGeneral.add(spnWorkHours);

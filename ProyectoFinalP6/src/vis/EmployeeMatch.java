@@ -55,19 +55,6 @@ public class EmployeeMatch extends JDialog {
 	private List<CompanyRequest> requests;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			EmployeeMatch dialog = new EmployeeMatch();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Create the dialog.
 	 */
 	public EmployeeMatch() {
