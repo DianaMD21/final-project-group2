@@ -178,14 +178,14 @@ public class JobCenterVisual extends JFrame {
 					cedula=findPersona.getID();
 					if(cedula.equalsIgnoreCase("")==false) {
 						Person personToEliminate=JobCenter.getInstance().findPersonById(cedula);
-						int result = JOptionPane.showConfirmDialog((Component) null, "Â¿Seguro que desea eliminar la persona "+personToEliminate.getName()+
-								" "+personToEliminate.getLastName()+", y todas las solicitudes que creÃ³?",
+						int result = JOptionPane.showConfirmDialog((Component) null, "¿Seguro que desea eliminar la persona "+personToEliminate.getName()+
+								" "+personToEliminate.getLastName()+", y todas las solicitudes que creó?",
 						        "alert", JOptionPane.OK_CANCEL_OPTION);
 						
 						if(result==JOptionPane.OK_OPTION) {
 							JobCenter.getInstance().getMyPersons().remove(personToEliminate);
 							JobCenter.getInstance().eliminateAllActivePersonRequests(personToEliminate);
-							JOptionPane.showMessageDialog(null, "La persona ha sido eliminada con Ã©xito", "Persona Eliminada", JOptionPane.CLOSED_OPTION);
+							JOptionPane.showMessageDialog(null, "La persona ha sido eliminada con éxito", "Persona Eliminada", JOptionPane.CLOSED_OPTION);
 						}
 					}
 				}
@@ -202,13 +202,13 @@ public class JobCenterVisual extends JFrame {
 					RNC=findCompany.getID();
 					if(RNC.equalsIgnoreCase("")==false) {
 						Company companyToEliminate=JobCenter.getInstance().findCompanyById(RNC);
-						int result = JOptionPane.showConfirmDialog((Component) null, "Â¿Seguro que desea eliminar la empresa "+companyToEliminate.getName()+
-								", y todas las solicitudes que creÃ³?",
+						int result = JOptionPane.showConfirmDialog((Component) null, "¿Seguro que desea eliminar la empresa "+companyToEliminate.getName()+
+								", y todas las solicitudes que creó?",
 						        "alert", JOptionPane.OK_CANCEL_OPTION);
 						if(result==JOptionPane.OK_OPTION) {
 							JobCenter.getInstance().getMyCompanies().remove(companyToEliminate);
 							JobCenter.getInstance().eliminateAllActiveCompanyRequests(companyToEliminate);
-							JOptionPane.showMessageDialog(null, "La empresa ha sido eliminada con Ã©xito", "Empresa Eliminada", JOptionPane.CLOSED_OPTION);
+							JOptionPane.showMessageDialog(null, "La empresa ha sido eliminada con éxito", "Empresa Eliminada", JOptionPane.CLOSED_OPTION);
 						}	
 					}
 					updateGraph();
@@ -408,7 +408,7 @@ public class JobCenterVisual extends JFrame {
 	        datasetSols.setValue(JobCenter.getInstance().getSatisfiedEmployeeRequest(), "Solicitudes satisfechas", "Solicitudes satisfechas");
 	       
 	        chartSols = ChartFactory.createBarChart3D
-	        ("Solicitudes de Personas satisfechas","Ã�rea", "Cant. Empresas", 
+	        ("Solicitudes de Personas satisfechas","Área", "Cant. Empresas", 
 	        datasetSols, PlotOrientation.VERTICAL, true,true, false);
 	        chartSols.setBackgroundPaint(Color.LIGHT_GRAY);
 	        chartSols.getTitle().setPaint(Color.black); 
@@ -424,13 +424,13 @@ public class JobCenterVisual extends JFrame {
 	        datasetAreas = new DefaultCategoryDataset();
 	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Turismo"), "Turismo", "");
 	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Salud"), "Salud", "");
-	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("EducaciÃ³n"), "EducaciÃ³n", "");
-	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("TecnologÃ­a"), "TecnologÃ­a", "");
-	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("ConstrucciÃ³n"), "ConstrucciÃ³n", "");
-	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Venta de VehÃ­culos"), "Venta de VehÃ­culos", "");
+	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Educación"), "Educación", "");
+	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Tecnología"), "Tecnología", "");
+	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Construcción"), "Construcción", "");
+	        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Venta de vehículos"), "Venta de vehículos", "");
 	       
 	        chartAreas = ChartFactory.createBarChart3D
-	        ("Cantidad de empresas por Ã¡rea","Ã�rea", "Cant. Empresas", 
+	        ("Cantidad de empresas por Área ","Área", "Cant. Empresas", 
 	        datasetAreas, PlotOrientation.VERTICAL, true,true, false);
 	        chartAreas.setBackgroundPaint(Color.LIGHT_GRAY);
 	        chartAreas.getTitle().setPaint(Color.black);
@@ -446,7 +446,7 @@ public class JobCenterVisual extends JFrame {
 	        
 	        dataSetType = new DefaultPieDataset();
 	        dataSetType.setValue("Universitario", new Integer(JobCenter.getInstance().getAmountStudentRequestedByCompanies()));
-			dataSetType.setValue("TÃ©cnico", new Integer(JobCenter.getInstance().getAmountTechnicianRequestedByCompanies()));
+			dataSetType.setValue("Técnico", new Integer(JobCenter.getInstance().getAmountTechnicianRequestedByCompanies()));
 			dataSetType.setValue("Obrero", new Integer(JobCenter.getInstance().getAmountWorkerRequestedByCompanies()));
 			
 			pieChart = ChartFactory.createPieChart("Datos sobre los tipo de empleados mas solicitados por empresas", dataSetType,true, true, true);
@@ -466,15 +466,18 @@ public class JobCenterVisual extends JFrame {
         
         datasetAreas.clear();
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Turismo"), "Turismo", "");
+        System.out.println("Turismo "+ JobCenter.getInstance().amountCompaniesPerArea("Turismo"));
         datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Salud"), "Salud", "");
-        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("EducaciÃ³n"), "EducaciÃ³n", "");
-        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("TecnologÃ­a"), "TecnologÃ­a", "");
-        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("ConstrucciÃ³n"), "ConstrucciÃ³n", "");
-        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Venta de VehÃ­culos"), "Venta de VehÃ­culos", "");
-        
+        System.out.println("Turismo "+ JobCenter.getInstance().amountCompaniesPerArea("Salud"));
+        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Educación"), "Educación", "");
+        System.out.println("Turismo "+ JobCenter.getInstance().amountCompaniesPerArea("Educación"));
+        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Tecnología"), "Tecnología", "");
+        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Construcción"), "Construcción", "");
+        datasetAreas.setValue(JobCenter.getInstance().amountCompaniesPerArea("Venta de vehículos"), "Venta de vehículos", "");
+       
         dataSetType.clear();
         dataSetType.setValue("Universitario", new Integer(JobCenter.getInstance().getAmountStudentRequestedByCompanies()));
-		dataSetType.setValue("TÃ©cnico", new Integer(JobCenter.getInstance().getAmountTechnicianRequestedByCompanies()));
+		dataSetType.setValue("Técnico", new Integer(JobCenter.getInstance().getAmountTechnicianRequestedByCompanies()));
 		dataSetType.setValue("Obrero", new Integer(JobCenter.getInstance().getAmountWorkerRequestedByCompanies()));
 	}
 }
